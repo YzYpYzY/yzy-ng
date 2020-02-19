@@ -1,0 +1,138 @@
+:host {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 20rem;
+    margin-bottom: 0.5rem;
+
+    &.is-readonly .dropdown {
+        background: var(--field-readonly-bg);
+        color: var(--field-readonly-color);
+
+        .option:hover {
+            color: var(--field-readonly-color);
+        }
+    }
+}
+
+.dropdown {
+    box-sizing: border-box;
+    font-family: 'Roboto Light', sans-serif;
+    cursor: pointer;
+    border: 1px solid var(--field-border);
+    height: 100%;
+    width: 100%;
+    background: var(--field-bg);
+    color: var(--field-color);
+    padding: 0;
+    margin: 1.5rem 0 0 0;
+    position: relative;
+}
+
+.options {
+    box-sizing: border-box;
+    position: absolute;
+    top: calc(100% + 1px);
+    left: -1px;
+    overflow: hidden;
+    height: 0;
+    width: 0;
+    opacity: 0;
+    border: 1px solid transparent;
+    z-index: 5;
+    background: var(--field-bg);
+
+    &.open {
+        border-color: var(--field-border);
+        border-top-color: transparent;
+        width: calc(100% + 2px);
+        opacity: 1;
+
+        .option {
+            opacity: 1;
+        }
+    }
+}
+
+.option {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding: 0.75rem 0.75rem;
+    opacity: 0;
+
+    &:hover {
+        background: var(--accent-color);
+        color: var(--field-bg);
+    }
+}
+
+.selectedValue {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    position: relative;
+    opacity: 1;
+    height: 100%;
+
+    &:hover {
+        background: transparent;
+        color: var(--field-color);
+    }
+}
+
+:host.sizeProcessing {
+    .options {
+        opacity: 0;
+    }
+
+    .selectedValue {
+        opacity: 0;
+    }
+}
+
+label {
+    position: absolute;
+    top: -0.25rem;
+    left: 0;
+    padding: 0;
+    color: var(--field-label);
+    font-size: 1rem;
+    font-weight: 400;
+    z-index: 2;
+    white-space: nowrap;
+}
+
+.gg-chevron-down {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+    height: 22px;
+    border: 2px solid transparent;
+    border-radius: 100px;
+}
+
+.gg-chevron-down::after {
+    content: '';
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    transform: rotate(45deg);
+    left: 4px;
+    top: 2px;
+}

@@ -1,0 +1,26 @@
+<ng-container [formGroup]="form">
+    <label>{{ fieldModel.label }}</label>
+    <div #dropdown class="dropdown" (focusout)="collapse()">
+        <div
+            class="option selectedValue"
+            [style.height]="optionHeight"
+            (click)="toggle()"
+        >
+            {{ displayedValue }} <i class="gg-chevron-down"></i>
+        </div>
+        <div
+            class="options"
+            [ngClass]="{ open: !isCollapsed }"
+            [style.height]="optionsHeight"
+        >
+            <div
+                class="option"
+                [style.height]="optionHeight"
+                *ngFor="let item of fieldModel.options"
+                (click)="changeValue(item)"
+            >
+                {{ item.label }}
+            </div>
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,45 @@
+<table>
+    <tr>
+        <th *ngFor="let column of visibleColumns">{{ column.name }}</th>
+    </tr>
+    <tr *ngFor="let item of items" (click)="selectE(item)">
+        <td *ngFor="let column of visibleColumns">
+            <div class="label">{{ column.name }}</div>
+            {{ item[column.attribute] }}
+        </td>
+    </tr>
+</table>
+
+<div class="actions">
+    <div class="icon" (click)="toggleSortChoice()">
+        <i
+            [ngClass]="{
+                'gg-close-o': isSortsVisible,
+                'gg-sort-az': !isSortsVisible
+            }"
+        ></i>
+    </div>
+    <div class="icon" (click)="toggleFilter()">
+        <i
+            [ngClass]="{
+                'gg-close-o': isFilterVisible,
+                'gg-search': !isFilterVisible
+            }"
+        ></i>
+    </div>
+    <div class="icon" (click)="addE()"><i class="gg-add"></i></div>
+</div>
+<div class="sorts" [ngClass]="{ visible: isSortsVisible }">
+    <div class="title">Sorts</div>
+    <div *ngFor="let sort of sorts" class="sort">
+        <i class="gg-arrow-up" (click)="applySort(sort, false)"></i>
+        {{ sort }}
+        <i class="gg-arrow-down" (click)="applySort(sort, true)"></i>
+    </div>
+</div>
+<div class="filter" [ngClass]="{ visible: isFilterVisible }">
+    <input type="text" [(ngModel)]="filter" (change)="applySearch()" />
+    <div class="search">
+        <i (click)="applySearch()" class="gg-search"></i>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<ng-container [formGroup]="form">
+    <label for="{{ fieldModel.name }}">{{ fieldModel.label }}</label>
+    <ng-container [ngSwitch]="fieldModel.type">
+        <div *ngSwitchCase="FieldTypes.Dropdown">
+            <yzy-dropdown [fieldModel]="fieldModel" [form]="form">
+            </yzy-dropdown>
+        </div>
+        <div *ngSwitchCase="FieldTypes.TextArea">
+            <textarea
+                name="{{ fieldModel.name }}"
+                id="{{ fieldModel.name }}"
+                [formControlName]="fieldModel.name"
+            ></textarea>
+        </div>
+        <div *ngSwitchDefault>
+            <input
+                type="{{ htmltype }}"
+                name="{{ fieldModel.name }}"
+                id="{{ fieldModel.name }}"
+                [formControlName]="fieldModel.name"
+            />
+        </div>
+    </ng-container>
+    <yzy-field-error [errors]="errors"></yzy-field-error>
+</ng-container>

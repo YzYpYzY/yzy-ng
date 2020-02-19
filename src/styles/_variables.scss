@@ -1,0 +1,46 @@
+$border-r: 1rem;
+
+$accent: rgb(250, 175, 77);
+$dominant: rgb(245, 241, 241);
+$contrast: rgb(27, 27, 27);
+
+$dominant-transparent: transparentize($dominant, 0.3);
+$light-grey: rgb(160, 156, 156);
+
+html {
+    --accent-color: #{$accent};
+    --base-bg: #{$dominant};
+    --base-color: #{$contrast};
+    --base-grey: #{$light-grey};
+    --sidebar-bg: #{$dominant};
+    --icon-color: #{$contrast};
+    --sidebar-link-hover: #{$accent};
+    --sidebar-link-selected-bg: #{$dominant};
+    --sidebar-link-selected: #{$accent};
+
+    --loader-color: #{$accent};
+
+    --valid-color: rgb(233, 255, 110);
+    --invalid-color: rgb(255, 144, 110);
+
+    --logo-color: #{$contrast};
+    --logo-subTitle: rgb(194, 194, 194);
+    --logo-bubble: #{$accent};
+
+    --form-link: grey;
+    --field-border: rgb(212, 211, 211);
+    --field-color: black;
+    --field-readonly-color: black;
+    --field-bg: rgb(255, 255, 255);
+    --field-readonly-bg: rgba(255, 255, 255, 0);
+    --field-label: rgb(121, 120, 120);
+
+    --btn-color: black;
+    --btn-bg: #{$accent};
+    --btn-color-hover: white;
+    --btn-color-disable: black;
+    --btn-bg-disable: rgb(235, 233, 233);
+
+    --table-even-row: #{transparentize($accent, 0.5)};
+    --scrollbar: rgb(236, 236, 236);
+}

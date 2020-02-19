@@ -1,0 +1,63 @@
+:host {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: .5rem 0;
+    padding-bottom: 0;
+    transition: padding ease .3s;
+
+    &.hasError {
+        padding-bottom: 1.3rem;
+
+        input {
+            border: 1px solid var(--invalid-color);
+        }
+    }
+
+    &.is-valid {}
+
+    &.is-readonly {
+
+        input,
+        textarea {
+            border: 1px solid var(--field-border);
+            background: var(--field-readonly-bg);
+            color: var(--field-readonly-color);
+
+        }
+    }
+}
+
+input,
+textarea {
+    position: relative;
+    padding: .75rem .75rem;
+    margin: 1.5rem 0 .5rem 0;
+    color: var(--field-color);
+    background: var(--field-bg);
+    font-size: 1.2rem;
+    font-weight: 600;
+    z-index: 1;
+    border: none;
+    border: 1px solid var(--field-border);
+    min-width: 20rem;
+    z-index: 2;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+label {
+    position: absolute;
+    top: -.25rem;
+    left: 0;
+    padding: 0;
+    color: var(--field-label);
+    font-size: 1rem;
+    font-weight: 400;
+    z-index: 2;
+    white-space: nowrap;
+}

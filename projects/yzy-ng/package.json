@@ -1,0 +1,21 @@
+{
+  "name": "yzy-ng",
+  "version": "1.0.0",
+  "description": "Components library",
+  "main": "src/public-api.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "author": "Jérôme Culot",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "~9.0.0",
+    "@angular/compiler": "~9.0.0",
+    "@angular/core": "~9.0.0",
+    "@angular/forms": "~9.0.0",
+    "rxjs": "~6.5.4"
+  }
+}
