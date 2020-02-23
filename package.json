@@ -12,7 +12,7 @@
     "storybook": "start-storybook -p 6006",
     "copy:readme": "copyfiles ./README.md ./dist/yzy-ng",
     "build-storybook": "build-storybook",
-    "build": "npm run build:lib && npm run build:demo",
+    "build": "npm run build:lib && npm run build:showcase",
     "build:lib": "npm run copy:readme && ng build yzy-ng",
     "build:showcase": "build-storybook -c .storybook -o dist/showcase",
     "publish:showcase": "npx angular-cli-ghpages --dir=./dist/showcase",
