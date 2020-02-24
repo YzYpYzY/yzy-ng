@@ -18,7 +18,7 @@
     "lintfix": "ng lint --fix",
     "ng": "ng",
     "publish:lib": "npx semantic-release",
-    "publish:showcase": "npx angular-cli-ghpages --dir=./dist/showcase --no-silent",
+    "publish:showcase": "npx angular-cli-ghpages --dir=./dist/showcase --no-silent --name=YzYpYzY --email=culot.jerome@gmail.com",
     "start": "npm run start:theme && npm run storybook",
     "start:storybook": "start-storybook -p 6006",
     "start:theme": "node-sass src/styles/ -o dist/yzy-ng-themes/ && node-sass src/styles/ -o dist/yzy-ng-themes/ --watch",
