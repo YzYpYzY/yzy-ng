@@ -17,18 +17,16 @@ import { FieldModel } from '../field/models/FieldModel';
     templateUrl: './dropdown.component.html',
     styleUrls: ['./dropdown.component.scss']
 })
-export class DropdownComponent implements OnInit, AfterViewInit {
+export class DropdownComponent implements OnInit {
     @Input() fieldModel: FieldModel;
     @Input() form: FormGroup;
     @Input() width: string;
 
     @HostBinding('class.is-readonly') isReadOnly = false;
     control: AbstractControl;
-
-    value: any = null;
-
     displayedValue = ' ';
     displayedWidth;
+    displayedOptions = null;
     isCollapsed = true;
 
     optionsHeight = 'auto';
@@ -45,21 +43,17 @@ export class DropdownComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit(): void {
+        this.render.addClass(this.elementRef.nativeElement, 'sizeProcessing');
         this.control = this.form.get(this.fieldModel.name);
+        this.setOptions();
         this.isReadOnly = !this.control.enabled;
 
         if (this.width !== undefined) {
             this.displayedWidth = this.width;
+            this.processAutoHeigth();
         } else {
-            this.processAutoSize();
+            this.processAutoWidth();
         }
-        this.render.addClass(this.elementRef.nativeElement, 'sizeProcessing');
-    }
-
-    ngAfterViewInit(): void {
-        setTimeout(() => {
-            this.setDisplayValue();
-        });
     }
 
     changeValue(event: OptionModel) {
@@ -88,41 +82,57 @@ export class DropdownComponent implements OnInit, AfterViewInit {
         this.optionsHeight = this.optionsHeightOpen;
     }
 
-    processAutoSize() {
+    processAutoWidth() {
         let indexLargerLabel = 0;
-        for (let i = 1; i < this.fieldModel.options.length; i++) {
+        for (let i = 1; i < this.displayedOptions.length; i++) {
             if (
-                this.fieldModel.options[i].label.length >
-                this.fieldModel.options[indexLargerLabel].label.length
+                this.displayedOptions[i].label.length >
+                this.displayedOptions[indexLargerLabel].label.length
             ) {
                 indexLargerLabel = i;
             }
         }
-        this.displayedValue = this.fieldModel.options[indexLargerLabel].label;
-    }
-
-    setDisplayValue() {
-        this.optionsHeightOpen =
-            this.elementRef.nativeElement.children[1].offsetHeight *
-                this.fieldModel.options.length +
-            'px';
+        this.displayedValue = this.displayedOptions[indexLargerLabel].label;
         this.displayedWidth =
             this.elementRef.nativeElement.children[1].offsetWidth + 'px'; // Fix breakline
         this.elementRef.nativeElement.style.width = this.displayedWidth;
+
+        this.processAutoHeigth();
+    }
+
+    processAutoHeigth() {
+        this.optionsHeightOpen =
+            this.elementRef.nativeElement.children[1].offsetHeight *
+                this.displayedOptions.length +
+            'px';
         this.optionHeight =
             this.elementRef.nativeElement.children[1].offsetHeight + 'px';
-        if (this.control.value) {
-            const selectedItem = this.fieldModel.options.find(
-                i => i.value == this.control.value
-            );
-            this.displayedValue = selectedItem ? selectedItem.label : '';
-        } else {
-            this.displayedValue = '';
-        }
+        this.setDisplayValue();
+    }
+
+    setDisplayValue() {
+        const selectedItem = this.displayedOptions.find(
+            i => i.value === this.control.value
+        );
+        this.displayedValue = selectedItem ? selectedItem.label : '';
+
         this.optionsHeight = '0';
         this.render.removeClass(
             this.elementRef.nativeElement,
             'sizeProcessing'
         );
+    }
+
+    setOptions() {
+        const options = this.fieldModel.options.map(o => ({ ...o }));
+        if (
+            this.fieldModel.value === undefined ||
+            options.findIndex(o => o.value === this.fieldModel.value) === -1
+        ) {
+            const nullOption = { value: null, label: ' ', class: 'empty' };
+            options.unshift(nullOption);
+            this.changeValue(nullOption);
+        }
+        this.displayedOptions = options;
     }
 }
