@@ -6,7 +6,7 @@
     "adjust-version:lib": "rjp projects/yzy-ng/package.json version $VERSION",
     "adjust-version:main": "rjp package.json version $VERSION",
     "build": "npm run build:theme && npm run build:lib && npm run build:showcase",
-    "build:lib": "npm run copy:readme && ng build yzy-ng",
+    "build:lib": "ng build yzy-ng && npm run copy:readme",
     "build:showcase": "build-storybook -c .storybook -o dist/showcase",
     "build:storybook": "build-storybook",
     "build:theme": "node-sass src/styles/ -o dist/yzy-ng-themes/",
