@@ -28,7 +28,6 @@ jobs:
       - name: Deploy showcase
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm run publish:showcase
@@ -36,8 +35,7 @@ jobs:
       - name: Package lib and publish
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npm run publish:lib
