@@ -17,7 +17,7 @@ table {
     flex-flow: column;
     width: 100%;
     overflow: auto;
-    max-height: calc(100vh - 6rem);
+    max-height: calc(100% - 6rem);
     scrollbar-width: thin;
 }
 
@@ -177,7 +177,8 @@ td {
     justify-content: center;
     transform: translateX(100%);
     width: 100%;
-    height: calc(100vh - 6rem);
+    height: calc(100% - 6rem);
+    flex-grow: 0;
     background-color: var(--base-bg);
     transition: transform ease 0.5s;
 
