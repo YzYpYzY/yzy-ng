@@ -6,6 +6,11 @@ Angular components library.
 
 [Showcase](https://yzypyzy.github.io/yzy-ng/)
 
+[Npm package](https://www.npmjs.com/package/yzy-ng)
+```typescript
+    npm i yzy-ng
+```
+
 Composed by :
 
 -   reactive form implementation;
