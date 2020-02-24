@@ -32,6 +32,7 @@
     "@angular/platform-browser-dynamic": "~9.0.0",
     "@angular/router": "~9.0.0",
     "@storybook/addon-docs": "^5.3.13",
+    "copyfiles": "^2.2.0",
     "html-loader": "^0.5.5",
     "rxjs": "~6.5.4",
     "to-string-loader": "^1.1.6",
