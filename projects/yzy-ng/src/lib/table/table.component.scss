@@ -28,9 +28,14 @@ tr:first-of-type {
 tr {
     padding: 0.5rem 0;
     //background-color: var(--base-grey);
-
+    &:hover td {
+        background-color: rgba(28, 60, 165, 0.651);
+    }
     &:nth-child(even) {
         background-color: var(--table-even-row);
+        &:hover td {
+            background-color: rgba(28, 60, 165, 0.651);
+        }
     }
 }
 
@@ -40,22 +45,28 @@ td {
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding: 0.25rem 2rem;
     text-overflow: ellipsis;
     overflow: hidden;
+    padding: 0;
     .label {
         font-size: 1rem;
     }
 
     &:last-child {
-        padding-bottom: 1rem;
+        padding-bottom: 0.5rem;
     }
 
     &:first-child {
-        padding-top: 1rem;
+        padding-top: 0.5rem;
     }
 }
-
+yzy-cell {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
 .actions {
     display: flex;
     flex-flow: row;
@@ -443,15 +454,16 @@ table::-webkit-scrollbar-thumb {
         }
         td {
             &:last-child {
-                padding-bottom: 0.25rem;
+                padding-bottom: 0;
             }
 
             &:first-child {
-                padding-top: 0.25rem;
+                padding-top: 0;
             }
             .label {
                 display: none;
             }
+            padding: 0;
         }
     }
     .filter {
@@ -473,5 +485,8 @@ table::-webkit-scrollbar-thumb {
         i {
             transform: scale(1);
         }
+    }
+    .value {
+        width: 100%;
     }
 }

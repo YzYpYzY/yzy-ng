@@ -4,8 +4,10 @@
     </tr>
     <tr *ngFor="let item of items" (click)="selectE(item)">
         <td *ngFor="let column of visibleColumns; trackBy: trackByFn">
-            <div class="label">{{ column.name }}</div>
-            {{ item[column.attribute] }}
+            <yzy-cell
+                [value]="item[column.attribute]"
+                [column]="column"
+            ></yzy-cell>
         </td>
     </tr>
 </table>
@@ -28,6 +30,12 @@
         ></i>
     </div>
     <div class="icon" (click)="addE()"><i class="gg-add"></i></div>
+    <yzy-paginator
+        [count]="itemsCount"
+        [itemByPage]="itemByPage"
+        [selectedPage]="selectedPage"
+        (changePage)="selectPage($event)"
+    ></yzy-paginator>
 </div>
 <div class="sorts" [ngClass]="{ visible: isSortsVisible }">
     <div class="title">Sorts</div>

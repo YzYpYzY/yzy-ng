@@ -1,10 +1,23 @@
 import { moduleMetadata } from '@storybook/angular';
-import { TableModule, TableComponent, Column } from 'yzy-ng';
+import { TableModule, TableComponent, Column, ColumnTypes } from 'yzy-ng';
 import { action } from '@storybook/addon-actions';
 import '!style-loader!css-loader!../../dist/yzy-ng-themes/base-theme.css';
+
+const typeOptions = [
+    { label: 'Soda', value: 'soda' },
+    { label: 'Water', value: 'water' },
+    { label: 'Alcohol', value: 'alcohol' }
+];
+
 const columns: Column[] = [
-    { name: 'Name', attribute: 'name' },
-    { name: 'Type', attribute: 'type' },
+    { name: 'Name', attribute: 'name', editable: true },
+    {
+        name: 'Type',
+        attribute: 'type',
+        type: ColumnTypes.Dropdown,
+        editable: true,
+        options: typeOptions
+    },
     { name: 'Color', attribute: 'color', width: 1 },
     { name: 'Quantity', attribute: 'quantity' },
     { name: 'Price', attribute: 'price' },
@@ -55,7 +68,7 @@ const items = [
     {
         id: 4,
         name: 'Wine',
-        type: 'Alcohol',
+        type: 'alcohol',
         color: 'red',
         quantity: '12',
         price: '50€',
@@ -65,7 +78,7 @@ const items = [
     {
         id: 5,
         name: 'Wine',
-        type: 'Alcohol',
+        type: 'alcohol',
         color: 'red',
         quantity: '2',
         price: '5€',
@@ -115,7 +128,7 @@ const items = [
     {
         id: 10,
         name: 'Wine',
-        type: 'Alcohol',
+        type: 'alcohol',
         color: 'red',
         quantity: '12',
         price: '50€',
@@ -125,7 +138,7 @@ const items = [
     {
         id: 11,
         name: 'Wine',
-        type: 'Alcohol',
+        type: 'alcohol',
         color: 'red',
         quantity: '2',
         price: '5€',

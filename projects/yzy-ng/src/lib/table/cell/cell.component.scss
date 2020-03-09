@@ -1,0 +1,39 @@
+:host {
+    padding: 0.25rem 1rem;
+    &.editable {
+        background-color: rgba(120, 167, 228, 0.479);
+        .chevron-down {
+            display: inline-block;
+        }
+    }
+    &.in-edition {
+        padding: 0;
+    }
+}
+.value {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    text-overflow: ellipsis;
+}
+.chevron-down {
+    display: none;
+    transform: rotate(45deg);
+    height: 0.4em;
+    width: 0.4em;
+    border: 1px solid transparent;
+    border-right-color: black;
+    border-bottom-color: black;
+    position: relative;
+    margin-left: 0.75em;
+}
+input {
+    height: 100%;
+    padding: 0 1rem;
+    background: transparent;
+    border: none;
+    width: 100%;
+    font-size: 1em;
+    text-overflow: ellipsis;
+}

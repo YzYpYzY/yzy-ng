@@ -1,0 +1,27 @@
+<ng-container *ngIf="inEdition; else readOnly">
+    <div class="label">{{ column.name }}</div>
+    <div class="value" [ngSwitch]="column.type">
+        <yzy-dropdown
+            *ngSwitchCase="ColumnTypes.Dropdown"
+            [form]="form"
+            [fieldModel]="fieldModel"
+        ></yzy-dropdown>
+        <input
+            *ngSwitchCase="ColumnTypes.Number"
+            type="number"
+            [(ngModel)]="value"
+            autofocus
+        />
+        <input *ngSwitchDefault type="text" [(ngModel)]="value" autofocus />
+    </div>
+</ng-container>
+<ng-template #readOnly>
+    <div class="label">{{ column.name }}</div>
+    <div class="value">
+        {{ value }}
+        <i
+            class="chevron-down"
+            *ngIf="column.type === ColumnTypes.Dropdown"
+        ></i>
+    </div>
+</ng-template>

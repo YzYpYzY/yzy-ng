@@ -7,7 +7,8 @@ import {
     Output,
     EventEmitter,
     ViewChild,
-    TemplateRef
+    TemplateRef,
+    ViewEncapsulation
 } from '@angular/core';
 import { Column } from './models/Column';
 import { YzYSort } from './models';
@@ -15,11 +16,16 @@ import { YzYSort } from './models';
 @Component({
     selector: 'yzy-table',
     templateUrl: './table.component.html',
-    styleUrls: ['./table.component.scss']
+    styleUrls: ['./table.component.scss'],
+    // tslint:disable-next-line: use-component-view-encapsulation
+    encapsulation: ViewEncapsulation.None
 })
 export class TableComponent implements OnInit, OnChanges {
     @Input() columns: Column[];
     @Input() items: any[];
+    @Input() itemsCount: number;
+    @Input() selectedPage: number;
+    @Input() itemByPage: number;
     // tslint:disable-next-line: no-output-on-prefix
     @Output() onAdd = new EventEmitter<string>();
     // tslint:disable-next-line: no-output-on-prefix
@@ -28,6 +34,8 @@ export class TableComponent implements OnInit, OnChanges {
     @Output() onSort = new EventEmitter<YzYSort>();
     // tslint:disable-next-line: no-output-on-prefix
     @Output() onFilter = new EventEmitter<string>();
+    // tslint:disable-next-line: no-output-on-prefix
+    @Output() onPageChange = new EventEmitter<number>();
 
     sorts: string[];
     visibleColumns: Column[];
@@ -38,6 +46,9 @@ export class TableComponent implements OnInit, OnChanges {
     constructor() {}
 
     ngOnInit() {
+        this.selectedPage =
+            this.selectedPage !== undefined ? this.selectedPage : 1;
+        this.itemByPage = this.itemByPage !== undefined ? this.itemByPage : 20;
         this.prepareColumns();
     }
     trackByFn(index, item) {
@@ -73,6 +84,7 @@ export class TableComponent implements OnInit, OnChanges {
 
     addE(): void {
         this.onAdd.emit('new');
+        console.log(this.items);
     }
 
     selectE(item) {
@@ -85,5 +97,9 @@ export class TableComponent implements OnInit, OnChanges {
 
     applySort(attribute: string, isDesc: boolean) {
         this.onSort.emit({ attribute, isDesc });
+    }
+
+    selectPage(selectedPage: number) {
+        this.onPageChange.emit(selectedPage);
     }
 }
