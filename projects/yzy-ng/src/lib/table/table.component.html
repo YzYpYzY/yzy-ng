@@ -1,9 +1,9 @@
-<table>
+<table [ngStyle]="{ 'grid-template-columns': columnStyle }">
     <tr>
         <th *ngFor="let column of visibleColumns">{{ column.name }}</th>
     </tr>
     <tr *ngFor="let item of items" (click)="selectE(item)">
-        <td *ngFor="let column of visibleColumns">
+        <td *ngFor="let column of visibleColumns; trackBy: trackByFn">
             <div class="label">{{ column.name }}</div>
             {{ item[column.attribute] }}
         </td>

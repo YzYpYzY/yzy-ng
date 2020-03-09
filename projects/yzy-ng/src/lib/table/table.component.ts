@@ -5,7 +5,9 @@ import {
     OnChanges,
     SimpleChanges,
     Output,
-    EventEmitter
+    EventEmitter,
+    ViewChild,
+    TemplateRef
 } from '@angular/core';
 import { Column } from './models/Column';
 import { YzYSort } from './models';
@@ -26,16 +28,20 @@ export class TableComponent implements OnInit, OnChanges {
     @Output() onSort = new EventEmitter<YzYSort>();
     // tslint:disable-next-line: no-output-on-prefix
     @Output() onFilter = new EventEmitter<string>();
+
     sorts: string[];
     visibleColumns: Column[];
     isSortsVisible = false;
     isFilterVisible = false;
     filter = '';
-
+    columnStyle: string;
     constructor() {}
 
     ngOnInit() {
         this.prepareColumns();
+    }
+    trackByFn(index, item) {
+        return item.id;
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -44,6 +50,17 @@ export class TableComponent implements OnInit, OnChanges {
     prepareColumns() {
         this.visibleColumns = this.columns.filter(c => !c.hide);
         this.sorts = this.visibleColumns.map(col => col.name);
+        let columnStyle = '';
+        for (const column of this.visibleColumns) {
+            if (typeof column.width === 'number') {
+                columnStyle += column.width + 'fr ';
+            } else if (typeof column.width === 'string') {
+                columnStyle += column.width + ' ';
+            } else {
+                columnStyle += 'min-content ';
+            }
+        }
+        this.columnStyle = columnStyle;
     }
 
     toggleSortChoice() {

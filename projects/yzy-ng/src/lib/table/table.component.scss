@@ -41,7 +41,8 @@ td {
     justify-content: space-between;
     align-items: center;
     padding: 0.25rem 2rem;
-
+    text-overflow: ellipsis;
+    overflow: hidden;
     .label {
         font-size: 1rem;
     }
@@ -171,21 +172,19 @@ td {
 .sorts {
     position: absolute;
     top: 0;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
     transform: translateX(100%);
     width: 100%;
     height: calc(100% - 6rem);
-    flex-grow: 0;
+    flex-grow: 1;
     background-color: var(--base-bg);
     transition: transform ease 0.5s;
-
+    overflow: auto;
+    scrollbar-width: thin;
     .title {
         font-size: 2rem;
         color: var(--accent-color);
         padding: 2rem;
+        text-align: center;
     }
 
     .sort {
@@ -405,4 +404,74 @@ table::-webkit-scrollbar-track {
 table::-webkit-scrollbar-thumb {
     background-color: var(--scrollbar);
     outline: none;
+}
+
+@media screen and (min-width: 640px) {
+    :host {
+        font-size: 1rem;
+    }
+    table {
+        display: grid;
+        width: 50rem;
+        thead,
+        tbody,
+        tr {
+            display: contents;
+        }
+        tr:first-of-type {
+            display: contents;
+        }
+        tr {
+            &:nth-child(even) td {
+                background-color: var(--table-even-row);
+            }
+        }
+        th {
+            position: sticky;
+            padding: 0.5rem;
+        }
+        td,
+        th {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            border: 1px solid rgb(190, 207, 214);
+            padding: 0.25rem 1rem;
+            width: auto;
+            flex-grow: 1;
+        }
+        td {
+            &:last-child {
+                padding-bottom: 0.25rem;
+            }
+
+            &:first-child {
+                padding-top: 0.25rem;
+            }
+            .label {
+                display: none;
+            }
+        }
+    }
+    .filter {
+        height: 4rem;
+    }
+    .sorts {
+        height: calc(100% - 4rem);
+    }
+    .actions {
+        display: flex;
+        flex-flow: row;
+        width: 100%;
+        height: 4rem;
+    }
+    .icon,
+    .filter .search {
+        height: 4rem;
+        width: 4rem;
+        i {
+            transform: scale(1);
+        }
+    }
 }

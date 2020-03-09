@@ -8,6 +8,7 @@
 }
 html {
     font-size: 12pt;
+    height: -webkit-fill-available;
 }
 body {
     padding: 0;
@@ -16,6 +17,6 @@ body {
     flex-flow: row;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
     width: 100%;
 }
