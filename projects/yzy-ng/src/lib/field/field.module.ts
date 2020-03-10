@@ -1,3 +1,4 @@
+import { CheckboxModule } from './../checkbox/checkbox.module';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -12,7 +13,8 @@ import { DropdownModule } from '../dropdown/dropdown.module';
         FormsModule,
         ReactiveFormsModule,
         FieldErrorModule,
-        DropdownModule
+        DropdownModule,
+        CheckboxModule
     ],
     exports: [FieldComponent]
 })

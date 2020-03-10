@@ -10,3 +10,4 @@ export * from './lib/field-error';
 export * from './lib/table';
 export * from './lib/form';
 export * from './lib/dropdown';
+export * from './lib/checkbox';
