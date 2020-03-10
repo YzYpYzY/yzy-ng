@@ -1,4 +1,4 @@
-import { FieldComponent, FieldTypes, FieldModule } from 'yzy-ng';
+import { FieldComponent, FieldTypes, FieldModule, CheckboxComponent } from 'yzy-ng';
 import {
     ReactiveFormsModule,
     FormBuilder,
@@ -44,6 +44,19 @@ export const textArea = () => ({
         },
         form: fb.group({
             demo: 'Awesome comment !'
+        })
+    }
+});
+export const checkbox = () => ({
+    component: CheckboxComponent,
+    props: {
+        fieldModel: {
+            name: 'demo',
+            label: 'Stay connected',
+            type: FieldTypes.Checkbox
+        },
+        form: fb.group({
+            demo: false
         })
     }
 });

@@ -1,18 +1,24 @@
 <ng-container [formGroup]="form">
-    <label for="{{ fieldModel.name }}">{{ fieldModel.label }}</label>
     <ng-container [ngSwitch]="fieldModel.type">
         <div *ngSwitchCase="FieldTypes.Dropdown">
             <yzy-dropdown [fieldModel]="fieldModel" [form]="form">
             </yzy-dropdown>
         </div>
         <div *ngSwitchCase="FieldTypes.TextArea">
+            <label for="{{ fieldModel.name }}">{{ fieldModel.label }}</label>
             <textarea
                 name="{{ fieldModel.name }}"
                 id="{{ fieldModel.name }}"
                 [formControlName]="fieldModel.name"
             ></textarea>
         </div>
+        <div *ngSwitchCase="FieldTypes.Checkbox">
+            <yzy-checkbox
+            [fieldModel]="fieldModel" [form]="form"
+            ></yzy-checkbox>
+        </div>
         <div *ngSwitchDefault>
+            <label for="{{ fieldModel.name }}">{{ fieldModel.label }}</label>
             <input
                 type="{{ htmltype }}"
                 name="{{ fieldModel.name }}"

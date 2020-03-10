@@ -1,0 +1,35 @@
+:host{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    color: var(--field-label);
+}
+.checkbox {
+    margin-right: .75rem;
+    background: var(--field-readonly-bg);
+    color: var(--field-border);
+}
+.gg-check {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--field-border);
+    color: var(--field-color);
+}
+.gg-check.checked::after {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    left: 5px;
+    top: 0px;
+    width: 6px;
+    height: 10px;
+    border-width: 0 2px 2px 0;
+    border-style: solid;
+    transform-origin: bottom left;
+    transform: rotate(45deg);
+}

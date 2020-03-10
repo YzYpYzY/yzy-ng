@@ -34,6 +34,12 @@ export const login = () => ({
                     name: 'password',
                     label: 'Mot de passe',
                     validators: [Validators.required]
+                },
+                {
+                    type: FieldTypes.Checkbox,
+                    name: 'rememberme',
+                    label: 'Remember me',
+                    validators: []
                 }
             ]
         },

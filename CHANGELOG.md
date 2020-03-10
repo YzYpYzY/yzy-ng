@@ -1,3 +1,17 @@
+# [1.2.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.1.0...v1.2.0) (2020-03-10)
+
+
+### Features
+
+* add checkbox field ([bf9cac0](https://github.com/YzYpYzY/yzy-ng/commit/bf9cac04547e9d5ebe2dc142acb2b2684840e8ba))
+
+# [1.1.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.0.1...v1.1.0) (2020-03-09)
+
+
+### Features
+
+* add table support for normal screen size ([6f8b7a8](https://github.com/YzYpYzY/yzy-ng/commit/6f8b7a882ad157634d7814000ed0a7d1c3d662b2))
+
 ## [1.0.1](https://github.com/YzYpYzY/yzy-ng/compare/v1.0.0...v1.0.1) (2020-02-24)
 
 
