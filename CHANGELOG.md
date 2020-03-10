@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.1.0...v1.2.0) (2020-03-10)
+
+
+### Features
+
+* add checkbox field ([bf9cac0](https://github.com/YzYpYzY/yzy-ng/commit/bf9cac04547e9d5ebe2dc142acb2b2684840e8ba))
+
 # [1.1.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.0.1...v1.1.0) (2020-03-09)
 
 
