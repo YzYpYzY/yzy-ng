@@ -36,6 +36,27 @@ export default {
 };
 export const simple = () => ({
     component: TableComponent,
+    template: `
+    <yzy-table class="s-desktop"[columns]="columns" [items]="items" [isPaginator]="isPaginator" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
+    `,
+    props: {
+        columns,
+        items,
+        isPaginator: true,
+        onAdd: action('onAdd'),
+        onSelect: action('onSelect'),
+        onSort: action('onSort'),
+        onFilter: action('onFilter')
+    }
+});
+export const responsive = () => ({
+    component: TableComponent,
+    template: `
+    <div [style.width]="'400px'"
+    [style.height]="'800px'" [style.overflow]="'hidden'">
+    <yzy-table [columns]="columns" [items]="items" [isPaginator]="isPaginator" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
+    </div>
+    `,
     props: {
         columns,
         items,

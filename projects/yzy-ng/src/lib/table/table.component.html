@@ -26,23 +26,6 @@
 </table>
 
 <div class="actions">
-    <div class="icon" (click)="toggleSortChoice()">
-        <i
-            [ngClass]="{
-                'gg-close-o': isSortsVisible,
-                'gg-sort-az': !isSortsVisible
-            }"
-        ></i>
-    </div>
-    <div class="icon" (click)="toggleFilter()">
-        <i
-            [ngClass]="{
-                'gg-close-o': isFilterVisible,
-                'gg-search': !isFilterVisible
-            }"
-        ></i>
-    </div>
-    <div class="icon" (click)="addE()"><i class="gg-add"></i></div>
     <yzy-paginator
         *ngIf="isPaginator"
         [pageLinkNumber]="pageLinkNumber"
@@ -51,6 +34,25 @@
         [selectedPage]="selectedPage"
         (changePage)="selectPage($event)"
     ></yzy-paginator>
+    <div class="base-actions">
+        <div class="table-icon" (click)="toggleSortChoice()">
+            <i
+                [ngClass]="{
+                    'gg-close-o': isSortsVisible,
+                    'gg-sort-az': !isSortsVisible
+                }"
+            ></i>
+        </div>
+        <div class="table-icon" (click)="toggleFilter()">
+            <i
+                [ngClass]="{
+                    'gg-close-o': isFilterVisible,
+                    'gg-search': !isFilterVisible
+                }"
+            ></i>
+        </div>
+        <div class="table-icon" (click)="addE()"><i class="gg-add"></i></div>
+    </div>
 </div>
 <div class="sorts" [ngClass]="{ visible: isSortsVisible }">
     <div class="title">Sorts</div>

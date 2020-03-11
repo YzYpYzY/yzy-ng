@@ -20,3 +20,18 @@ body {
     height: 100%;
     width: 100%;
 }
+
+.table-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6rem;
+    flex-basis: 6rem;
+    color: var(--icon-color);
+    background: var(--base-bg);
+    cursor: pointer;
+
+    i {
+        transform: scale(1.3);
+    }
+}

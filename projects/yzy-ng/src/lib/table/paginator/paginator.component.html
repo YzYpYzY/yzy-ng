@@ -1,14 +1,14 @@
-<div class="icon" (click)="changePageE('-1')">
+<div class="table-icon" (click)="changePageE('-1')">
     <i class="gg-chevron-left"></i>
 </div>
 <div
-    class="icon"
+    class="table-icon"
     *ngFor="let page of pagesDisplayed"
     (click)="changePageE(page)"
     [ngClass]="{ currentPage: page === currentPage }"
 >
     {{ page }}
 </div>
-<div class="icon" (click)="changePageE('+1')">
+<div class="table-icon" (click)="changePageE('+1')">
     <i class="gg-chevron-right"></i>
 </div>

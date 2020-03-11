@@ -1,4 +1,3 @@
-import { ColumnTypes } from 'yzy-ng';
 import {
     Component,
     OnInit,
@@ -12,14 +11,14 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { Column } from './models/Column';
-import { YzYSort } from './models';
+import { YzYSort, ColumnTypes } from './models';
 
 @Component({
     selector: 'yzy-table',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss'],
     // tslint:disable-next-line: use-component-view-encapsulation
-    encapsulation: ViewEncapsulation.None
+    // encapsulation: ViewEncapsulation.None
 })
 export class TableComponent implements OnInit, OnChanges {
     @Input() columns: Column[];
@@ -145,6 +144,8 @@ export class TableComponent implements OnInit, OnChanges {
                 : -1;
 
         this.items = this.items.sort(sortSystem['' + column.type + isDesc]);
+        this.isSortsVisible = false;
+
 
         this.applyPaging();
     }

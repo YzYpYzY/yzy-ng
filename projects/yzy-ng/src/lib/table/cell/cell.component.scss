@@ -1,13 +1,18 @@
 :host {
-    padding: 0.25rem 1rem;
+    padding: .5rem 2rem;
     &.editable {
-        background-color: rgba(120, 167, 228, 0.479);
+        //background-color: rgba(120, 167, 228, 0.479);
         .chevron-down {
             display: inline-block;
         }
     }
     &.in-edition {
         padding: 0;
+    }
+
+    .label {
+        font-weight: 200;
+        color: rgb(83, 83, 83);
     }
 }
 .value {
@@ -16,6 +21,8 @@
     align-items: center;
     justify-content: space-between;
     text-overflow: ellipsis;
+    font-weight: 400;
+    color: rgb(0, 0, 0);
 }
 .chevron-down {
     display: none;
