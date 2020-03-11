@@ -1,8 +1,21 @@
 <table [ngStyle]="{ 'grid-template-columns': columnStyle }">
     <tr>
-        <th *ngFor="let column of visibleColumns">{{ column.name }}</th>
+        <ng-container *ngFor="let column of visibleColumns">
+            <th (click)="toggleSort(column.attribute)">
+                {{ column.name }}
+                <i
+                    *ngIf="
+                        activeSort && activeSort.attribute === column.attribute
+                    "
+                    [ngClass]="{
+                        'gg-arrow-up': activeSort.isDesc === false,
+                        'gg-arrow-down': activeSort.isDesc === true
+                    }"
+                ></i>
+            </th>
+        </ng-container>
     </tr>
-    <tr *ngFor="let item of items" (click)="selectE(item)">
+    <tr *ngFor="let item of displayedItems" (click)="selectE(item)">
         <td *ngFor="let column of visibleColumns; trackBy: trackByFn">
             <yzy-cell
                 [value]="item[column.attribute]"
@@ -31,6 +44,8 @@
     </div>
     <div class="icon" (click)="addE()"><i class="gg-add"></i></div>
     <yzy-paginator
+        *ngIf="isPaginator"
+        [pageLinkNumber]="pageLinkNumber"
         [count]="itemsCount"
         [itemByPage]="itemByPage"
         [selectedPage]="selectedPage"
@@ -39,10 +54,10 @@
 </div>
 <div class="sorts" [ngClass]="{ visible: isSortsVisible }">
     <div class="title">Sorts</div>
-    <div *ngFor="let sort of sorts" class="sort">
-        <i class="gg-arrow-up" (click)="applySort(sort, false)"></i>
-        {{ sort }}
-        <i class="gg-arrow-down" (click)="applySort(sort, true)"></i>
+    <div *ngFor="let col of columns" class="sort">
+        <i class="gg-arrow-up" (click)="applySort(col.attribute, false)"></i>
+        {{ col.name }}
+        <i class="gg-arrow-down" (click)="applySort(col.attribute, true)"></i>
     </div>
 </div>
 <div class="filter" [ngClass]="{ visible: isFilterVisible }">

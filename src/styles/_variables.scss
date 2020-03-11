@@ -41,7 +41,8 @@ html {
     --btn-color-disable: black;
     --btn-bg-disable: rgb(235, 233, 233);
 
-    --table-even-row: #{transparentize($accent, 0.5)};
+    --table-odd-row: #bbbbbb25;
+    --table-header-row: #{transparentize($accent, 0.5)};
     --paginator-color: #{transparentize($accent, 0.5)};
     --scrollbar: rgb(236, 236, 236);
 }

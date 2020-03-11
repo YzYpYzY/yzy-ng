@@ -1,14 +1,12 @@
-[ ] Dropdown in table
 [x] Cell editable
-[ ] Pass change to parent as xy List couple
-[ ] Custom style for column
-[ ] Auto focus when inEdition
-[ ] Paginator
-    [ ] Manage lower than PAGENUMBER count
-    [ ] Get PAGENUMBER as Input
-    [ ] Hover effect
-[ ] Sort on Header
+[x] Sort on Header
 [ ] ActionTableOptions as booleanTable [ true, false, true ]
+[ ] Dropdown in table
+[ ] Pass change to parent as xy List couple
+
+[ ] Auto focus when inEdition
+[ ] Custom style for column
+[ ] Paginator
     [x] Manage lower than PAGENUMBER count
     [x] Get PAGENUMBER as Input
 [ ] Table icon hover effect

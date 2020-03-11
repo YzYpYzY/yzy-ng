@@ -1,3 +1,4 @@
+import { ColumnTypes } from 'yzy-ng';
 import {
     Component,
     OnInit,
@@ -39,12 +40,14 @@ export class TableComponent implements OnInit, OnChanges {
     // tslint:disable-next-line: no-output-on-prefix
     @Output() onPageChange = new EventEmitter<number>();
 
-    sorts: string[];
     visibleColumns: Column[];
     isSortsVisible = false;
     isFilterVisible = false;
     filter = '';
     columnStyle: string;
+    activeSort: { attribute: string; isDesc: boolean } = null;
+    displayedItems: any[];
+
     constructor() {}
 
     ngOnInit() {
@@ -69,7 +72,6 @@ export class TableComponent implements OnInit, OnChanges {
     }
     prepareColumns() {
         this.visibleColumns = this.columns.filter(c => !c.hide);
-        this.sorts = this.visibleColumns.map(col => col.name);
         let columnStyle = '';
         for (const column of this.visibleColumns) {
             if (typeof column.width === 'number') {
@@ -104,8 +106,47 @@ export class TableComponent implements OnInit, OnChanges {
         this.onFilter.emit(this.filter);
     }
 
+    toggleSort(attribute: string): void {
+        if (this.activeSort && this.activeSort.attribute === attribute) {
+            if (this.activeSort.isDesc) {
+                this.applySort(attribute, false);
+            } else {
+                this.activeSort = null;
+                this.onSort.emit(this.activeSort);
+            }
+        } else {
+            this.applySort(attribute, true);
+        }
+    }
+
     applySort(attribute: string, isDesc: boolean) {
-        this.onSort.emit({ attribute, isDesc });
+        const column = this.columns.find(c => c.attribute === attribute);
+        if (column.type === undefined) {
+            column.type = ColumnTypes.String;
+        }
+        if (column.type === ColumnTypes.Dropdown) {
+            return; // Sort on dropdown column not supported
+        }
+        this.activeSort = { attribute, isDesc };
+        this.onSort.emit(this.activeSort);
+
+        const sortSystem = {};
+        sortSystem['' + ColumnTypes.Number + true] = (a, b) =>
+            a[this.activeSort.attribute] - b[this.activeSort.attribute];
+        sortSystem['' + ColumnTypes.Number + false] = (a, b) =>
+            b[this.activeSort.attribute] - a[this.activeSort.attribute];
+        sortSystem['' + ColumnTypes.String + true] = (a, b) =>
+            a[this.activeSort.attribute] < b[this.activeSort.attribute]
+                ? 1
+                : -1;
+        sortSystem['' + ColumnTypes.String + false] = (a, b) =>
+            a[this.activeSort.attribute] > b[this.activeSort.attribute]
+                ? 1
+                : -1;
+
+        this.items = this.items.sort(sortSystem['' + column.type + isDesc]);
+
+        this.applyPaging();
     }
 
     selectPage(selectedPage: number) {

@@ -23,19 +23,23 @@ table {
 
 tr:first-of-type {
     display: none;
+    th {
+        display: flex;
+        align-items: center;
+        background-color: var(--table-header-row);
+        min-height: 3rem;
+        i {
+            display: inline-block;
+            height: 20px;
+            transform: scale(0.5);
+        }
+    }
 }
 
 tr {
     padding: 0.5rem 0;
-    //background-color: var(--base-grey);
-    &:hover td {
-        background-color: rgba(28, 60, 165, 0.651);
-    }
-    &:nth-child(even) {
-        background-color: var(--table-even-row);
-        &:hover td {
-            background-color: rgba(28, 60, 165, 0.651);
-        }
+    &:nth-child(odd) {
+        background-color: var(--table-odd-row);
     }
 }
 
@@ -72,6 +76,188 @@ yzy-cell {
     flex-flow: row;
     width: 100%;
     background: var(--base-bg);
+}
+
+.sorts {
+    position: absolute;
+    top: 0;
+    transform: translateX(100%);
+    width: 100%;
+    height: calc(100% - 6rem);
+    flex-grow: 1;
+    background-color: var(--base-bg);
+    transition: transform ease 0.5s;
+    overflow: auto;
+    scrollbar-width: thin;
+    .title {
+        font-size: 2rem;
+        color: var(--accent-color);
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .sort {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+        padding: 2rem;
+        align-items: center;
+        width: 100%;
+
+        i {
+            color: var(--base-grey);
+        }
+    }
+
+    &.visible {
+        transform: translateX(0);
+    }
+}
+
+.filter {
+    position: absolute;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    top: 0;
+    width: 100%;
+    height: 5rem;
+    transition: transform ease 0.5s;
+    transform: translateX(100%);
+
+    input {
+        height: 100%;
+        width: 100%;
+        padding: 0 2rem;
+        background: var(--base-bg);
+        font-size: 1.2rem;
+        color: var(--base-color);
+        border: none;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .search {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 5rem;
+        width: 5rem;
+        background: var(--base-bg);
+        border: none;
+
+        i {
+            position: relative;
+        }
+    }
+
+    &.visible {
+        transform: translateX(0);
+    }
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6rem;
+    height: 6rem;
+    color: var(--icon-color);
+    background: var(--base-bg);
+    cursor: pointer;
+
+    i {
+        transform: scale(1.3);
+    }
+}
+
+table::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+table::-webkit-scrollbar-track {
+    box-shadow: none;
+}
+
+table::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar);
+    outline: none;
+}
+
+@media screen and (min-width: 640px) {
+    :host {
+        font-size: 1rem;
+    }
+    table {
+        display: grid;
+        width: 50rem;
+        thead,
+        tbody,
+        tr {
+            display: contents;
+        }
+        tr:first-of-type {
+            display: contents;
+        }
+        tr {
+            &:nth-child(even) td {
+                background-color: var(--table-odd-row);
+            }
+        }
+        th {
+            position: sticky;
+            padding: 0.5rem;
+        }
+        td,
+        th {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            //border: 1px solid rgb(190, 207, 214);
+            padding: 0.25rem 1rem;
+            width: auto;
+            flex-grow: 1;
+        }
+        td {
+            &:last-child {
+                padding-bottom: 0;
+            }
+
+            &:first-child {
+                padding-top: 0;
+            }
+            .label {
+                display: none;
+            }
+            padding: 0;
+        }
+    }
+    .filter {
+        height: 4rem;
+    }
+    .sorts {
+        height: calc(100% - 4rem);
+    }
+    .actions {
+        display: flex;
+        flex-flow: row;
+        width: 100%;
+        height: 4rem;
+    }
+    .icon,
+    .filter .search {
+        height: 4rem;
+        width: 4rem;
+        i {
+            transform: scale(1);
+        }
+    }
+    .value {
+        width: 100%;
+    }
 }
 
 .gg-sort-az,
@@ -178,86 +364,6 @@ yzy-cell {
     transform: rotate(-45deg);
     top: 0;
     left: -5px;
-}
-
-.sorts {
-    position: absolute;
-    top: 0;
-    transform: translateX(100%);
-    width: 100%;
-    height: calc(100% - 6rem);
-    flex-grow: 1;
-    background-color: var(--base-bg);
-    transition: transform ease 0.5s;
-    overflow: auto;
-    scrollbar-width: thin;
-    .title {
-        font-size: 2rem;
-        color: var(--accent-color);
-        padding: 2rem;
-        text-align: center;
-    }
-
-    .sort {
-        display: flex;
-        flex-flow: row;
-        justify-content: space-between;
-        padding: 2rem;
-        align-items: center;
-        width: 100%;
-
-        i {
-            color: var(--base-grey);
-        }
-    }
-
-    &.visible {
-        transform: translateX(0);
-    }
-}
-
-.filter {
-    position: absolute;
-    display: flex;
-    flex-flow: row;
-    align-items: center;
-    top: 0;
-    width: 100%;
-    height: 5rem;
-    transition: transform ease 0.5s;
-    transform: translateX(100%);
-
-    input {
-        height: 100%;
-        width: 100%;
-        padding: 0 2rem;
-        background: var(--base-bg);
-        font-size: 1.2rem;
-        color: var(--base-color);
-        border: none;
-
-        &:focus {
-            outline: none;
-        }
-    }
-
-    .search {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 5rem;
-        width: 5rem;
-        background: var(--base-bg);
-        border: none;
-
-        i {
-            position: relative;
-        }
-    }
-
-    &.visible {
-        transform: translateX(0);
-    }
 }
 
 .gg-close-o {
@@ -388,105 +494,4 @@ yzy-cell {
     height: 10px;
     top: 4px;
     left: 8px;
-}
-
-.icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 6rem;
-    height: 6rem;
-    color: var(--icon-color);
-    background: var(--base-bg);
-
-    i {
-        transform: scale(1.3);
-    }
-}
-
-table::-webkit-scrollbar {
-    width: 0.5em;
-}
-
-table::-webkit-scrollbar-track {
-    box-shadow: none;
-}
-
-table::-webkit-scrollbar-thumb {
-    background-color: var(--scrollbar);
-    outline: none;
-}
-
-@media screen and (min-width: 640px) {
-    :host {
-        font-size: 1rem;
-    }
-    table {
-        display: grid;
-        width: 50rem;
-        thead,
-        tbody,
-        tr {
-            display: contents;
-        }
-        tr:first-of-type {
-            display: contents;
-        }
-        tr {
-            &:nth-child(even) td {
-                background-color: var(--table-even-row);
-            }
-        }
-        th {
-            position: sticky;
-            padding: 0.5rem;
-        }
-        td,
-        th {
-            display: block;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            border: 1px solid rgb(190, 207, 214);
-            padding: 0.25rem 1rem;
-            width: auto;
-            flex-grow: 1;
-        }
-        td {
-            &:last-child {
-                padding-bottom: 0;
-            }
-
-            &:first-child {
-                padding-top: 0;
-            }
-            .label {
-                display: none;
-            }
-            padding: 0;
-        }
-    }
-    .filter {
-        height: 4rem;
-    }
-    .sorts {
-        height: calc(100% - 4rem);
-    }
-    .actions {
-        display: flex;
-        flex-flow: row;
-        width: 100%;
-        height: 4rem;
-    }
-    .icon,
-    .filter .search {
-        height: 4rem;
-        width: 4rem;
-        i {
-            transform: scale(1);
-        }
-    }
-    .value {
-        width: 100%;
-    }
 }
