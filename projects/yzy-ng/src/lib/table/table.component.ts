@@ -26,6 +26,8 @@ export class TableComponent implements OnInit, OnChanges {
     @Input() itemsCount: number;
     @Input() selectedPage: number;
     @Input() itemByPage: number;
+    @Input() pageLinkNumber: number;
+    @Input() isPaginator: boolean;
     // tslint:disable-next-line: no-output-on-prefix
     @Output() onAdd = new EventEmitter<string>();
     // tslint:disable-next-line: no-output-on-prefix
@@ -49,7 +51,14 @@ export class TableComponent implements OnInit, OnChanges {
         this.selectedPage =
             this.selectedPage !== undefined ? this.selectedPage : 1;
         this.itemByPage = this.itemByPage !== undefined ? this.itemByPage : 20;
+        this.pageLinkNumber =
+            this.pageLinkNumber !== undefined ? this.pageLinkNumber : 3;
+        this.itemsCount =
+            this.itemsCount !== undefined ? this.itemsCount : this.items.length;
+        this.isPaginator =
+            this.isPaginator !== undefined ? this.isPaginator : false;
         this.prepareColumns();
+        this.applyPaging();
     }
     trackByFn(index, item) {
         return item.id;
@@ -100,6 +109,15 @@ export class TableComponent implements OnInit, OnChanges {
     }
 
     selectPage(selectedPage: number) {
+        this.selectedPage = selectedPage;
         this.onPageChange.emit(selectedPage);
+        this.applyPaging();
+    }
+
+    applyPaging(): void {
+        this.displayedItems = this.items.slice(
+            this.itemByPage * (this.selectedPage - 1),
+            this.itemByPage * this.selectedPage
+        );
     }
 }

@@ -5,6 +5,7 @@
     class="icon"
     *ngFor="let page of pagesDisplayed"
     (click)="changePageE(page)"
+    [ngClass]="{ currentPage: page === currentPage }"
 >
     {{ page }}
 </div>

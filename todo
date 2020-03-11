@@ -9,3 +9,6 @@
     [ ] Hover effect
 [ ] Sort on Header
 [ ] ActionTableOptions as booleanTable [ true, false, true ]
+    [x] Manage lower than PAGENUMBER count
+    [x] Get PAGENUMBER as Input
+[ ] Table icon hover effect

@@ -1,7 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
-const PAGENUMBER = 5;
-
 @Component({
     selector: 'yzy-paginator',
     templateUrl: './paginator.component.html',
@@ -11,6 +9,7 @@ export class PaginatorComponent implements OnInit {
     @Input() count: number;
     @Input() itemByPage: number;
     @Input() selectedPage: number;
+    @Input() pageLinkNumber: number;
     @Output() changePage = new EventEmitter<number>();
 
     currentPage: number;
@@ -20,7 +19,7 @@ export class PaginatorComponent implements OnInit {
 
     ngOnInit(): void {
         this.currentPage = this.selectedPage ? this.selectedPage : 1;
-        this.lastPage = this.count / this.itemByPage + 1;
+        this.lastPage = Math.trunc(this.count / this.itemByPage) + 1;
         this.setPagesDisplayed();
     }
 
@@ -47,18 +46,29 @@ export class PaginatorComponent implements OnInit {
     }
     setPagesDisplayed(): void {
         const pagesDisplayed = [];
-        if (this.currentPage <= PAGENUMBER / 2 + 1) {
-            for (let i = 1; i < PAGENUMBER + 1; i++) {
+        if (this.lastPage < this.pageLinkNumber) {
+            for (let i = 1; i <= this.lastPage; i++) {
                 pagesDisplayed.push(i);
             }
-        } else if (this.currentPage >= this.lastPage - (PAGENUMBER / 2 + 1)) {
-            for (let i = this.lastPage - PAGENUMBER; i <= this.lastPage; i++) {
+        } else if (this.currentPage <= this.pageLinkNumber / 2 + 1) {
+            for (let i = 1; i < this.pageLinkNumber + 1; i++) {
+                pagesDisplayed.push(i);
+            }
+        } else if (
+            this.currentPage >=
+            this.lastPage - (this.pageLinkNumber / 2 + 1)
+        ) {
+            for (
+                let i = this.lastPage + 1 - this.pageLinkNumber;
+                i <= this.lastPage;
+                i++
+            ) {
                 pagesDisplayed.push(i);
             }
         } else {
             for (
-                let i = this.currentPage - PAGENUMBER / 2;
-                i < this.currentPage + PAGENUMBER / 2 + 1;
+                let i = this.currentPage - this.pageLinkNumber / 2;
+                i < this.currentPage + this.pageLinkNumber / 2 + 1;
                 i++
             ) {
                 pagesDisplayed.push(i);
