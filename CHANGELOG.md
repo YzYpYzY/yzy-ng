@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/YzYpYzY/yzy-ng/compare/v1.2.0...v1.2.1) (2020-03-14)
+
+
+### Bug Fixes
+
+* embed base-theme ([646c094](https://github.com/YzYpYzY/yzy-ng/commit/646c0948e8f47a1145acd83ca24d568b1969584e))
+
 # [1.2.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.1.0...v1.2.0) (2020-03-10)
 
 
