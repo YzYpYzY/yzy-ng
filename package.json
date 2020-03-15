@@ -11,7 +11,7 @@
     "build:storybook": "build-storybook",
     "build:theme": "node-sass src/styles/ -o dist/yzy-ng-themes/",
     "copy:readme": "copyfiles ./README.md ./dist/yzy-ng",
-    "copy:theme": "copyfiles ./dist/yzy-ng-themes/base-theme.css ./dist/yzy-ng",
+    "copy:theme": "copyfiles ./dist/yzy-ng-themes/base-theme.css ./dist/yzy-ng/base-theme.css",
     "e2e": "ng e2e",
     "format:check": "prettier --list-different 'projects/**/*.ts'",
     "format:write": "prettier --write 'projects/**/*.ts'",
