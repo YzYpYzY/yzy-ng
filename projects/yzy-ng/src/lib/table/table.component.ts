@@ -20,6 +20,7 @@ import { YzYSort } from './models';
 export class TableComponent implements OnInit, OnChanges {
     @Input() columns: Column[];
     @Input() items: any[];
+    @Input() key: string;
     // tslint:disable-next-line: no-output-on-prefix
     @Output() onAdd = new EventEmitter<string>();
     // tslint:disable-next-line: no-output-on-prefix
@@ -38,10 +39,11 @@ export class TableComponent implements OnInit, OnChanges {
     constructor() {}
 
     ngOnInit() {
+        this.key = (this.key !== undefined)? this.key : 'id';
         this.prepareColumns();
     }
     trackByFn(index, item) {
-        return item.id;
+        return item[this.key];
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -76,7 +78,7 @@ export class TableComponent implements OnInit, OnChanges {
     }
 
     selectE(item) {
-        this.onSelect.emit(item.id);
+        this.onSelect.emit(item[this.key]);
     }
 
     applySearch() {
