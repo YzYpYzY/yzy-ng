@@ -1,3 +1,22 @@
+# [1.3.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.2.1...v1.3.0) (2020-03-15)
+
+
+### Bug Fixes
+
+* base-theme.css position ([7da5c32](https://github.com/YzYpYzY/yzy-ng/commit/7da5c3207b3854ad07427d10daef18d0e2107508))
+
+
+### Features
+
+* add table key ([371cbdb](https://github.com/YzYpYzY/yzy-ng/commit/371cbdb3388d59634b8d51afaf456c798770f1f2))
+
+## [1.2.1](https://github.com/YzYpYzY/yzy-ng/compare/v1.2.0...v1.2.1) (2020-03-14)
+
+
+### Bug Fixes
+
+* embed base-theme ([646c094](https://github.com/YzYpYzY/yzy-ng/commit/646c0948e8f47a1145acd83ca24d568b1969584e))
+
 # [1.2.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.1.0...v1.2.0) (2020-03-10)
 
 
