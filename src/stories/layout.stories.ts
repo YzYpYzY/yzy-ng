@@ -1,5 +1,5 @@
 import { moduleMetadata } from '@storybook/angular';
-import { LayoutModule, HeaderBarComponent, YzYAction, YzYActionTypes } from 'yzy-ng';
+import { LayoutModule, HeaderBarComponent, YzYAction, YzYActionTypes, FieldTypes, FilterBarComponent} from 'yzy-ng';
 import { action } from '@storybook/addon-actions';
 
 export default {
@@ -40,5 +40,43 @@ export const headerBarWithActions = () => ({
         title: 'Liste des membres',
         actions,
         action: action('action')
+    }
+});
+
+const typeOptions = [
+    { label: 'Soda', value: 'soda' },
+    { label: 'Water', value: 'water' },
+    { label: 'Alcohol', value: 'alcohol' }
+];
+const formModel = {
+    title: null,
+    fields: [
+        {
+            type: FieldTypes.Dropdown,
+            name: 'type',
+            label: 'Type',
+            options: typeOptions
+        },
+        {
+            type: FieldTypes.Text,
+            name: 'provider',
+            label: 'Provider',
+        },
+        {
+            type: FieldTypes.Checkbox,
+            name: 'isHealthy',
+            label: 'Healthy',
+        }
+    ]
+};
+export const filterBar = () => ({
+    component: FilterBarComponent,
+    template: `
+    <div class="demo-desktop">
+    <yzy-filter-bar [formModel]="formModel"></yzy-filter-bar>
+    </div>
+    `,
+    props: {
+        formModel
     }
 });

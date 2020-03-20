@@ -3,13 +3,21 @@
     flex-flow: row;
     align-items: center;
     color: var(--field-label);
+    &.in-table{
+        .checkbox{
+            margin: 0;
+        }
+    }
+    &.in-edition{
+        padding: 0.5rem 2rem;
+    }
 }
 .checkbox {
     margin-right: .75rem;
     background: var(--field-readonly-bg);
     color: var(--field-border);
 }
-.gg-check {
+.gg-check-custom {
     box-sizing: border-box;
     position: relative;
     display: block;
@@ -18,8 +26,9 @@
     height: 22px;
     border: 1px solid var(--field-border);
     color: var(--field-color);
+    background: rgba(255, 255, 255, 0.836);
 }
-.gg-check.checked::after {
+.gg-check-custom.checked::after {
     content: "";
     display: block;
     box-sizing: border-box;
@@ -32,4 +41,11 @@
     border-style: solid;
     transform-origin: bottom left;
     transform: rotate(45deg);
+}
+
+:host-context(.inline-form){
+    padding-left: 1rem;
+    label{
+        font-weight: 600;
+    }
 }
