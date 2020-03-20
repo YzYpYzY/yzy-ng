@@ -1,0 +1,6 @@
+<div class="title">{{ title }}</div>
+<div class="actions">
+    <div *ngFor="let action of actions" (click)="triggerAction(action)" [class]="action.type | actionTypeToClass" [ngClass]="{ 'action-disabled': action.disabled }">
+        <i [class]="action.class"></i>
+    </div>
+</div>

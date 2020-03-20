@@ -61,3 +61,18 @@ label {
     z-index: 2;
     white-space: nowrap;
 }
+
+:host-context(.inline-form){
+    flex-flow: row;
+    align-items: center;
+    label{
+        position: relative;
+        top: auto;
+        left: auto;
+        padding: 0 1rem;
+        font-weight: 600;
+    }
+    input{
+        margin: 0;
+    }
+}
