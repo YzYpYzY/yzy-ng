@@ -1,4 +1,4 @@
-import { FieldTypes, FieldModule, FormComponent } from 'yzy-ng';
+import { FieldTypes, FieldModule, FormComponent, DropdownModule } from 'yzy-ng';
 import {
     ReactiveFormsModule,
     FormBuilder,
@@ -12,7 +12,7 @@ export default {
     title: 'Form',
     decorators: [
         moduleMetadata({
-            imports: [ReactiveFormsModule, FieldModule, FormsModule]
+            imports: [DropdownModule,ReactiveFormsModule, FieldModule, FormsModule]
         })
     ]
 };

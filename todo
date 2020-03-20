@@ -1,0 +1,33 @@
+[ ] table
+    [x] width max
+    [x] conditional bar actions
+    [x] line actions
+    [x] front/back sort
+    [x] front/back pagination
+    [x] lower bar order add, filter, paginator
+    [x] dropdown cell
+    [x] boolean cells
+    [ ] edit mode
+        [ ] store change
+        [x] style for cells
+        [x] auto focus on click
+    [x] populate table stories
+    [ ] column custom style
+    [ ] line custom style
+    [ ] icon hover effect
+[ ] filter bar
+[x] header bar
+    [x] title
+    [x] actions
+
+[ ] getRaw with type
+
+[x] bug: paginator icon transparent
+[x] bug: paginator when backTreatment
+[x] bug: boolean cell editable
+[x] bug: storybook height
+
+[x] storybook show code
+
+
+fix: selection plan list (60)(MIN)

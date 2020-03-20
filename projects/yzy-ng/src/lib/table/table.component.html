@@ -1,45 +1,83 @@
 <table [ngStyle]="{ 'grid-template-columns': columnStyle }">
     <tr>
-        <th *ngFor="let column of visibleColumns">{{ column.name }}</th>
+        <ng-container *ngFor="let column of visibleColumns">
+            <th (click)="toggleSort(column.attribute)" [class.sortable]="column.isSortable">
+                {{ column.name }}
+                <ng-container *ngIf="column.isSortable">
+                    <div *ngIf="!this.activeSort || this.activeSort.attribute !== column.attribute; else sortActive" class="sort-icon discret">
+                        <i class="gg-arrow-up"></i>
+                        <i class="gg-arrow-down"></i>
+                    </div>
+                    <ng-template #sortActive>
+                        <div class="sort-icon">
+                            <i class="gg-arrow-up" *ngIf="!activeSort || activeSort.isDesc === true"></i>
+                            <i class="gg-arrow-down" *ngIf="!activeSort || activeSort.isDesc === false"></i>
+                        </div>
+                    </ng-template>
+                </ng-container>
+            </th>
+        </ng-container>
+        <th *ngIf="lineActions">Actions</th>
     </tr>
-    <tr *ngFor="let item of items" (click)="selectE(item)">
+    <tr *ngFor="let item of displayedItems" (click)="selectE(item)">
         <td *ngFor="let column of visibleColumns; trackBy: trackByFn">
-            <div class="label">{{ column.name }}</div>
-            {{ item[column.attribute] }}
+            <yzy-cell
+                [value]="item[column.attribute]"
+                [column]="column"
+                (valueChange)="cellValueChange($event, column.attribute, item)"
+                [ngStyle]="computedStyles[item[key]][column.attribute]"
+            ></yzy-cell>
+        </td>
+        <td *ngIf="lineActions" class="actions-cell">
+            <div *ngFor="let action of lineActions" (click)="handleAction(action, item)" [class]="action.type | actionTypeToClass" [ngClass]="{ 'action-disabled': action.disabled }">
+                <i [class]="action.class"></i>
+            </div>
         </td>
     </tr>
 </table>
 
 <div class="actions">
-    <div class="icon" (click)="toggleSortChoice()">
-        <i
-            [ngClass]="{
-                'gg-close-o': isSortsVisible,
-                'gg-sort-az': !isSortsVisible
-            }"
-        ></i>
-    </div>
-    <div class="icon" (click)="toggleFilter()">
-        <i
-            [ngClass]="{
-                'gg-close-o': isFilterVisible,
-                'gg-search': !isFilterVisible
-            }"
-        ></i>
-    </div>
-    <div class="icon" (click)="addE()"><i class="gg-add"></i></div>
-</div>
-<div class="sorts" [ngClass]="{ visible: isSortsVisible }">
-    <div class="title">Sorts</div>
-    <div *ngFor="let sort of sorts" class="sort">
-        <i class="gg-arrow-up" (click)="applySort(sort, false)"></i>
-        {{ sort }}
-        <i class="gg-arrow-down" (click)="applySort(sort, true)"></i>
-    </div>
-</div>
-<div class="filter" [ngClass]="{ visible: isFilterVisible }">
-    <input type="text" [(ngModel)]="filter" (change)="applySearch()" />
-    <div class="search">
-        <i (click)="applySearch()" class="gg-search"></i>
+    <yzy-paginator
+        *ngIf="isPaginator"
+        [pageLinkNumber]="pageLinkNumber"
+        [count]="itemsCount"
+        [itemByPage]="itemByPage"
+        [selectedPage]="selectedPage"
+        (changePage)="selectPage($event)"
+    ></yzy-paginator>
+    <div class="base-actions" *ngIf="footerOptions">
+        <div class="table-icon" (click)="addE()" *ngIf="footerOptions.addButton"><i class="gg-add"></i></div>
+        <div class="table-icon" (click)="toggleSortChoice()" *ngIf="footerOptions.sortPanel">
+            <i
+                [ngClass]="{
+                    'gg-close-o': isSortsVisible,
+                    'gg-sort-az': !isSortsVisible
+                }"
+            ></i>
+        </div>
+        <div class="table-icon" (click)="toggleFilter()" *ngIf="footerOptions.searchPanel">
+            <i
+                [ngClass]="{
+                    'gg-close-o': isFilterVisible,
+                    'gg-search': !isFilterVisible
+                }"
+            ></i>
+        </div>
     </div>
 </div>
+<ng-container *ngIf="footerOptions">
+    <div class="sorts" [ngClass]="{ visible: isSortsVisible }" *ngIf="footerOptions.sortPanel">
+        <div class="title">Sorts</div>
+        <div *ngFor="let col of sortableColumns" class="sort">
+            <i class="gg-arrow-up" (click)="setSort(col.attribute, false)"></i>
+            {{ col.name }}
+            <i class="gg-arrow-down" (click)="setSort(col.attribute, true)"></i>
+        </div>
+    </div>
+    <div class="filter" [ngClass]="{ visible: isFilterVisible }" *ngIf="footerOptions.searchPanel">
+        <input type="text" [(ngModel)]="filter" (change)="applySearch()" />
+        <div class="search">
+            <i (click)="applySearch()" class="gg-search"></i>
+        </div>
+    </div>
+</ng-container>

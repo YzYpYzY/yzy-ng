@@ -1,6 +1,6 @@
 <ng-container [formGroup]="form">
     <div class="checkbox">
-        <i [ngClass]="{'checked': isChecked }" class="gg-check"></i>
+        <i [ngClass]="{'checked': isChecked }" class="gg-check-custom"></i>
     </div>
-    <label>{{ fieldModel.label }}</label>
+    <label *ngIf="displayLabel">{{ displayLabel }}</label>
 </ng-container>

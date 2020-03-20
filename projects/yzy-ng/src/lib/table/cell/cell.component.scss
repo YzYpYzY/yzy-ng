@@ -1,0 +1,59 @@
+:host {
+    padding: .5rem 2rem;
+    &.editable {
+        background-color: rgba(250, 238, 184, 0.226);
+        cursor: pointer;
+        .chevron-down {
+            display: inline-block;
+            right: 2px;
+            top: 0px;
+        }
+    }
+    &.in-edition {
+        padding: 0;
+    }
+    &.value-changed{
+        background-color: rgba(181, 245, 98, 0.384);
+    }
+
+    .label {
+        font-weight: 200;
+        color: rgb(83, 83, 83);
+    }
+}
+.value {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    text-overflow: ellipsis;
+    font-weight: 400;
+}
+.chevron-down {
+    display: none;
+    transform: rotate(45deg);
+    height: 0.4em;
+    width: 0.4em;
+    border: 1px solid transparent;
+    border-right-color: black;
+    border-bottom-color: black;
+    position: relative;
+    margin-left: 0.75em;
+}
+input {
+    height: 100%;
+    padding: 0 2rem;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-overflow: ellipsis;
+    color: inherit;
+}
+:host-context(.s-desktop){
+    .label{
+        display: none;
+    }
+    .value{
+        flex-grow: 1;
+    }
+}

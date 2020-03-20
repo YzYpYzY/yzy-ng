@@ -1,0 +1,10 @@
+:host{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: 4rem;
+    padding: 0 1rem;
+    background-color: var(--base-bg);
+    color: var(--base-color);
+}
