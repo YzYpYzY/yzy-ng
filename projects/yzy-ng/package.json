@@ -12,11 +12,11 @@
   "author": "Jérôme Culot",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "~9.0.0",
-    "@angular/compiler": "~9.0.0",
-    "@angular/core": "~9.0.0",
-    "@angular/forms": "~9.0.0",
-    "rxjs": "~6.5.4"
+    "@angular/common": "^9.0.0",
+    "@angular/compiler": "^9.0.0",
+    "@angular/core": "^9.0.0",
+    "@angular/forms": "^9.0.0",
+    "rxjs": "^6.5.4"
   },
   "repository": {
     "type": "git",

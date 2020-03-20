@@ -8,7 +8,15 @@ import {
     Input,
     ViewEncapsulation,
     HostBinding,
-    HostListener
+    HostListener,
+    EventEmitter,
+    Output,
+    ViewChildren,
+    QueryList,
+    ViewChild,
+    ElementRef,
+    ChangeDetectorRef,
+    Renderer2
 } from '@angular/core';
 import { ColumnTypes } from '..';
 
@@ -20,29 +28,36 @@ import { ColumnTypes } from '..';
 export class CellComponent implements OnInit {
     @Input() column: Column;
     @Input() value: string | number;
+    @Output() valueChange = new EventEmitter<string | number>();
+
     @HostBinding('class.editable') displayedAsEditable = false;
     @HostBinding('class.in-edition') inEdition = false;
+    @HostBinding('class.value-changed') isValueChanged = false;
+
+    @ViewChildren('field') fields:QueryList<ElementRef>;
     form: FormGroup;
     fieldModel: FieldModel;
     displayValue: string | number;
+    cellWidth: number;
+    initialValue: string | number;
 
     ColumnTypes = ColumnTypes;
-    constructor() {}
+    constructor(private cdr: ChangeDetectorRef, private elRef: ElementRef, private renderer: Renderer2) {}
 
-    @HostListener('click') onClick() {
-        console.log(this.value);
-
-        if (this.column.editable) {
+    @HostListener('click', ['$event']) onClick(event) {
+        if (this.column.editable && !this.inEdition) {
+            this.cellWidth = this.elRef.nativeElement.children[0].getBoundingClientRect().width;
             this.inEdition = true;
-            if (this.column.type === ColumnTypes.Dropdown) {
-                this.form = new FormGroup({});
-                this.fieldModel = {
-                    name: this.column.name,
-                    label: null,
-                    type: FieldTypes.Dropdown,
-                    value: this.value,
-                    options: this.column.options
-                };
+            this.cdr.detectChanges();
+            if(this.column.type === ColumnTypes.Dropdown){
+                setTimeout(()=> { (this.fields.first as any).toggle(event); });
+                //(this.fields.first as any).toggle(event);
+            } else if(this.column.type === ColumnTypes.Boolean){
+                //setTimeout(()=> { (this.fields.first as any).toggleValue(event); });
+                (this.fields.first as any).toggleValue(event);
+            }
+            else {
+                this.fields.first.nativeElement.focus();
             }
         }
     }
@@ -57,5 +72,19 @@ export class CellComponent implements OnInit {
             this.displayValue = this.value;
         }
         this.displayedAsEditable = this.column.editable;
+        this.initialValue = this.value;
+        // for(let style of this.column.customStyles(this.value)){
+        //     this.renderer.setStyle(this.elRef.nativeElement, style);
+        // }
+    }
+
+    valueChangeHandler(event){
+        if(this.column.type === ColumnTypes.Dropdown){
+            this.isValueChanged = this.initialValue !== event.value;
+            this.valueChange.emit(event.value);
+        } else {
+            this.isValueChanged = this.initialValue !== event;
+            this.valueChange.emit(event);
+        }
     }
 }

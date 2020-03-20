@@ -1,3 +1,5 @@
+import { YzYAction } from './../models/YzYAction';
+import { FooterOptions } from './models/FooterOptions';
 import {
     Component,
     OnInit,
@@ -6,19 +8,13 @@ import {
     SimpleChanges,
     Output,
     EventEmitter,
-    ViewChild,
-    TemplateRef,
-    ViewEncapsulation
 } from '@angular/core';
-import { Column } from './models/Column';
-import { YzYSort, ColumnTypes } from './models';
+import { YzYSort, ColumnTypes, Column } from './models';
 
 @Component({
     selector: 'yzy-table',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss'],
-    // tslint:disable-next-line: use-component-view-encapsulation
-    // encapsulation: ViewEncapsulation.None
 })
 export class TableComponent implements OnInit, OnChanges {
     @Input() columns: Column[];
@@ -28,7 +24,10 @@ export class TableComponent implements OnInit, OnChanges {
     @Input() itemByPage: number;
     @Input() pageLinkNumber: number;
     @Input() isPaginator: boolean;
+    @Input() footerOptions: FooterOptions;
     @Input() key: string;
+    @Input() lineActions:YzYAction[];
+    @Input() isFrontDataTreatment:boolean;
     // tslint:disable-next-line: no-output-on-prefix
     @Output() onAdd = new EventEmitter<string>();
     // tslint:disable-next-line: no-output-on-prefix
@@ -39,14 +38,20 @@ export class TableComponent implements OnInit, OnChanges {
     @Output() onFilter = new EventEmitter<string>();
     // tslint:disable-next-line: no-output-on-prefix
     @Output() onPageChange = new EventEmitter<number>();
+    // tslint:disable-next-line: no-output-on-prefix
+    @Output() onAction = new EventEmitter<{ action: YzYAction, key: string }>();
 
     visibleColumns: Column[];
+    sortableColumns: Column[];
     isSortsVisible = false;
     isFilterVisible = false;
     filter = '';
     columnStyle: string;
     activeSort: { attribute: string; isDesc: boolean } = null;
+    sortItems: any[];
     displayedItems: any[];
+    sortSystem = {};
+    computedStyles: any = {};
 
     constructor() {}
 
@@ -61,8 +66,29 @@ export class TableComponent implements OnInit, OnChanges {
             this.itemsCount !== undefined ? this.itemsCount : this.items.length;
         this.isPaginator =
             this.isPaginator !== undefined ? this.isPaginator : false;
+        this.key =
+            this.key !== undefined ? this.key : 'id';
+        this.isFrontDataTreatment =
+            this.isFrontDataTreatment !== undefined ? this.isFrontDataTreatment : true;
+        this.prepareSortSystems();
         this.prepareColumns();
-        this.applyPaging();
+        this.applySort();
+    }
+    prepareSortSystems() {
+        const sortSystem = {};
+        sortSystem['' + ColumnTypes.Number + true] = (a, b) =>
+            a[this.activeSort.attribute] - b[this.activeSort.attribute];
+        sortSystem['' + ColumnTypes.Number + false] = (a, b) =>
+            b[this.activeSort.attribute] - a[this.activeSort.attribute];
+        sortSystem['' + ColumnTypes.String + true] = (a, b) =>
+            a[this.activeSort.attribute] < b[this.activeSort.attribute]
+                ? 1
+                : -1;
+        sortSystem['' + ColumnTypes.String + false] = (a, b) =>
+            a[this.activeSort.attribute] > b[this.activeSort.attribute]
+                ? 1
+                : -1;
+        this.sortSystem = sortSystem;
     }
     trackByFn(index, item) {
         return item[this.key];
@@ -70,9 +96,14 @@ export class TableComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
         this.prepareColumns();
+        this.applySort();
     }
     prepareColumns() {
         this.visibleColumns = this.columns.filter(c => !c.hide);
+        this.sortableColumns = this.isFrontDataTreatment ?
+         this.visibleColumns.filter(c => c.isSortable && c.type !== ColumnTypes.Dropdown) :
+         this.visibleColumns.filter(c => c.isSortable);
+
         let columnStyle = '';
         for (const column of this.visibleColumns) {
             if (typeof column.width === 'number') {
@@ -80,8 +111,11 @@ export class TableComponent implements OnInit, OnChanges {
             } else if (typeof column.width === 'string') {
                 columnStyle += column.width + ' ';
             } else {
-                columnStyle += 'min-content ';
+                columnStyle += 'minmax(min-content, auto)  ';
             }
+        }
+        if(this.lineActions){
+            columnStyle += 'min-content ';
         }
         this.columnStyle = columnStyle;
     }
@@ -96,7 +130,6 @@ export class TableComponent implements OnInit, OnChanges {
 
     addE(): void {
         this.onAdd.emit('new');
-        console.log(this.items);
     }
 
     selectE(item) {
@@ -108,47 +141,43 @@ export class TableComponent implements OnInit, OnChanges {
     }
 
     toggleSort(attribute: string): void {
-        if (this.activeSort && this.activeSort.attribute === attribute) {
-            if (this.activeSort.isDesc) {
-                this.applySort(attribute, false);
-            } else {
-                this.activeSort = null;
-                this.onSort.emit(this.activeSort);
+        const column = this.columns.find(c => c.attribute === attribute);
+        if(column.isSortable){
+            if(this.isFrontDataTreatment && column.type === ColumnTypes.Dropdown){
+                return;
             }
-        } else {
-            this.applySort(attribute, true);
+            if (this.activeSort == null || this.activeSort.attribute !== attribute) {
+                this.activeSort = { attribute, isDesc: true };
+            } else {
+                if (this.activeSort.isDesc) {
+                    this.activeSort.isDesc = false;
+                } else {
+                    this.activeSort = null;
+                }
+            }
+            this.onSort.emit(this.activeSort);
+            this.applySort();
         }
     }
 
-    applySort(attribute: string, isDesc: boolean) {
-        const column = this.columns.find(c => c.attribute === attribute);
-        if (column.type === undefined) {
-            column.type = ColumnTypes.String;
-        }
-        if (column.type === ColumnTypes.Dropdown) {
-            return; // Sort on dropdown column not supported
-        }
+    setSort(attribute: string, isDesc: boolean): void {
         this.activeSort = { attribute, isDesc };
         this.onSort.emit(this.activeSort);
+        this.applySort();
+    }
 
-        const sortSystem = {};
-        sortSystem['' + ColumnTypes.Number + true] = (a, b) =>
-            a[this.activeSort.attribute] - b[this.activeSort.attribute];
-        sortSystem['' + ColumnTypes.Number + false] = (a, b) =>
-            b[this.activeSort.attribute] - a[this.activeSort.attribute];
-        sortSystem['' + ColumnTypes.String + true] = (a, b) =>
-            a[this.activeSort.attribute] < b[this.activeSort.attribute]
-                ? 1
-                : -1;
-        sortSystem['' + ColumnTypes.String + false] = (a, b) =>
-            a[this.activeSort.attribute] > b[this.activeSort.attribute]
-                ? 1
-                : -1;
-
-        this.items = this.items.sort(sortSystem['' + column.type + isDesc]);
+    applySort() {
+        if(this.isFrontDataTreatment && this.activeSort){
+            const column = this.columns.find(c => c.attribute === this.activeSort.attribute);
+            if (column.type === undefined) {
+                column.type = ColumnTypes.String;
+            }
+            this.onSort.emit(this.activeSort);
+            this.sortItems = [...this.items].sort(this.sortSystem['' + column.type + this.activeSort.isDesc]);
+        } else {
+            this.sortItems = this.items;
+        }
         this.isSortsVisible = false;
-
-
         this.applyPaging();
     }
 
@@ -159,9 +188,38 @@ export class TableComponent implements OnInit, OnChanges {
     }
 
     applyPaging(): void {
-        this.displayedItems = this.items.slice(
-            this.itemByPage * (this.selectedPage - 1),
-            this.itemByPage * this.selectedPage
-        );
+        if(this.isFrontDataTreatment){
+            this.displayedItems = this.sortItems.slice(
+                this.itemByPage * (this.selectedPage - 1),
+                this.itemByPage * this.selectedPage
+            );
+        } else {
+            this.displayedItems = this.sortItems
+        }
+        this.computeCellStyles();
+    }
+
+    cellValueChange(event, column, item){
+        console.log(item, column.attribute, event);
+        if(column.customStyles !== undefined){
+            this.computedStyles = this.computedStyles[item[this.key]][column.attribute] = column.customStyles(event);
+        }
+    }
+    handleAction(action: YzYAction, item){
+        this.onAction.emit({ action, key: item[this.key]});
+    }
+    computeCellStyles():void {
+        const styles = {};
+        for(const item of this.displayedItems){
+            styles[item[this.key]] = {};
+        }
+        for(const column of this.visibleColumns){
+            if(column.customStyles !== undefined){
+                for(const item of this.displayedItems) {
+                    styles[item[this.key]][column.attribute] = column.customStyles(item[column.attribute]);
+                }
+            }
+        }
+        this.computedStyles = styles;
     }
 }

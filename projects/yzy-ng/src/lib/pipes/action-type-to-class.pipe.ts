@@ -4,7 +4,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
     name: 'actionTypeToClass'
 })
-
 export class ActionTypeToClassPipe implements PipeTransform {
     transform(value: YzYActionTypes, ...args: any[]): string {
         switch(value) {

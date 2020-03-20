@@ -412,3 +412,104 @@
     left: 2px;
     bottom: 4px
 }
+
+.gg-lock {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 12px;
+    height: 11px;
+    border: 2px solid;
+    border-top-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-bottom: transparent;
+    margin-top: -12px
+}
+.gg-lock::after {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 16px;
+    height: 10px;
+    border-radius: 2px;
+    border: 2px solid transparent;
+    box-shadow: 0 0 0 2px;
+    left: -4px;
+    top: 9px
+}
+
+.gg-trash {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 10px;
+    height: 12px;
+    border: 2px solid transparent;
+    box-shadow:
+        0 0 0 2px,
+        inset -2px 0 0,
+        inset 2px 0 0;
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    margin-top: 4px
+}
+.gg-trash::after,
+.gg-trash::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute
+}
+.gg-trash::after {
+    background: currentColor;
+    border-radius: 3px;
+    width: 16px;
+    height: 2px;
+    top: -4px;
+    left: -5px
+}
+.gg-trash::before {
+    width: 10px;
+    height: 4px;
+    border: 2px solid;
+    border-bottom: transparent;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    top: -7px;
+    left: -2px
+}
+.gg-swap-vertical {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: rotate(90deg) scale(var(--ggs,1));
+    box-shadow:
+        -2px 2px 0,
+        2px -2px 0;
+    width: 6px;
+    height: 2px
+}
+.gg-swap-vertical::after,
+.gg-swap-vertical::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent
+}
+.gg-swap-vertical::before {
+    border-left: 3px solid;
+    top: -4px;
+    right: -4px
+}
+.gg-swap-vertical::after {
+    border-right: 3px solid;
+    bottom: -4px;
+    left: -4px
+}

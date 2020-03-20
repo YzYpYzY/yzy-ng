@@ -1,5 +1,6 @@
 export enum ColumnTypes {
     String,
     Number,
-    Dropdown
+    Dropdown,
+    Boolean
 }

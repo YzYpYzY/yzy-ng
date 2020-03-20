@@ -1,13 +1,19 @@
 :host {
     padding: .5rem 2rem;
     &.editable {
-        //background-color: rgba(120, 167, 228, 0.479);
+        background-color: rgba(250, 238, 184, 0.226);
+        cursor: pointer;
         .chevron-down {
             display: inline-block;
+            right: 2px;
+            top: 0px;
         }
     }
     &.in-edition {
         padding: 0;
+    }
+    &.value-changed{
+        background-color: rgba(181, 245, 98, 0.384);
     }
 
     .label {
@@ -22,7 +28,6 @@
     justify-content: space-between;
     text-overflow: ellipsis;
     font-weight: 400;
-    color: rgb(0, 0, 0);
 }
 .chevron-down {
     display: none;
@@ -37,10 +42,18 @@
 }
 input {
     height: 100%;
-    padding: 0 1rem;
+    padding: 0 2rem;
     background: transparent;
     border: none;
     width: 100%;
-    font-size: 1em;
     text-overflow: ellipsis;
+    color: inherit;
+}
+:host-context(.s-desktop){
+    .label{
+        display: none;
+    }
+    .value{
+        flex-grow: 1;
+    }
 }

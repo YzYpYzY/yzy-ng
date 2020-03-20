@@ -4,7 +4,10 @@
     overflow: hidden;
 }
 .demo-desktop{
-    width: 1000px;
+    /* width: 1000px; */
     height: 800px;
     overflow: hidden;
+}
+#root{
+    margin-top: 2rem;
 }

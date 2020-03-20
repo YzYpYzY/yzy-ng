@@ -42,16 +42,19 @@ html {
     --btn-bg-disable: rgb(235, 233, 233);
 
     --table-odd-row: #e4e0e073;
+    --table-border-color: #b8b7b773;
     --table-bg: white;
-    --table-header-row: #{transparentize($accent, 0.5)};
+    --table-header-row: #{transparentize($accent, .7)};
     --paginator-color: white;
     --scrollbar: rgb(236, 236, 236);
 
-    --error-bg: rgb(224, 105, 105);
+    --error-bg: rgb(247, 131, 131);
     --warning-bg: rgb(224, 192, 105);
-    --info-bg: rgb(105, 160, 224);
-    --success-bg: rgb(178, 224, 105);
+    --info-bg: rgb(163, 205, 255);
+    --success-bg: rgb(199, 224, 159);
     --default-bg: rgb(233, 223, 223);
     --disabled-bg: rgb(158, 157, 157);
-    --disabled-color: white;
+    --action-color: white;
+
+    --header-bar-color: #{transparentize($accent, .7)};
 }

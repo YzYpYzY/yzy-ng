@@ -17,9 +17,9 @@ body {
     margin: 0;
     display: flex;
     flex-flow: row;
-    align-items: center;
+    align-items: stretch;
+    align-content: center;
     justify-content: center;
-    height: 100%;
     width: 100%;
 }
 
@@ -36,4 +36,38 @@ body {
     i {
         transform: scale(1.3);
     }
+}
+
+.action {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    align-self: stretch;
+    cursor: pointer;
+    border: 1px solid var(--table-border-color);
+    color: var(--action-color);
+    i{
+        transform: scale(.8);
+    }
+}
+.action-error {
+    background: var(--error-bg);
+}
+.action-info {
+    background: var(--info-bg);
+}
+.action-success {
+    background: var(--success-bg);
+}
+.action-warning {
+    background: var(--warning-bg);
+}
+.action-default {
+    background: var(--default-bg);
+}
+.action-disabled{
+    background: var(--disabled-bg);
+    cursor: not-allowed;
 }
