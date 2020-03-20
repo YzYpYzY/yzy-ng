@@ -1,12 +1,31 @@
-[x] Cell editable
-[x] Sort on Header
-[ ] ActionTableOptions as booleanTable [ true, false, true ]
-[ ] Dropdown in table
-[ ] Pass change to parent as xy List couple
+[ ] table
+    [x] width max
+    [ ] conditional bar actions
+    [ ] line actions
+    [ ] front/back sort
+    [ ] front/back filter
+    [ ] desktop filter in lower bar
+    [ ] lower bar order add, filter, paginator
+    [ ] column custom style
+    [ ] line custom style
+    [ ] icon hover effect
+    [ ] dropdown cell
+    [ ] selection mode
+    [ ] edit mode
+        [ ] store change
+        [ ] style for cells
+        [ ] auto focus on click
+[ ] filter bar
+[x] header bar
+    [x] title
+    [x] actions
 
-[ ] Auto focus when inEdition
-[ ] Custom style for column
-[ ] Paginator
-    [x] Manage lower than PAGENUMBER count
-    [x] Get PAGENUMBER as Input
-[ ] Table icon hover effect
+[ ] getRaw with type
+
+[x] bug: paginator icon transparent
+
+
+
+
+
+fix: selection plan list (60)(MIN)

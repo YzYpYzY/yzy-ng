@@ -11,3 +11,5 @@ export * from './lib/table';
 export * from './lib/form';
 export * from './lib/dropdown';
 export * from './lib/checkbox';
+export * from './lib/models';
+export * from './lib/layout';

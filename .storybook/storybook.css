@@ -1,0 +1,10 @@
+.demo-smartphone{
+    width: 400px;
+    height: 800px;
+    overflow: hidden;
+}
+.demo-desktop{
+    width: 1000px;
+    height: 800px;
+    overflow: hidden;
+}

@@ -1,7 +1,10 @@
+// only once
+import '!style-loader!css-loader!../../.storybook/storybook.css';
+import '!style-loader!css-loader!../../dist/yzy-ng-themes/base-theme.css';
+
 import { moduleMetadata } from '@storybook/angular';
 import { TableModule, TableComponent, Column, ColumnTypes } from 'yzy-ng';
 import { action } from '@storybook/addon-actions';
-import '!style-loader!css-loader!../../dist/yzy-ng-themes/base-theme.css';
 
 const typeOptions = [
     { label: 'Soda', value: 'soda' },
@@ -18,11 +21,11 @@ const columns: Column[] = [
         editable: true,
         options: typeOptions
     },
-    { name: 'Color', attribute: 'color', width: 1 },
+    { name: 'Color', attribute: 'color' },
     { name: 'Quantity', attribute: 'quantity', type: ColumnTypes.Number },
     { name: 'Price', attribute: 'price' },
     { name: 'Stock', attribute: 'stock', type: ColumnTypes.Number },
-    { name: 'Provider', attribute: 'provider', width: 2 }
+    { name: 'Provider', attribute: 'provider'}
 ];
 import items from './drinks.json';
 
@@ -37,7 +40,9 @@ export default {
 export const simple = () => ({
     component: TableComponent,
     template: `
+    <div class="demo-desktop">
     <yzy-table class="s-desktop"[columns]="columns" [items]="items" [isPaginator]="isPaginator" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
+    </div>
     `,
     props: {
         columns,
@@ -52,8 +57,7 @@ export const simple = () => ({
 export const responsive = () => ({
     component: TableComponent,
     template: `
-    <div [style.width]="'400px'"
-    [style.height]="'800px'" [style.overflow]="'hidden'">
+    <div class="demo-smartphone">
     <yzy-table [columns]="columns" [items]="items" [isPaginator]="isPaginator" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
     </div>
     `,
