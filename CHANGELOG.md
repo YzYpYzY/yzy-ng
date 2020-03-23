@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.4.0...v1.5.0) (2020-03-23)
+
+
+### Features
+
+* add responsive service ([3fad982](https://github.com/YzYpYzY/yzy-ng/commit/3fad9828bb13aa650ab50f57e228dc386285ca4c))
+
 # [1.4.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.3.0...v1.4.0) (2020-03-20)
 
 
