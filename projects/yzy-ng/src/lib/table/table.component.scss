@@ -33,8 +33,8 @@ tr:first-of-type {
             right: 1rem;
             position: absolute;
             width: 1rem;
-            &.discret{
-                i{
+            &.discret {
+                i {
                     color: gray;
                 }
             }
@@ -44,7 +44,7 @@ tr:first-of-type {
                 transform: scale(0.5);
             }
         }
-        .sortable{
+        .sortable {
             cursor: pointer;
         }
     }
@@ -69,10 +69,10 @@ td {
     text-overflow: ellipsis;
     overflow: hidden;
     padding: 0;
-    &:first-of-type yzy-cell{
+    &:first-of-type yzy-cell {
         padding-top: 2rem;
     }
-    &:last-of-type yzy-cell{
+    &:last-of-type yzy-cell {
         padding-bottom: 2rem;
     }
 }
@@ -90,13 +90,13 @@ yzy-cell {
     flex-flow: column;
     width: 100%;
     background: var(--base-bg);
-    .base-actions{
+    .base-actions {
         display: flex;
         flex-flow: row;
         justify-content: flex-start;
         height: 5rem;
     }
-    yzy-paginator{
+    yzy-paginator {
         height: 3rem;
     }
 }
@@ -192,7 +192,8 @@ table::-webkit-scrollbar-thumb {
     outline: none;
 }
 
-:host.s-desktop {
+:host.s-desktop,
+:host.s-tablet {
     font-size: 1rem;
     table {
         display: grid;
@@ -212,7 +213,7 @@ table::-webkit-scrollbar-thumb {
         }
         th {
             position: sticky;
-            padding: .5rem 2rem;
+            padding: 0.5rem 2rem;
         }
         td,
         th {
@@ -224,22 +225,22 @@ table::-webkit-scrollbar-thumb {
             border-right: 1px solid var(--table-border-color);
         }
         td {
-            &:first-of-type yzy-cell{
-                padding-top: .5rem;
-                &.in-edition{
+            &:first-of-type yzy-cell {
+                padding-top: 0.5rem;
+                &.in-edition {
                     padding-top: 0;
                 }
             }
-            &:last-of-type yzy-cell{
-                padding-bottom: .5rem;
-                &.in-edition{
+            &:last-of-type yzy-cell {
+                padding-bottom: 0.5rem;
+                &.in-edition {
                     padding-bottom: 0;
                 }
             }
             padding: 0;
-            &.actions-cell{
+            &.actions-cell {
                 justify-content: flex-start;
-                .action{
+                .action {
                     border-bottom: 1px solid rgb(184, 184, 184);
                 }
             }
@@ -254,11 +255,12 @@ table::-webkit-scrollbar-thumb {
         width: 100%;
         height: 3rem;
         border: 1px solid var(--field-border);
-        yzy-paginator, .base-actions{
+        yzy-paginator,
+        .base-actions {
             height: auto;
             background: transparent;
         }
-        .table-icon{
+        .table-icon {
             background: transparent;
         }
     }
@@ -274,6 +276,6 @@ table::-webkit-scrollbar-thumb {
     }
 }
 
-.gg-swap-vertical{
+.gg-swap-vertical {
     color: gray;
 }

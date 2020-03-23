@@ -1,3 +1,6 @@
+import { BaseComponent } from './../base/base.component';
+import { takeUntil } from 'rxjs/operators';
+import { ResponsiveService } from './../services/responsive.service';
 import { YzYAction } from './../models/YzYAction';
 import { FooterOptions } from './models/FooterOptions';
 import {
@@ -8,15 +11,16 @@ import {
     SimpleChanges,
     Output,
     EventEmitter,
+    HostBinding
 } from '@angular/core';
 import { YzYSort, ColumnTypes, Column } from './models';
 
 @Component({
     selector: 'yzy-table',
     templateUrl: './table.component.html',
-    styleUrls: ['./table.component.scss'],
+    styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit, OnChanges {
+export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     @Input() columns: Column[];
     @Input() items: any[];
     @Input() itemsCount: number;
@@ -26,8 +30,8 @@ export class TableComponent implements OnInit, OnChanges {
     @Input() isPaginator: boolean;
     @Input() footerOptions: FooterOptions;
     @Input() key: string;
-    @Input() lineActions:YzYAction[];
-    @Input() isFrontDataTreatment:boolean;
+    @Input() lineActions: YzYAction[];
+    @Input() isFrontDataTreatment: boolean;
     // tslint:disable-next-line: no-output-on-prefix
     @Output() onAdd = new EventEmitter<string>();
     // tslint:disable-next-line: no-output-on-prefix
@@ -39,7 +43,9 @@ export class TableComponent implements OnInit, OnChanges {
     // tslint:disable-next-line: no-output-on-prefix
     @Output() onPageChange = new EventEmitter<number>();
     // tslint:disable-next-line: no-output-on-prefix
-    @Output() onAction = new EventEmitter<{ action: YzYAction, key: string }>();
+    @Output() onAction = new EventEmitter<{ action: YzYAction; key: string }>();
+
+    @HostBinding('class') screenSizeClass = '';
 
     visibleColumns: Column[];
     sortableColumns: Column[];
@@ -53,10 +59,17 @@ export class TableComponent implements OnInit, OnChanges {
     sortSystem = {};
     computedStyles: any = {};
 
-    constructor() {}
+    constructor(private responsiveService: ResponsiveService) {
+        super();
+        this.responsiveService.screenSizeClass$
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(screenSizeClass => {
+                this.screenSizeClass = screenSizeClass;
+            });
+    }
 
     ngOnInit() {
-        this.key = (this.key !== undefined)? this.key : 'id';
+        this.key = this.key !== undefined ? this.key : 'id';
         this.selectedPage =
             this.selectedPage !== undefined ? this.selectedPage : 1;
         this.itemByPage = this.itemByPage !== undefined ? this.itemByPage : 20;
@@ -66,10 +79,11 @@ export class TableComponent implements OnInit, OnChanges {
             this.itemsCount !== undefined ? this.itemsCount : this.items.length;
         this.isPaginator =
             this.isPaginator !== undefined ? this.isPaginator : false;
-        this.key =
-            this.key !== undefined ? this.key : 'id';
+        this.key = this.key !== undefined ? this.key : 'id';
         this.isFrontDataTreatment =
-            this.isFrontDataTreatment !== undefined ? this.isFrontDataTreatment : true;
+            this.isFrontDataTreatment !== undefined
+                ? this.isFrontDataTreatment
+                : true;
         this.prepareSortSystems();
         this.prepareColumns();
         this.applySort();
@@ -100,9 +114,11 @@ export class TableComponent implements OnInit, OnChanges {
     }
     prepareColumns() {
         this.visibleColumns = this.columns.filter(c => !c.hide);
-        this.sortableColumns = this.isFrontDataTreatment ?
-         this.visibleColumns.filter(c => c.isSortable && c.type !== ColumnTypes.Dropdown) :
-         this.visibleColumns.filter(c => c.isSortable);
+        this.sortableColumns = this.isFrontDataTreatment
+            ? this.visibleColumns.filter(
+                  c => c.isSortable && c.type !== ColumnTypes.Dropdown
+              )
+            : this.visibleColumns.filter(c => c.isSortable);
 
         let columnStyle = '';
         for (const column of this.visibleColumns) {
@@ -114,7 +130,7 @@ export class TableComponent implements OnInit, OnChanges {
                 columnStyle += 'minmax(min-content, auto)  ';
             }
         }
-        if(this.lineActions){
+        if (this.lineActions) {
             columnStyle += 'min-content ';
         }
         this.columnStyle = columnStyle;
@@ -142,11 +158,17 @@ export class TableComponent implements OnInit, OnChanges {
 
     toggleSort(attribute: string): void {
         const column = this.columns.find(c => c.attribute === attribute);
-        if(column.isSortable){
-            if(this.isFrontDataTreatment && column.type === ColumnTypes.Dropdown){
+        if (column.isSortable) {
+            if (
+                this.isFrontDataTreatment &&
+                column.type === ColumnTypes.Dropdown
+            ) {
                 return;
             }
-            if (this.activeSort == null || this.activeSort.attribute !== attribute) {
+            if (
+                this.activeSort == null ||
+                this.activeSort.attribute !== attribute
+            ) {
                 this.activeSort = { attribute, isDesc: true };
             } else {
                 if (this.activeSort.isDesc) {
@@ -167,13 +189,17 @@ export class TableComponent implements OnInit, OnChanges {
     }
 
     applySort() {
-        if(this.isFrontDataTreatment && this.activeSort){
-            const column = this.columns.find(c => c.attribute === this.activeSort.attribute);
+        if (this.isFrontDataTreatment && this.activeSort) {
+            const column = this.columns.find(
+                c => c.attribute === this.activeSort.attribute
+            );
             if (column.type === undefined) {
                 column.type = ColumnTypes.String;
             }
             this.onSort.emit(this.activeSort);
-            this.sortItems = [...this.items].sort(this.sortSystem['' + column.type + this.activeSort.isDesc]);
+            this.sortItems = [...this.items].sort(
+                this.sortSystem['' + column.type + this.activeSort.isDesc]
+            );
         } else {
             this.sortItems = this.items;
         }
@@ -188,35 +214,39 @@ export class TableComponent implements OnInit, OnChanges {
     }
 
     applyPaging(): void {
-        if(this.isFrontDataTreatment){
+        if (this.isFrontDataTreatment) {
             this.displayedItems = this.sortItems.slice(
                 this.itemByPage * (this.selectedPage - 1),
                 this.itemByPage * this.selectedPage
             );
         } else {
-            this.displayedItems = this.sortItems
+            this.displayedItems = this.sortItems;
         }
         this.computeCellStyles();
     }
 
-    cellValueChange(event, column, item){
+    cellValueChange(event, column, item) {
         console.log(item, column.attribute, event);
-        if(column.customStyles !== undefined){
-            this.computedStyles = this.computedStyles[item[this.key]][column.attribute] = column.customStyles(event);
+        if (column.customStyles !== undefined) {
+            this.computedStyles = this.computedStyles[item[this.key]][
+                column.attribute
+            ] = column.customStyles(event);
         }
     }
-    handleAction(action: YzYAction, item){
-        this.onAction.emit({ action, key: item[this.key]});
+    handleAction(action: YzYAction, item) {
+        this.onAction.emit({ action, key: item[this.key] });
     }
-    computeCellStyles():void {
+    computeCellStyles(): void {
         const styles = {};
-        for(const item of this.displayedItems){
+        for (const item of this.displayedItems) {
             styles[item[this.key]] = {};
         }
-        for(const column of this.visibleColumns){
-            if(column.customStyles !== undefined){
-                for(const item of this.displayedItems) {
-                    styles[item[this.key]][column.attribute] = column.customStyles(item[column.attribute]);
+        for (const column of this.visibleColumns) {
+            if (column.customStyles !== undefined) {
+                for (const item of this.displayedItems) {
+                    styles[item[this.key]][
+                        column.attribute
+                    ] = column.customStyles(item[column.attribute]);
                 }
             }
         }

@@ -1,9 +1,18 @@
-import { LayoutModule } from 'yzy-ng';
+import { LayoutModule, ResponsiveService } from 'yzy-ng';
 // only once
 import '!style-loader!css-loader!../../.storybook/storybook.css';
 import '!style-loader!css-loader!../../dist/yzy-ng-themes/base-theme.css';
 import { moduleMetadata } from '@storybook/angular';
-import { TableModule, TableComponent, Column, ColumnTypes, YzYAction, YzYActionTypes, DropdownModule, FieldTypes } from 'yzy-ng';
+import {
+    TableModule,
+    TableComponent,
+    Column,
+    ColumnTypes,
+    YzYAction,
+    YzYActionTypes,
+    DropdownModule,
+    FieldTypes
+} from 'yzy-ng';
 import { action } from '@storybook/addon-actions';
 
 const typeOptions = [
@@ -13,7 +22,7 @@ const typeOptions = [
 ];
 
 const columns: Column[] = [
-    { name: 'Name', attribute: 'name'},
+    { name: 'Name', attribute: 'name' },
     {
         name: 'Type',
         attribute: 'type',
@@ -27,13 +36,13 @@ const columns: Column[] = [
     { name: 'Healthy', attribute: 'isHealthy', type: ColumnTypes.Boolean },
     { name: 'Provider', attribute: 'provider' }
 ];
-const sortableColumns = columns.map(c => ({...c}));
+const sortableColumns = columns.map(c => ({ ...c }));
 sortableColumns[0].isSortable = true;
 sortableColumns[2].isSortable = true;
 sortableColumns[3].isSortable = true;
 sortableColumns[5].isSortable = true;
 
-const editableColumns = columns.map(c => ({...c}));
+const editableColumns = columns.map(c => ({ ...c }));
 editableColumns[0].editable = true;
 editableColumns[1].editable = true;
 editableColumns[5].editable = true;
@@ -41,9 +50,18 @@ editableColumns[6].editable = true;
 
 const actions: YzYAction[] = [
     { name: 'read', class: 'gg-search', type: YzYActionTypes.Info },
-    { name: 'attachment', class: 'gg-attachment', type: YzYActionTypes.Success },
-    { name: 'lock', class: 'gg-lock', type: YzYActionTypes.Warning, disabled: true },
-    { name: 'delete', class: 'gg-trash', type: YzYActionTypes.Error },
+    {
+        name: 'attachment',
+        class: 'gg-attachment',
+        type: YzYActionTypes.Success
+    },
+    {
+        name: 'lock',
+        class: 'gg-lock',
+        type: YzYActionTypes.Warning,
+        disabled: true
+    },
+    { name: 'delete', class: 'gg-trash', type: YzYActionTypes.Error }
 ];
 
 import items from './drinks.json';
@@ -52,7 +70,8 @@ export default {
     title: 'Table',
     decorators: [
         moduleMetadata({
-            imports: [DropdownModule,TableModule, LayoutModule],
+            imports: [DropdownModule, TableModule, LayoutModule],
+            providers: [ResponsiveService]
         })
     ]
 };
@@ -60,7 +79,7 @@ export const simple = () => ({
     component: TableComponent,
     template: `
     <div class="demo-desktop">
-    <yzy-table class="s-desktop"[columns]="columns" [items]="items" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
+    <yzy-table [columns]="columns" [items]="items" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
     </div>
     `,
     props: {
@@ -76,7 +95,7 @@ export const withPaginator = () => ({
     component: TableComponent,
     template: `
     <div class="demo-desktop">
-    <yzy-table class="s-desktop"[columns]="columns" [items]="items" [isPaginator]="isPaginator" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
+    <yzy-table [columns]="columns" [items]="items" [isPaginator]="isPaginator" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
     </div>
     `,
     props: {
@@ -93,7 +112,7 @@ export const withSorts = () => ({
     component: TableComponent,
     template: `
     <div class="demo-desktop">
-    <yzy-table class="s-desktop"[columns]="sortableColumns" [items]="items" [isPaginator]="isPaginator" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
+    <yzy-table [columns]="sortableColumns" [items]="items" [isPaginator]="isPaginator" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
     </div>
     `,
     props: {
@@ -110,7 +129,7 @@ export const withLineActions = () => ({
     component: TableComponent,
     template: `
     <div class="demo-desktop">
-    <yzy-table class="s-desktop"[columns]="columns" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
+    <yzy-table [columns]="columns" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
     </div>
     `,
     props: {
@@ -128,7 +147,7 @@ export const withEditableCells = () => ({
     component: TableComponent,
     template: `
     <div class="demo-desktop">
-    <yzy-table class="s-desktop"[columns]="editableColumns" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
+    <yzy-table [columns]="editableColumns" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
     </div>
     `,
     props: {
@@ -143,34 +162,34 @@ export const withEditableCells = () => ({
     }
 });
 
-const customStylesColumns = columns.map(c => ({...c}));
-customStylesColumns[5].customStyles = (value) => {
-    if(value > 250){
+const customStylesColumns = columns.map(c => ({ ...c }));
+customStylesColumns[5].customStyles = value => {
+    if (value > 250) {
         return {
-            'background': 'rgba(68, 162, 93, 0.89)',
-            'color': 'white',
-            'border-color': 'rgba(68, 162, 93, 0.90)',
+            background: 'rgba(68, 162, 93, 0.89)',
+            color: 'white',
+            'border-color': 'rgba(68, 162, 93, 0.90)'
         };
-    } else if(value >= 100){
+    } else if (value >= 100) {
         return {
-            'background': 'rgba(68, 162, 93, 0.66)',
-            'color': 'white',
-            'border-color': 'rgba(68, 162, 93, 0.66)',
+            background: 'rgba(68, 162, 93, 0.66)',
+            color: 'white',
+            'border-color': 'rgba(68, 162, 93, 0.66)'
         };
     } else {
         return {
-            'background': 'rgba(227, 119, 67, 0.72)',
-            'color': 'white',
-            'border-color': 'rgba(227, 119, 67, 0.72)',
+            background: 'rgba(227, 119, 67, 0.72)',
+            color: 'white',
+            'border-color': 'rgba(227, 119, 67, 0.72)'
         };
-    };
+    }
     return {};
 };
 export const withCustomStylesForCells = () => ({
     component: TableComponent,
     template: `
     <div class="demo-desktop">
-    <yzy-table class="s-desktop"[columns]="customStylesColumns" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
+    <yzy-table [columns]="customStylesColumns" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
     </div>
     `,
     props: {
@@ -197,7 +216,7 @@ export const responsive = () => ({
         footerOptions: {
             sortPanel: true,
             searchPanel: true,
-            addButton: true,
+            addButton: true
         },
         isPaginator: true,
         onAdd: action('onAdd'),
@@ -224,17 +243,17 @@ const formModel = {
         {
             type: FieldTypes.Text,
             name: 'provider',
-            label: 'Provider',
+            label: 'Provider'
         },
         {
             type: FieldTypes.Checkbox,
             name: 'isHealthy',
-            label: 'Healthy',
+            label: 'Healthy'
         }
     ]
 };
 
-const completesColumn = editableColumns.map(c => ({...c}));;
+const completesColumn = editableColumns.map(c => ({ ...c }));
 completesColumn[0].isSortable = true;
 completesColumn[2].isSortable = true;
 completesColumn[3].isSortable = true;
@@ -244,7 +263,7 @@ export const complete = () => ({
     template: `
     <yzy-header-bar [title]="title" [actions]="actionsForComplete" (action)="action($event)"></yzy-header-bar>
     <yzy-filter-bar [formModel]="formModel"></yzy-filter-bar>
-    <yzy-table class="s-desktop"[columns]="completesColumn" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
+    <yzy-table [columns]="completesColumn" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
     `,
     props: {
         title: 'Complete table',
