@@ -64,7 +64,7 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     displayedItems: any[];
     sortSystem = {};
     computedStyles: any = {};
-    cellsChangedValues: ElementsValueChanges = { totalCahnges: {} };
+    cellsChangedValues: ElementsValueChanges = new ElementsValueChanges();
 
     constructor(private responsiveService: ResponsiveService) {
         super();
@@ -249,7 +249,6 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     }
 
     cellValueChange(event, column, item) {
-        console.log(item, column.attribute, event);
         if(this.cellsChangedValues[item[this.key]] === undefined){
             this.cellsChangedValues[item[this.key]] = {};
         }
@@ -283,7 +282,7 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     }
 
     clearChanges(): void {
-        this.cellsChangedValues = { totalCahnges: {} };
+        this.cellsChangedValues = new ElementsValueChanges();
         this.applySort();
     }
 }
