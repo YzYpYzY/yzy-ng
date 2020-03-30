@@ -91,6 +91,7 @@ label {
     font-weight: 400;
     z-index: 2;
     white-space: nowrap;
+    margin: 0;
 }
 
 .gg-chevron-down {
@@ -130,5 +131,6 @@ label {
     }
     .dropdown{
         margin-top: 0;
+        height: 3rem;
     }
 }
