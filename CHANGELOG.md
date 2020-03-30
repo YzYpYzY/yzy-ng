@@ -1,3 +1,18 @@
+# [1.6.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.5.0...v1.6.0) (2020-03-30)
+
+
+### Bug Fixes
+
+* **showcase:** imports in fields ([7a78160](https://github.com/YzYpYzY/yzy-ng/commit/7a78160a626e3d2e574a9861ac8b206972dec61d))
+* export all components, restrain barel to one level and remove unused imports ([9b0c20f](https://github.com/YzYpYzY/yzy-ng/commit/9b0c20f9e3f8f38abd08bdf49aa8f62bf90b1af8))
+* global font strike fontLibs ([2220dd6](https://github.com/YzYpYzY/yzy-ng/commit/2220dd6566ab45f845d33d8c011d9c2d7cc493b1))
+
+
+### Features
+
+* TableChangeEvent and resetChange method on table ([29f7e4c](https://github.com/YzYpYzY/yzy-ng/commit/29f7e4c6619dbbf179dc78d150a40bcb12c20b45))
+* Tabs in filter-bar ([27a1e81](https://github.com/YzYpYzY/yzy-ng/commit/27a1e81bc7a47186d875201d3c505895844f5b4a))
+
 # [1.5.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.4.0...v1.5.0) (2020-03-23)
 
 
