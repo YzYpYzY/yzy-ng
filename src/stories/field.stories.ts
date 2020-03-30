@@ -6,7 +6,6 @@ import {
     FormsModule
 } from '@angular/forms';
 import { moduleMetadata } from '@storybook/angular';
-import { FieldErrorModule } from 'projects/yzy-ng/src/public-api';
 import { action } from '@storybook/addon-actions';
 const fb = new FormBuilder();
 
@@ -17,7 +16,6 @@ export default {
             imports: [
                 ReactiveFormsModule,
                 FieldModule,
-                FieldErrorModule,
                 FormsModule
             ]
         })
