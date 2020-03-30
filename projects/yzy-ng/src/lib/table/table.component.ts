@@ -1,3 +1,4 @@
+import { ElementsValueChanges } from './models/ElementsValueChanges';
 import { BaseComponent } from './../base/base.component';
 import { takeUntil } from 'rxjs/operators';
 import { ResponsiveService } from './../services/responsive.service';
@@ -14,6 +15,7 @@ import {
     HostBinding
 } from '@angular/core';
 import { YzYSort } from './models/YzYSort';
+import { TableValueChangeEvent } from './models/TableValueChangeEvent';
 import { Column } from './models/Column';
 import { ColumnTypes } from './models/ColumnTypes';
 
@@ -46,6 +48,8 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     @Output() onPageChange = new EventEmitter<number>();
     // tslint:disable-next-line: no-output-on-prefix
     @Output() onAction = new EventEmitter<{ action: YzYAction; key: string }>();
+    // tslint:disable-next-line: no-output-on-prefix
+    @Output() onValueChange = new EventEmitter<TableValueChangeEvent>();
 
     @HostBinding('class') screenSizeClass = '';
 
@@ -60,6 +64,7 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     displayedItems: any[];
     sortSystem = {};
     computedStyles: any = {};
+    cellsChangedValues: ElementsValueChanges = { totalCahnges: {} };
 
     constructor(private responsiveService: ResponsiveService) {
         super();
@@ -224,16 +229,38 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
         } else {
             this.displayedItems = this.sortItems;
         }
+        this.applyChanges();
         this.computeCellStyles();
+    }
+
+    applyChanges(): void {
+        const displayedItems = [...this.displayedItems];
+        // tslint:disable-next-line: forin
+        for(const change in this.cellsChangedValues){
+            const item = displayedItems.find(dI => dI[this.key].toString() === change);
+            if(item){
+                // tslint:disable-next-line: forin
+                for(const attribute in this.cellsChangedValues[change]){
+                    item[attribute] = this.cellsChangedValues[change][attribute];
+                }
+            }
+        }
+        this.displayedItems = displayedItems;
     }
 
     cellValueChange(event, column, item) {
         console.log(item, column.attribute, event);
+        if(this.cellsChangedValues[item[this.key]] === undefined){
+            this.cellsChangedValues[item[this.key]] = {};
+        }
+        this.cellsChangedValues[item[this.key]][column.attribute] = event;
         if (column.customStyles !== undefined) {
-            this.computedStyles = this.computedStyles[item[this.key]][
+            this.computedStyles[item[this.key]][
                 column.attribute
             ] = column.customStyles(event);
         }
+        this.onValueChange.emit(
+            { totalChanges: this.cellsChangedValues, lastChange: { id: item[this.key], attribute: column.attribute, value: event }})
     }
     handleAction(action: YzYAction, item) {
         this.onAction.emit({ action, key: item[this.key] });
@@ -253,5 +280,10 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
             }
         }
         this.computedStyles = styles;
+    }
+
+    clearChanges(): void {
+        this.cellsChangedValues = { totalCahnges: {} };
+        this.applySort();
     }
 }

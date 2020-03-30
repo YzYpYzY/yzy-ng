@@ -24,7 +24,7 @@
             <yzy-cell
                 [value]="item[column.attribute]"
                 [column]="column"
-                (valueChange)="cellValueChange($event, column.attribute, item)"
+                (valueChange)="cellValueChange($event, column, item)"
                 [ngStyle]="computedStyles[item[key]][column.attribute]"
             ></yzy-cell>
         </td>

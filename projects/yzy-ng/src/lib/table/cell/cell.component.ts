@@ -48,9 +48,7 @@ export class CellComponent implements OnInit {
             this.cdr.detectChanges();
             if(this.column.type === ColumnTypes.Dropdown){
                 setTimeout(()=> { (this.fields.first as any).toggle(event); });
-                //(this.fields.first as any).toggle(event);
             } else if(this.column.type === ColumnTypes.Boolean){
-                //setTimeout(()=> { (this.fields.first as any).toggleValue(event); });
                 (this.fields.first as any).toggleValue(event);
             }
             else {
@@ -70,9 +68,6 @@ export class CellComponent implements OnInit {
         }
         this.displayedAsEditable = this.column.editable;
         this.initialValue = this.value;
-        // for(let style of this.column.customStyles(this.value)){
-        //     this.renderer.setStyle(this.elRef.nativeElement, style);
-        // }
     }
 
     valueChangeHandler(event){

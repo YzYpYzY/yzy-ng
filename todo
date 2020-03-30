@@ -7,15 +7,15 @@
     [x] lower bar order add, filter, paginator
     [x] dropdown cell
     [x] boolean cells
-    [ ] edit mode
-        [ ] store change
+    [x] edit mode
+        [x] store change
         [x] style for cells
         [x] auto focus on click
     [x] populate table stories
-    [ ] column custom style
+    [x] column custom style
     [ ] line custom style
     [ ] icon hover effect
-[ ] filter bar
+[x] filter bar
 [x] header bar
     [x] title
     [x] actions
