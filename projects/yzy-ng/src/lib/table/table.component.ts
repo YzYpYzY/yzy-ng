@@ -13,7 +13,9 @@ import {
     EventEmitter,
     HostBinding
 } from '@angular/core';
-import { YzYSort, ColumnTypes, Column } from './models';
+import { YzYSort } from './models/YzYSort';
+import { Column } from './models/Column';
+import { ColumnTypes } from './models/ColumnTypes';
 
 @Component({
     selector: 'yzy-table',

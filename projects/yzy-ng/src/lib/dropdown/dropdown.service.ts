@@ -1,4 +1,4 @@
-import { Subject, identity } from 'rxjs';
+import { Subject } from 'rxjs';
 import { OptionModel } from './models/OptionModel';
 import { Injectable, Injector, ApplicationRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef } from '@angular/core';
 import { DropdownOptionState } from './models/DropdownOptionState';

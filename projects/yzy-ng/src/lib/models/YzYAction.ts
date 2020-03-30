@@ -1,4 +1,4 @@
-import { YzYActionTypes } from '.';
+import { YzYActionTypes } from './YzYActionTypes';
 
 export interface YzYAction {
     name: string;

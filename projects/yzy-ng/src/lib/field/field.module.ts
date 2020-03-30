@@ -3,19 +3,18 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FieldComponent } from './field.component';
-import { FieldErrorModule } from '../field-error/field-error.module';
 import { DropdownModule } from '../dropdown/dropdown.module';
+import { FieldErrorComponent } from './field-error/field-error.component';
 
 @NgModule({
-    declarations: [FieldComponent],
+    declarations: [FieldComponent, FieldErrorComponent],
     imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        FieldErrorModule,
         DropdownModule,
         CheckboxModule
     ],
-    exports: [FieldComponent]
+    exports: [FieldComponent, FieldErrorComponent]
 })
 export class FieldModule {}

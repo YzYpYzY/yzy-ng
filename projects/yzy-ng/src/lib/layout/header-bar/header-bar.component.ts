@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { YzYAction } from '../../models'
+import { YzYAction } from '../../models/YzYAction';
 @Component({
   selector: 'yzy-header-bar',
   templateUrl: './header-bar.component.html',

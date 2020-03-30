@@ -1,5 +1,5 @@
-import { ColumnTypes } from '.';
-import { OptionModel } from '../../dropdown';
+import { ColumnTypes } from './ColumnTypes';
+import { OptionModel } from '../../dropdown/models/OptionModel';
 
 export interface Column {
     name: string;

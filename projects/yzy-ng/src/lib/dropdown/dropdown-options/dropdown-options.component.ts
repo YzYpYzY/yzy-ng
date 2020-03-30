@@ -1,4 +1,3 @@
-import { DropdownService } from '../dropdown.service';
 import { OptionModel } from './../models/OptionModel';
 import { Component, OnInit, Input, ElementRef, HostListener, HostBinding } from '@angular/core';
 

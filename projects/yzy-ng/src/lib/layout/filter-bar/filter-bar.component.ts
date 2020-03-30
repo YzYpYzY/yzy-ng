@@ -1,7 +1,7 @@
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormModel } from '../../form';
-import { YzYTab } from '../models';
+import { YzYTab } from '../models/YzYTab';
 
 @Component({
   selector: 'yzy-filter-bar',

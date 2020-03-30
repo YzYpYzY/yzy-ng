@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener, EventEmitter, Output } from '@angular/core';
-import { FieldModel } from '../field';
+import { FieldModel } from '../field/models/FieldModel';
 import { FormGroup, FormControl } from '@angular/forms';
 import { BaseComponent } from '../base/base.component';
 import { takeUntil } from 'rxjs/operators';

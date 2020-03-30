@@ -6,8 +6,6 @@ import {
     Input,
     ElementRef,
     Renderer2,
-    HostListener,
-    AfterViewInit,
     HostBinding,
     Output,
     EventEmitter,

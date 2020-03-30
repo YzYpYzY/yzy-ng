@@ -1,24 +1,21 @@
-import { Column } from '../models';
-import { FieldModel } from './../../field/models';
-import { FieldTypes } from './../../field/enums';
+import { Column } from '../models/Column';
+import { FieldModel } from './../../field/models/FieldModel';
 import { FormGroup } from '@angular/forms';
 import {
     Component,
     OnInit,
     Input,
-    ViewEncapsulation,
     HostBinding,
     HostListener,
     EventEmitter,
     Output,
     ViewChildren,
     QueryList,
-    ViewChild,
     ElementRef,
     ChangeDetectorRef,
     Renderer2
 } from '@angular/core';
-import { ColumnTypes } from '..';
+import { ColumnTypes } from '../models/ColumnTypes';
 
 @Component({
     selector: 'yzy-cell',
