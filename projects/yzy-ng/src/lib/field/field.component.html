@@ -17,6 +17,11 @@
             [fieldModel]="fieldModel" [form]="form"
             ></yzy-checkbox>
         </div>
+        <div *ngSwitchCase="FieldTypes.Radio">
+            <yzy-radio
+            [fieldModel]="fieldModel" [form]="form"
+            ></yzy-radio>
+        </div>
         <div *ngSwitchDefault>
             <label for="{{ fieldModel.name }}">{{ fieldModel.label }}</label>
             <input

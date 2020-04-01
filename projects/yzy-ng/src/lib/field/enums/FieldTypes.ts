@@ -5,5 +5,6 @@ export enum FieldTypes {
     TextArea,
     Checkbox,
     Number,
-    Dropdown
+    Dropdown,
+    Radio
 }

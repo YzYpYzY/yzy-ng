@@ -1,3 +1,4 @@
+import { RadioModule } from './../radio/radio.module';
 import { CheckboxModule } from './../checkbox/checkbox.module';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { FieldErrorComponent } from './field-error/field-error.component';
         FormsModule,
         ReactiveFormsModule,
         DropdownModule,
-        CheckboxModule
+        CheckboxModule,
+        RadioModule
     ],
     exports: [FieldComponent, FieldErrorComponent]
 })

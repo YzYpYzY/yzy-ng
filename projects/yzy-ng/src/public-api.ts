@@ -13,5 +13,6 @@ export * from './lib/form';
 export * from './lib/layout';
 export * from './lib/models';
 export * from './lib/pipes';
+export * from './lib/radio';
 export * from './lib/services';
 export * from './lib/table';

@@ -1,0 +1,6 @@
+<label *ngIf="displayLabel">{{ displayLabel }}</label>
+<yzy-checkbox *ngFor="let option of options"
+    [label]="option.label"
+    [value]="option.value == selectedValue"
+    (valueChange)="handleSelectOption(option.value)"
+></yzy-checkbox>
