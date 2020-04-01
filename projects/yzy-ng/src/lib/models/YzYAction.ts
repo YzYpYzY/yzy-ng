@@ -5,4 +5,5 @@ export interface YzYAction {
     type?: YzYActionTypes;
     class?: string;
     disabled?: boolean;
+    label?: string;
 }
