@@ -1,19 +1,18 @@
 import { PipeModule } from './../pipes/pipe.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderBarComponent } from './header-bar/header-bar.component';
-import { FilterBarComponent } from './filter-bar/filter-bar.component';
+import { BarComponent } from './bar/bar.component';
 import { YzYFormsModule } from '../form';
 
 
 
 @NgModule({
-  declarations: [HeaderBarComponent, FilterBarComponent],
+  declarations: [BarComponent],
   imports: [
     CommonModule,
     PipeModule,
     YzYFormsModule
   ],
-  exports: [HeaderBarComponent,FilterBarComponent]
+  exports: [BarComponent]
 })
 export class LayoutModule { }

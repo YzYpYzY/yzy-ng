@@ -1,5 +1,5 @@
 import { moduleMetadata } from '@storybook/angular';
-import { LayoutModule, HeaderBarComponent, YzYAction, YzYActionTypes, FieldTypes, FilterBarComponent} from 'yzy-ng';
+import { LayoutModule, YzYAction, YzYActionTypes, FieldTypes, BarComponent} from 'yzy-ng';
 import { action } from '@storybook/addon-actions';
 
 export default {
@@ -19,10 +19,10 @@ const actions: YzYAction[] = [
     { name: 'saveDisabled', class: 'gg-check', type: YzYActionTypes.Warning, disabled: true },
 ];
 export const headerBar = () => ({
-    component: HeaderBarComponent,
+    component: BarComponent,
     template: `
     <div class="demo-desktop">
-    <yzy-header-bar [title]="title"></yzy-header-bar>
+    <yzy-bar [title]="title"></yzy-bar>
     </div>
     `,
     props: {
@@ -30,10 +30,10 @@ export const headerBar = () => ({
     }
 });
 export const headerBarWithActions = () => ({
-    component: HeaderBarComponent,
+    component: BarComponent,
     template: `
     <div class="demo-desktop">
-    <yzy-header-bar [title]="title" [actions]="actions" (action)="action($event)"></yzy-header-bar>
+    <yzy-bar [title]="title" [actions]="actions" (action)="action($event)"></yzy-bar>
     </div>
     `,
     props: {
@@ -70,10 +70,10 @@ const formModel = {
     ]
 };
 export const filterBar = () => ({
-    component: FilterBarComponent,
+    component: BarComponent,
     template: `
     <div class="demo-desktop">
-    <yzy-filter-bar [formModel]="formModel"></yzy-filter-bar>
+    <yzy-bar [formModel]="formModel"></yzy-bar>
     </div>
     `,
     props: {

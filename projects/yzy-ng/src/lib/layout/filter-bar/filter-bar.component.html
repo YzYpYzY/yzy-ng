@@ -1,8 +1,0 @@
-<div class="tab" *ngFor="let tab of tabs" (click)="onTabChange(tab)" [ngClass]="{'selected': tab.name == selectedTab.name }">
-    {{ tab.label }}
-</div>
-<yzy-form
-    [formModel]="formModel"
-    (formReady)="handleFormReady($event)"
-    class="inline-form"
-></yzy-form>

@@ -56,8 +56,7 @@ html {
     --disabled-bg: rgb(158, 157, 157);
     --action-color: white;
 
-    --header-bar-color: #{transparentize($accent, .7)};
-    --filter-bar-color: #{$dominant};
+    --bar-color: #{transparentize($accent, .7)};
     --tab-bg: #{transparentize($accent, .7)};
     --tab-selected-bg: #{transparentize($accent, .3)};
 }

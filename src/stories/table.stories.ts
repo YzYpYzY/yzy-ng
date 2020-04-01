@@ -261,8 +261,8 @@ completesColumn[5].isSortable = true;
 
 export const complete = () => ({
     template: `
-    <yzy-header-bar [title]="title" [actions]="actionsForComplete" (action)="action($event)"></yzy-header-bar>
-    <yzy-filter-bar [formModel]="formModel"></yzy-filter-bar>
+    <yzy-bar [title]="title" [actions]="actionsForComplete" (action)="action($event)"></yzy-bar>
+    <yzy-bar [formModel]="formModel"></yzy-bar>
     <yzy-table [columns]="completesColumn" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
     `,
     props: {
