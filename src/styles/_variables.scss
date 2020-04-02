@@ -59,4 +59,5 @@ html {
     --bar-color: #{transparentize($accent, .7)};
     --tab-bg: #{transparentize($accent, .7)};
     --tab-selected-bg: #{transparentize($accent, .3)};
+    --radio-color: #{transparentize($accent, 0.7)};
 }
