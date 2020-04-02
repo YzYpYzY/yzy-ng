@@ -1,7 +1,5 @@
 import { ElementsValueChanges } from './models/ElementsValueChanges';
 import { BaseComponent } from './../base/base.component';
-import { takeUntil } from 'rxjs/operators';
-import { ResponsiveService } from './../services/responsive.service';
 import { YzYAction } from './../models/YzYAction';
 import { FooterOptions } from './models/FooterOptions';
 import {
@@ -51,8 +49,6 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     // tslint:disable-next-line: no-output-on-prefix
     @Output() onValueChange = new EventEmitter<TableValueChangeEvent>();
 
-    @HostBinding('class') screenSizeClass = '';
-
     visibleColumns: Column[];
     sortableColumns: Column[];
     isSortsVisible = false;
@@ -66,13 +62,8 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     computedStyles: any = {};
     cellsChangedValues: ElementsValueChanges = new ElementsValueChanges();
 
-    constructor(private responsiveService: ResponsiveService) {
+    constructor() {
         super();
-        this.responsiveService.screenSizeClass$
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(screenSizeClass => {
-                this.screenSizeClass = screenSizeClass;
-            });
     }
 
     ngOnInit() {

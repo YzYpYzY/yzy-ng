@@ -192,8 +192,8 @@ table::-webkit-scrollbar-thumb {
     outline: none;
 }
 
-:host.s-desktop,
-:host.s-tablet {
+:host-context(.s-desktop),
+:host-context(.s-tablet) {
     font-size: 1rem;
     table {
         display: grid;
