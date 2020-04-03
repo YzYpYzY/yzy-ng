@@ -1,6 +1,12 @@
 <label *ngIf="displayLabel">{{ displayLabel }}</label>
-<yzy-checkbox *ngFor="let option of options"
-    [label]="option.label"
-    [value]="option.value == selectedValue"
-    (valueChange)="handleSelectOption(option.value)"
-></yzy-checkbox>
+<div
+    class="option"
+    *ngFor="let option of options"
+    (click)="selectOption(option)"
+>
+    <div
+        class="square"
+        [ngClass]="{ selected: option.value === selectedValue }"
+    ></div>
+    <div class="label">{{ option.label }}</div>
+</div>

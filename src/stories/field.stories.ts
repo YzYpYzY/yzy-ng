@@ -1,4 +1,11 @@
-import { FieldComponent, FieldTypes, FieldModule, CheckboxComponent } from 'yzy-ng';
+import {
+    FieldComponent,
+    FieldTypes,
+    FieldModule,
+    CheckboxComponent,
+    RadioComponent,
+    DropdownComponent
+} from 'yzy-ng';
 import {
     ReactiveFormsModule,
     FormBuilder,
@@ -13,11 +20,7 @@ export default {
     title: 'Field',
     decorators: [
         moduleMetadata({
-            imports: [
-                ReactiveFormsModule,
-                FieldModule,
-                FormsModule
-            ]
+            imports: [ReactiveFormsModule, FieldModule, FormsModule]
         })
     ]
 };
@@ -52,6 +55,39 @@ export const checkbox = () => ({
             name: 'demo',
             label: 'Stay connected',
             type: FieldTypes.Checkbox
+        },
+        form: fb.group({
+            demo: false
+        })
+    }
+});
+const options = [
+    { value: 0, label: 'Coca' },
+    { value: 1, label: 'Water' },
+    { value: 2, label: 'Wine' }
+];
+export const dropdown = () => ({
+    component: DropdownComponent,
+    props: {
+        fieldModel: {
+            name: 'demo',
+            label: 'Drink',
+            type: FieldTypes.Dropdown,
+            options
+        },
+        form: fb.group({
+            demo: false
+        })
+    }
+});
+export const radio = () => ({
+    component: RadioComponent,
+    props: {
+        fieldModel: {
+            name: 'demo',
+            label: 'Drink',
+            type: FieldTypes.Radio,
+            options
         },
         form: fb.group({
             demo: false

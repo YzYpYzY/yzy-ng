@@ -2,7 +2,11 @@
     display: flex;
     justify-content: flex-end;
     flex-grow: 1;
+    color: var(--paginator-color);
+    background: var(--paginator-bg);
 }
+
 .currentPage {
-    background: var(--paginator-color);
+    color: var(--paginator-selected-color);
+    background: var(--paginator-selected-bg);
 }

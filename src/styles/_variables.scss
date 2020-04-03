@@ -44,8 +44,11 @@ html {
     --table-odd-row: #e4e0e073;
     --table-border-color: #b8b7b773;
     --table-bg: white;
-    --table-header-row: #{transparentize($accent, .7)};
-    --paginator-color: white;
+    --table-header-row: #{transparentize($accent, 0.7)};
+    --paginator-color: inherit;
+    --paginator-bg: transparent;
+    --paginator-selected-color: inherit;
+    --paginator-selected-bg: white;
     --scrollbar: rgb(236, 236, 236);
 
     --error-bg: rgb(247, 131, 131);
@@ -56,7 +59,10 @@ html {
     --disabled-bg: rgb(158, 157, 157);
     --action-color: white;
 
-    --bar-color: #{transparentize($accent, .7)};
-    --tab-bg: #{transparentize($accent, .7)};
-    --tab-selected-bg: #{transparentize($accent, .3)};
+    --bar-bg: #{transparentize($accent, 0.7)};
+    --bar-color: black;
+    --tab-bg: #{transparentize($accent, 0.7)};
+    --tab-selected-bg: #{transparentize($accent, 0.3)};
+
+    --radio-color: #{transparentize($accent, 0.7)};
 }

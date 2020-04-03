@@ -1,12 +1,12 @@
-:host{
+:host {
     display: flex;
     flex-flow: row;
     align-items: center;
     justify-content: flex-start;
     height: 4rem;
     padding: 0;
-    background-color: var(--bar-color);
-    color: var(--base-color);
+    background-color: var(--bar-bg);
+    color: var(--bar-color);
 }
 
 .tab {
@@ -15,13 +15,14 @@
     height: 100%;
     padding: 0 2rem;
     background-color: var(--tab-bg);
-    &.selected{
+
+    &.selected {
         background-color: var(--tab-selected-bg);
     }
 }
 
 
-.title{
+.title {
     display: flex;
     align-items: center;
     flex-grow: 1;
@@ -34,19 +35,22 @@
     flex-flow: row;
     align-self: stretch;
     flex-grow: 0;
+
     .action {
         width: 4rem;
     }
+
     .action-labeled {
         width: auto;
         padding: 0 1rem;
         color: black;
-        .action-label{
+
+        .action-label {
             padding-left: 1rem;
         }
     }
 }
 
-yzy-form{
+yzy-form {
     padding: 0 1rem;
 }
