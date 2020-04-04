@@ -84,7 +84,9 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
                 : true;
         this.prepareSortSystems();
         this.prepareColumns();
-        this.applySort();
+        if (this.items && this.items.length > 0) {
+            this.applySort();
+        }
     }
     prepareSortSystems() {
         const sortSystem = {};
@@ -227,12 +229,16 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     applyChanges(): void {
         const displayedItems = [...this.displayedItems];
         // tslint:disable-next-line: forin
-        for(const change in this.cellsChangedValues){
-            const item = displayedItems.find(dI => dI[this.key].toString() === change);
-            if(item){
+        for (const change in this.cellsChangedValues) {
+            const item = displayedItems.find(
+                dI => dI[this.key].toString() === change
+            );
+            if (item) {
                 // tslint:disable-next-line: forin
-                for(const attribute in this.cellsChangedValues[change]){
-                    item[attribute] = this.cellsChangedValues[change][attribute];
+                for (const attribute in this.cellsChangedValues[change]) {
+                    item[attribute] = this.cellsChangedValues[change][
+                        attribute
+                    ];
                 }
             }
         }
@@ -240,7 +246,7 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     }
 
     cellValueChange(event, column, item) {
-        if(this.cellsChangedValues[item[this.key]] === undefined){
+        if (this.cellsChangedValues[item[this.key]] === undefined) {
             this.cellsChangedValues[item[this.key]] = {};
         }
         this.cellsChangedValues[item[this.key]][column.attribute] = event;
@@ -249,8 +255,14 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
                 column.attribute
             ] = column.customStyles(event);
         }
-        this.onValueChange.emit(
-            { totalChanges: this.cellsChangedValues, lastChange: { id: item[this.key], attribute: column.attribute, value: event }})
+        this.onValueChange.emit({
+            totalChanges: this.cellsChangedValues,
+            lastChange: {
+                id: item[this.key],
+                attribute: column.attribute,
+                value: event
+            }
+        });
     }
     handleAction(action: YzYAction, item) {
         this.onAction.emit({ action, key: item[this.key] });
