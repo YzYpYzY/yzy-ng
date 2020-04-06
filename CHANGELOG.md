@@ -1,3 +1,19 @@
+# [1.7.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.6.1...v1.7.0) (2020-04-06)
+
+
+### Bug Fixes
+
+* change BaseComponent destroy$ subject exposition ([fe29619](https://github.com/YzYpYzY/yzy-ng/commit/fe29619851426dcf73b7402c4d4da926bea48e3e))
+* **table:** Elements value changes management ([b7253c4](https://github.com/YzYpYzY/yzy-ng/commit/b7253c424c19d216facbabe4353d58321bc1e22e))
+
+
+### Features
+
+* add label to action to create button like action ([f3361f7](https://github.com/YzYpYzY/yzy-ng/commit/f3361f771e2d975d73072a8c49e86315c246cb6d))
+* add some css variable ([990509f](https://github.com/YzYpYzY/yzy-ng/commit/990509f01528a08728b469277b0c2aedae878cca))
+* radio type field ([a587410](https://github.com/YzYpYzY/yzy-ng/commit/a587410fa3c9de996407c797adfad766e09b93b8))
+* **layout!:** fusion filter-bar and header-bar in one multi function bar ([8d8025c](https://github.com/YzYpYzY/yzy-ng/commit/8d8025c90b651753370ce672ef2c8665f7505272))
+
 ## [1.6.1](https://github.com/YzYpYzY/yzy-ng/compare/v1.6.0...v1.6.1) (2020-03-30)
 
 
