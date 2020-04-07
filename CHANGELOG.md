@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/YzYpYzY/yzy-ng/compare/v1.7.1...v1.7.2) (2020-04-07)
+
+
+### Bug Fixes
+
+* change field default size strategy to take free space ([c25bd7d](https://github.com/YzYpYzY/yzy-ng/commit/c25bd7d87a086dcf8691fa416c0cfec452e13dd6))
+
 ## [1.7.1](https://github.com/YzYpYzY/yzy-ng/compare/v1.7.0...v1.7.1) (2020-04-07)
 
 
