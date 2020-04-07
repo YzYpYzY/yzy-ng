@@ -45,18 +45,35 @@ export class DropdownComponent extends BaseComponent implements OnInit {
     optionsId: number;
     initialOption: OptionModel;
 
-    constructor(private cdr: ChangeDetectorRef, private elementRef: ElementRef, private render: Renderer2, private dropdownService: DropdownService) { super(); }
+    constructor(
+        private cdr: ChangeDetectorRef,
+        private elementRef: ElementRef,
+        private render: Renderer2,
+        private dropdownService: DropdownService
+    ) {
+        super();
+    }
 
     ngOnInit(): void {
         this.render.addClass(this.elementRef.nativeElement, 'sizeProcessing');
-        this.displayedLabel = this.label !== undefined ? this.label :
-            this.fieldModel && this.fieldModel.label ? this.fieldModel.label : null;
-            this.cdr.detectChanges();
+        this.displayedLabel =
+            this.label !== undefined
+                ? this.label
+                : this.fieldModel && this.fieldModel.label
+                ? this.fieldModel.label
+                : null;
+        this.cdr.detectChanges();
         this.setOptions();
-        const controlName = this.fieldModel && this.fieldModel.name ? this.fieldModel.name : 'default';
-        if(this.form === undefined){
+        const controlName =
+            this.fieldModel && this.fieldModel.name
+                ? this.fieldModel.name
+                : 'default';
+        if (this.form === undefined) {
             this.form = new FormGroup({});
-            this.form.addControl(controlName, new FormControl(this.initialOption.value));
+            this.form.addControl(
+                controlName,
+                new FormControl(this.initialOption.value)
+            );
         }
         this.control = this.form.get(controlName);
         this.isReadOnly = !this.control.enabled;
@@ -77,27 +94,32 @@ export class DropdownComponent extends BaseComponent implements OnInit {
     toggle(event) {
         if (!this.control.disabled) {
             if (this.isCollapsed) {
-                this.stateSubscription = this.dropdownService.optionsState$.pipe(takeUntil(this.destroy$)).subscribe(newState => {
-                    if(newState.selectedOption !== null){
-                        this.changeValue(newState.selectedOption);
-                    }
-                    this.isCollapsed = !newState.isOpen;
-                    if(this.isCollapsed){
-                        this.stateSubscription.unsubscribe();
-                        this.stateSubscription = null;
-                    }
-                });
-                const displayBox = this.elementRef.nativeElement.children[this.elementRef.nativeElement.children.length - 1];
+                this.stateSubscription = this.dropdownService.optionsState$
+                    .pipe(takeUntil(this.destroy$))
+                    .subscribe(newState => {
+                        if (newState.selectedOption !== null) {
+                            this.changeValue(newState.selectedOption);
+                        }
+                        this.isCollapsed = !newState.isOpen;
+                        if (this.isCollapsed) {
+                            this.stateSubscription.unsubscribe();
+                            this.stateSubscription = null;
+                        }
+                    });
+                const displayBox = this.elementRef.nativeElement.children[
+                    this.elementRef.nativeElement.children.length - 1
+                ];
                 const domRect = displayBox.getBoundingClientRect();
                 this.optionsId = this.dropdownService.displayOptions(
                     this.displayedOptions,
-                    { x: domRect.left, y: domRect.top+domRect.height },
-                    displayBox.offsetWidth);
+                    { x: domRect.left, y: domRect.top + domRect.height },
+                    displayBox.offsetWidth
+                );
             }
         }
     }
 
-    focusOut(): void{
+    focusOut(): void {
         this.dropdownService.close(this.optionsId);
     }
 
@@ -113,8 +135,10 @@ export class DropdownComponent extends BaseComponent implements OnInit {
         }
         this.displayedValue = this.displayedOptions[indexLargerLabel].label;
         this.displayedWidth =
-            this.elementRef.nativeElement.children[this.elementRef.nativeElement.children.length - 1].offsetWidth + 'px'; // Fix breakline
-            this.elementRef.nativeElement.style.width = this.displayedWidth;
+            this.elementRef.nativeElement.children[
+                this.elementRef.nativeElement.children.length - 1
+            ].offsetWidth + 'px'; // Fix breakline
+        this.elementRef.nativeElement.style['min-width'] = this.displayedWidth;
 
         this.setDisplayValue();
     }
@@ -132,17 +156,23 @@ export class DropdownComponent extends BaseComponent implements OnInit {
     }
 
     setOptions() {
-        const options = (this.options !== undefined) ? this.options.map(o => ({ ...o })) : this.fieldModel.options.map(o => ({ ...o }));
-        if(this.selectedValue !== undefined){
-            this.initialOption = options.find(o => o.value === this.selectedValue);
-        } else if(this.fieldModel && this.fieldModel.value !== undefined){
-            this.initialOption = options.find(o => o.value === this.fieldModel.value);
+        const options =
+            this.options !== undefined
+                ? this.options.map(o => ({ ...o }))
+                : this.fieldModel.options.map(o => ({ ...o }));
+        if (this.selectedValue !== undefined) {
+            this.initialOption = options.find(
+                o => o.value === this.selectedValue
+            );
+        } else if (this.fieldModel && this.fieldModel.value !== undefined) {
+            this.initialOption = options.find(
+                o => o.value === this.fieldModel.value
+            );
         }
-        if(this.initialOption == null || this.isNullOption)
-        {
+        if (this.initialOption == null || this.isNullOption) {
             const nullOption = { value: null, label: ' ', class: 'empty' };
             options.unshift(nullOption);
-            if(this.initialOption == null){
+            if (this.initialOption == null) {
                 this.initialOption = nullOption;
             }
         }

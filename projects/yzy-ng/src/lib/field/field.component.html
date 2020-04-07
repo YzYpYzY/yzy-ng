@@ -1,28 +1,27 @@
 <ng-container [formGroup]="form">
     <ng-container [ngSwitch]="fieldModel.type">
-        <div *ngSwitchCase="FieldTypes.Dropdown">
+        <ng-container *ngSwitchCase="FieldTypes.Dropdown">
             <yzy-dropdown [fieldModel]="fieldModel" [form]="form">
             </yzy-dropdown>
-        </div>
-        <div *ngSwitchCase="FieldTypes.TextArea">
+        </ng-container>
+        <ng-container *ngSwitchCase="FieldTypes.TextArea">
             <label for="{{ fieldModel.name }}">{{ fieldModel.label }}</label>
             <textarea
                 name="{{ fieldModel.name }}"
                 id="{{ fieldModel.name }}"
                 [formControlName]="fieldModel.name"
             ></textarea>
-        </div>
-        <div *ngSwitchCase="FieldTypes.Checkbox">
+        </ng-container>
+        <ng-container *ngSwitchCase="FieldTypes.Checkbox">
             <yzy-checkbox
-            [fieldModel]="fieldModel" [form]="form"
+                [fieldModel]="fieldModel"
+                [form]="form"
             ></yzy-checkbox>
-        </div>
-        <div *ngSwitchCase="FieldTypes.Radio">
-            <yzy-radio
-            [fieldModel]="fieldModel" [form]="form"
-            ></yzy-radio>
-        </div>
-        <div *ngSwitchDefault>
+        </ng-container>
+        <ng-container *ngSwitchCase="FieldTypes.Radio">
+            <yzy-radio [fieldModel]="fieldModel" [form]="form"></yzy-radio>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
             <label for="{{ fieldModel.name }}">{{ fieldModel.label }}</label>
             <input
                 type="{{ htmltype }}"
@@ -30,7 +29,7 @@
                 id="{{ fieldModel.name }}"
                 [formControlName]="fieldModel.name"
             />
-        </div>
+        </ng-container>
     </ng-container>
     <yzy-field-error [errors]="errors"></yzy-field-error>
 </ng-container>

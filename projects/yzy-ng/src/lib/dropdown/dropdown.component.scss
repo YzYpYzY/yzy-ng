@@ -6,6 +6,7 @@
     box-sizing: border-box;
     width: auto;
     min-width: 20rem;
+    width: -webkit-fill-available;
     margin-bottom: 0.5rem;
 
     &.is-readonly .dropdown {
@@ -16,29 +17,29 @@
             color: var(--field-readonly-color);
         }
     }
-    &.in-table{
+    &.in-table {
         margin: 0;
         width: 100%;
         min-width: auto;
-        .dropdown{
+        .dropdown {
             margin: 0;
             border: none;
             background: transparent;
             color: inherit;
         }
-        .option{
-            padding: .25rem 1.5rem .25rem 2rem;
+        .option {
+            padding: 0.25rem 1.5rem 0.25rem 2rem;
         }
-        .selectedValue{
+        .selectedValue {
             font-size: inherit;
             font-weight: inherit;
             color: inherit;
-            &:hover{
+            &:hover {
                 color: inherit;
             }
         }
         .gg-chevron-down {
-            transform: scale(var(--ggs, .5));
+            transform: scale(var(--ggs, 0.5));
         }
     }
 }
@@ -118,18 +119,18 @@ label {
     left: 4px;
     top: 2px;
 }
-:host-context(.inline-form){
+:host-context(.inline-form) {
     flex-flow: row;
     align-items: center;
     margin-bottom: 0;
-    label{
+    label {
         position: relative;
         top: auto;
         left: auto;
         padding: 0 1rem;
         font-weight: 600;
     }
-    .dropdown{
+    .dropdown {
         margin-top: 0;
         height: 3rem;
     }
