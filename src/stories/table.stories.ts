@@ -78,7 +78,7 @@ export default {
 export const simple = () => ({
     component: TableComponent,
     template: `
-    <div class="demo-desktop">
+    <div class="s-desktop">
     <yzy-table [columns]="columns" [items]="items" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
     </div>
     `,
@@ -94,7 +94,7 @@ export const simple = () => ({
 export const withPaginator = () => ({
     component: TableComponent,
     template: `
-    <div class="demo-desktop">
+    <div class="s-desktop">
     <yzy-table [columns]="columns" [items]="items" [isPaginator]="isPaginator" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
     </div>
     `,
@@ -111,7 +111,7 @@ export const withPaginator = () => ({
 export const withSorts = () => ({
     component: TableComponent,
     template: `
-    <div class="demo-desktop">
+    <div class="s-desktop">
     <yzy-table [columns]="sortableColumns" [items]="items" [isPaginator]="isPaginator" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
     </div>
     `,
@@ -128,7 +128,7 @@ export const withSorts = () => ({
 export const withLineActions = () => ({
     component: TableComponent,
     template: `
-    <div class="demo-desktop">
+    <div class="s-desktop">
     <yzy-table [columns]="columns" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
     </div>
     `,
@@ -146,7 +146,7 @@ export const withLineActions = () => ({
 export const withEditableCells = () => ({
     component: TableComponent,
     template: `
-    <div class="demo-desktop">
+    <div class="s-desktop">
     <yzy-table [columns]="editableColumns" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
     </div>
     `,
@@ -188,7 +188,7 @@ customStylesColumns[5].customStyles = value => {
 export const withCustomStylesForCells = () => ({
     component: TableComponent,
     template: `
-    <div class="demo-desktop">
+    <div class="s-desktop">
     <yzy-table [columns]="customStylesColumns" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
     </div>
     `,
@@ -206,7 +206,7 @@ export const withCustomStylesForCells = () => ({
 export const responsive = () => ({
     component: TableComponent,
     template: `
-    <div class="demo-smartphone">
+    <div class="s-smartphone">
     <yzy-table [columns]="columns" [items]="items" [isPaginator]="isPaginator" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
     </div>
     `,
@@ -261,9 +261,11 @@ completesColumn[5].isSortable = true;
 
 export const complete = () => ({
     template: `
-    <yzy-bar [title]="title" [actions]="actionsForComplete" (action)="action($event)"></yzy-bar>
-    <yzy-bar [formModel]="formModel"></yzy-bar>
-    <yzy-table [columns]="completesColumn" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
+    <div class="s-desktop">
+        <yzy-bar [title]="title" [actions]="actionsForComplete" (action)="action($event)"></yzy-bar>
+        <yzy-bar [formModel]="formModel" style="background: #e4e0e073"></yzy-bar>
+        <yzy-table [columns]="completesColumn" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
+    </div>
     `,
     props: {
         title: 'Complete table',
