@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/YzYpYzY/yzy-ng/compare/v1.7.0...v1.7.1) (2020-04-07)
+
+
+### Bug Fixes
+
+* base-theme position ([3a45b65](https://github.com/YzYpYzY/yzy-ng/commit/3a45b651d60ee5c133da27bf2e07ff7a538e7792))
+
 # [1.7.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.6.1...v1.7.0) (2020-04-06)
 
 
