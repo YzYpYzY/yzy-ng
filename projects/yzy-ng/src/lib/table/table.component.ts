@@ -197,11 +197,13 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
                 column.type = ColumnTypes.String;
             }
             this.onSort.emit(this.activeSort);
-            this.sortItems = [...this.items].sort(
-                this.sortSystem['' + column.type + this.activeSort.isDesc]
-            );
+            this.sortItems = !this.items
+                ? []
+                : [...this.items].sort(
+                      this.sortSystem['' + column.type + this.activeSort.isDesc]
+                  );
         } else {
-            this.sortItems = this.items;
+            this.sortItems = !this.items ? [] : this.items;
         }
         this.isSortsVisible = false;
         this.applyPaging();
