@@ -230,8 +230,10 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
         const displayedItems = [...this.displayedItems];
         // tslint:disable-next-line: forin
         for (const change in this.cellsChangedValues) {
-            const item = displayedItems.find(
-                dI => dI[this.key].toString() === change
+            const item = displayedItems.find(dI =>
+                dI[this.key] != null
+                    ? dI[this.key].toString() === change
+                    : change == null
             );
             if (item) {
                 // tslint:disable-next-line: forin

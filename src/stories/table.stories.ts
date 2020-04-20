@@ -34,7 +34,8 @@ const columns: Column[] = [
     { name: 'Price', attribute: 'price' },
     { name: 'Stock', attribute: 'stock', type: ColumnTypes.Number },
     { name: 'Healthy', attribute: 'isHealthy', type: ColumnTypes.Boolean },
-    { name: 'Provider', attribute: 'provider' }
+    { name: 'Provider', attribute: 'provider' },
+    { name: 'Last stock', attribute: 'date', type: ColumnTypes.Date }
 ];
 const sortableColumns = columns.map(c => ({ ...c }));
 sortableColumns[0].isSortable = true;
@@ -47,6 +48,7 @@ editableColumns[0].editable = true;
 editableColumns[1].editable = true;
 editableColumns[5].editable = true;
 editableColumns[6].editable = true;
+editableColumns[8].editable = true;
 
 const actions: YzYAction[] = [
     { name: 'read', class: 'gg-search', type: YzYActionTypes.Info },

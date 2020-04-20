@@ -6,5 +6,6 @@ export enum FieldTypes {
     Checkbox,
     Number,
     Dropdown,
-    Radio
+    Radio,
+    Date
 }

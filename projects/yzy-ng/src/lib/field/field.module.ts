@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FieldComponent } from './field.component';
 import { DropdownModule } from '../dropdown/dropdown.module';
 import { FieldErrorComponent } from './field-error/field-error.component';
+import { DateSelectorModule } from '../date-selector/date-selector.module';
 
 @NgModule({
     declarations: [FieldComponent, FieldErrorComponent],
@@ -14,6 +15,7 @@ import { FieldErrorComponent } from './field-error/field-error.component';
         FormsModule,
         ReactiveFormsModule,
         DropdownModule,
+        DateSelectorModule,
         CheckboxModule,
         RadioModule
     ],

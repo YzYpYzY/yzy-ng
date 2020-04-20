@@ -1,0 +1,22 @@
+<label *ngIf="displayedLabel">{{ displayedLabel }}</label>
+<div
+    class="date-field"
+    (click)="toggleCalendar()"
+    (focus)="toggleCalendar()"
+    (focusout)="focusOut()"
+>
+    <ng-container *ngIf="selectedExtraOption == null; else extraOption">
+        <span>{{ date.dayToDisplay }}</span>
+        <span class="separator">{{ separator }}</span>
+        <span>{{ date.monthToDisplay }}</span>
+        <span class="separator">{{ separator }}</span>
+        <span>{{ date.yearToDisplay }}</span>
+    </ng-container>
+    <ng-template #extraOption>
+        <span class="extra-option">
+            {{ selectedExtraOption }}
+        </span>
+    </ng-template>
+    <span class="blank"></span>
+    <i class="gg-calendar-today"></i>
+</div>

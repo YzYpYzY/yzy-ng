@@ -4,7 +4,8 @@ import {
     FieldModule,
     CheckboxComponent,
     RadioComponent,
-    DropdownComponent
+    DropdownComponent,
+    DateSelectorComponent
 } from 'yzy-ng';
 import {
     ReactiveFormsModule,
@@ -74,6 +75,19 @@ export const dropdown = () => ({
             label: 'Drink',
             type: FieldTypes.Dropdown,
             options
+        },
+        form: fb.group({
+            demo: false
+        })
+    }
+});
+export const date = () => ({
+    component: DateSelectorComponent,
+    props: {
+        fieldModel: {
+            name: 'demo',
+            label: 'Retour',
+            type: FieldTypes.Date
         },
         form: fb.group({
             demo: false

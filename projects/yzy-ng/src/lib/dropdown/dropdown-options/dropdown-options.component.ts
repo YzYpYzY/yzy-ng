@@ -1,14 +1,20 @@
 import { OptionModel } from './../models/OptionModel';
-import { Component, OnInit, Input, ElementRef, HostListener, HostBinding } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    Input,
+    ElementRef,
+    HostListener,
+    HostBinding
+} from '@angular/core';
 
 @Component({
-  selector: 'yzy-dropdown-options',
-  templateUrl: './dropdown-options.component.html',
-  styleUrls: ['./dropdown-options.component.scss']
+    selector: 'yzy-dropdown-options',
+    templateUrl: './dropdown-options.component.html',
+    styleUrls: ['./dropdown-options.component.scss']
 })
 export class DropdownOptionsComponent implements OnInit {
-
-    @Input() displayedOptions:OptionModel[];
+    @Input() displayedOptions: OptionModel[];
     @Input() dropdownService: any;
     @Input() id: number;
     @Input() @HostBinding('style.left.px') x: number;
@@ -22,17 +28,15 @@ export class DropdownOptionsComponent implements OnInit {
         }
     }
 
-    constructor(private elementRef: ElementRef) { }
+    constructor(private elementRef: ElementRef) {}
 
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 
     selectValue(value: OptionModel): void {
         this.dropdownService.close(this.id, value);
     }
 
-    private collapse(): void{
+    private collapse(): void {
         this.dropdownService.close(this.id);
     }
-
 }

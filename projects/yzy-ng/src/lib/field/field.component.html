@@ -4,6 +4,10 @@
             <yzy-dropdown [fieldModel]="fieldModel" [form]="form">
             </yzy-dropdown>
         </ng-container>
+        <ng-container *ngSwitchCase="FieldTypes.Date">
+            <yzy-date-selector [fieldModel]="fieldModel" [form]="form">
+            </yzy-date-selector>
+        </ng-container>
         <ng-container *ngSwitchCase="FieldTypes.TextArea">
             <label for="{{ fieldModel.name }}">{{ fieldModel.label }}</label>
             <textarea

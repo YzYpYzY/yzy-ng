@@ -10,6 +10,14 @@
             [width]="'auto'"
             #field
         ></yzy-dropdown>
+        <yzy-date-selector
+            *ngSwitchCase="ColumnTypes.Date"
+            [value]="value"
+            (valueChange)="valueChangeHandler($event)"
+            class="in-table"
+            [width]="'auto'"
+            #field
+        ></yzy-date-selector>
         <yzy-checkbox
             *ngSwitchCase="ColumnTypes.Boolean"
             [value]="value"
@@ -30,7 +38,7 @@
             [(ngModel)]="value"
             (ngModelChange)="valueChangeHandler($event)"
             #field
-            />
+        />
     </div>
 </ng-container>
 <ng-template #readOnly>
@@ -39,9 +47,12 @@
         <ng-container *ngSwitchCase="ColumnTypes.Dropdown">
             <div class="value">
                 <span>{{ value | valueToLabel: column.options }}</span>
-                <i
-                    class="chevron-down"
-                ></i>
+                <i class="chevron-down"></i>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="ColumnTypes.Date">
+            <div class="value">
+                <span>{{ value }}</span>
             </div>
         </ng-container>
         <ng-container *ngSwitchCase="ColumnTypes.Boolean">
@@ -51,7 +62,8 @@
                     [value]="value"
                     [isReadOnly]="true"
                     class="in-table"
-                ></yzy-checkbox>
+                >
+                </yzy-checkbox>
             </div>
         </ng-container>
         <ng-container *ngSwitchDefault>
@@ -60,5 +72,4 @@
             </div>
         </ng-container>
     </ng-container>
-
 </ng-template>
