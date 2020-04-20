@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.7.2...v1.8.0) (2020-04-20)
+
+
+### Features
+
+* add date selector ([257fe14](https://github.com/YzYpYzY/yzy-ng/commit/257fe145bbc2bea2469593ceaa1d0f354554e126))
+
 ## [1.7.2](https://github.com/YzYpYzY/yzy-ng/compare/v1.7.1...v1.7.2) (2020-04-07)
 
 
