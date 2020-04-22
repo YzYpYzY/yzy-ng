@@ -10,4 +10,5 @@ export interface FieldModel {
     options?: OptionModel[];
     isReadOnly?: boolean;
     validators?: ValidatorFn[];
+    isPlaceHolder?: boolean;
 }

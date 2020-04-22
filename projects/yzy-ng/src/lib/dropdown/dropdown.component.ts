@@ -147,7 +147,11 @@ export class DropdownComponent extends BaseComponent implements OnInit {
         const selectedItem = this.displayedOptions.find(
             i => i.value === this.control.value
         );
-        this.displayedValue = selectedItem ? selectedItem.label : '';
+        this.displayedValue = selectedItem
+            ? selectedItem.label
+            : this.fieldModel.isPlaceHolder
+            ? this.displayedLabel
+            : '';
 
         this.render.removeClass(
             this.elementRef.nativeElement,

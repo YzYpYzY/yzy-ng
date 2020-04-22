@@ -1,29 +1,66 @@
 :host {
     display: flex;
     flex-flow: column;
+    margin: 0.5rem 0;
+    align-items: flex-start;
+    position: relative;
+    padding: 1.5rem 0 0.5rem 0;
 }
+
 label {
-    padding: 1rem;
+    position: absolute;
+    top: -0.25rem;
+    left: 0;
     color: var(--field-label);
     font-size: 1rem;
     font-weight: 400;
     white-space: nowrap;
 }
+
 .option {
     display: flex;
     flex-flow: row;
     align-items: center;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0;
+
     .square {
         height: 1.25rem;
         width: 1.25rem;
         border: 1px solid var(--radio-color);
+
         &.selected {
             background: var(--radio-color);
         }
     }
+
     .label {
         padding-left: 1rem;
         line-height: 1.25rem;
     }
+}
+
+:host-context(.inline) {
+    align-items: center;
+    flex-flow: row;
+    padding: 0;
+
+    label {
+        top: 0;
+        left: 0;
+        position: inherit;
+        padding: 0 0.5rem;
+    }
+
+    .option {
+        padding: 0 0.5rem;
+    }
+}
+
+:host-context(.stretch) {
+    margin: 0;
+    height: 100%;
+    background: var(--field-bg);
+    color: var(--field-color);
+    border: 1px solid var(--field-border);
+    padding: 0.5rem;
 }

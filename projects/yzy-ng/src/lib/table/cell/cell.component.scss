@@ -1,5 +1,5 @@
 :host {
-    padding: .5rem 2rem;
+    padding: 0.5rem 2rem;
     &.editable {
         background-color: rgba(250, 238, 184, 0.226);
         cursor: pointer;
@@ -12,7 +12,7 @@
     &.in-edition {
         padding: 0;
     }
-    &.value-changed{
+    &.value-changed {
         //border: 5px solid rgb(245, 164, 98);
     }
 
@@ -49,11 +49,12 @@ input {
     text-overflow: ellipsis;
     color: inherit;
 }
-:host-context(.s-desktop){
-    .label{
+:host-context(.s-desktop) {
+    .label {
         display: none;
     }
-    .value{
+    .value {
         flex-grow: 1;
+        justify-content: inherit;
     }
 }

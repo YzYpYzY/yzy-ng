@@ -7,21 +7,34 @@
     width: auto;
     min-width: 20rem;
     width: -webkit-fill-available;
-    margin-bottom: 0.5rem;
+    position: relative;
+    margin: 0.5rem 0;
+    padding: 1.5rem 0 0.5rem 0;
+
+    label {
+        position: absolute;
+        top: -0.25rem;
+        left: 0;
+        color: var(--field-label);
+        font-size: 1rem;
+        font-weight: 400;
+        white-space: nowrap;
+    }
 
     .date-field {
         display: flex;
         flex-flow: row;
         position: relative;
         padding: 0.75rem 0.75rem;
-        margin: 0.5rem 0 0.5rem 0;
         color: var(--field-color);
         background: var(--field-bg);
         border: 1px solid var(--field-border);
     }
+
     .blank {
         flex-grow: 1;
     }
+
     .separator {
         padding: 0 0.25rem;
         color: var(--field-border);
@@ -48,6 +61,7 @@
             align-items: center;
             height: 100%;
         }
+
         .separator {
             padding: 0;
             color: inherit;
@@ -61,5 +75,18 @@
 
     .extra-option {
         flex-grow: 1;
+    }
+}
+
+:host-context(.inline) {
+    padding: 0;
+}
+
+:host-context(.stretch) {
+    height: 100%;
+
+    .date-field {
+        height: 100%;
+        align-items: center;
     }
 }

@@ -1,3 +1,4 @@
+import { OptionModel } from './../dropdown/models/OptionModel';
 import { Subject } from 'rxjs';
 import {
     Injectable,
@@ -27,33 +28,41 @@ export class DateSelectorService {
 
     displayCalendar(
         date: DisplayDate,
+        extraOptions: OptionModel[],
         bottomLeftPosition: { x: number; y: number },
         width: number
     ): number {
         const id = ++this.lastId;
         setTimeout(() => {
-            this.createCalendarComponent(id, date, bottomLeftPosition, width);
+            this.createCalendarComponent(
+                id,
+                date,
+                extraOptions,
+                bottomLeftPosition,
+                width
+            );
             this.calendarState$.next({
                 id,
-                date: null,
+                value: null,
                 isOpen: true
             });
         });
         return id;
     }
 
-    newValue(id, date): void {
-        this.calendarState$.next({ id, date, isOpen: true });
+    newValue(id, value): void {
+        this.calendarState$.next({ id, value, isOpen: true });
     }
 
-    close(id: number, date: DisplayDate = null): void {
-        this.calendarState$.next({ id, date, isOpen: false });
+    close(id: number, value: DisplayDate | OptionModel = null): void {
+        this.calendarState$.next({ id, value, isOpen: false });
         this.destroyCalendarsComponent(id);
     }
 
     private createCalendarComponent(
         id: number,
         date: DisplayDate,
+        extraOptions: OptionModel[],
         bottomLeftPosition: { x: number; y: number },
         width: number
     ): void {
@@ -62,6 +71,7 @@ export class DateSelectorService {
             .create(this.injector);
         calendarsRef.instance.id = id;
         calendarsRef.instance.date = date;
+        calendarsRef.instance.extraOptions = extraOptions;
         calendarsRef.instance.calendarService = this;
         calendarsRef.instance.x = bottomLeftPosition.x - 1;
         calendarsRef.instance.y = bottomLeftPosition.y - 1;

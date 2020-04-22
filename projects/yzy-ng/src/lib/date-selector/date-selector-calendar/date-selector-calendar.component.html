@@ -26,15 +26,17 @@
         </div>
     </div>
 </div>
-<div class="extra-options">
+<div class="extra-options" *ngIf="extraOptions">
     <div class="extra-label">Autres options</div>
     <div
         *ngFor="let option of extraOptions; let index = index"
         class="extra-option"
-        [class.selected]="option?.selected"
-        (click)="selectExtraOption($event, index)"
+        [class.selected]="
+            selectedValue && option?.value === selectedValue['value']
+        "
+        (click)="selectExtraOption($event, option)"
     >
-        {{ option.value }}
+        {{ option.label }}
     </div>
 </div>
 <div class="date-actions">

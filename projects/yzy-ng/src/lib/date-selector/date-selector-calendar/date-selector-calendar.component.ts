@@ -1,3 +1,4 @@
+import { OptionModel } from './../../dropdown/models/OptionModel';
 import { DisplayDate } from '../models/DisplayDate';
 import {
     Component,
@@ -16,22 +17,19 @@ import { DayChoice } from '../models/DayChoice';
 })
 export class DateSelectorCalendarComponent implements OnInit {
     @Input() date: DisplayDate;
+    @Input() extraOptions: OptionModel[];
     @Input() calendarService: any;
     @Input() id: number;
     @Input() @HostBinding('style.left.px') x: number;
     @Input() @HostBinding('style.top.px') y: number;
     @Input() @HostBinding('style.min-width.px') minWidth: number;
     currentDate: DisplayDate;
-    selectedValue: DisplayDate | string;
+    selectedValue: DisplayDate | OptionModel;
     dayChoices: {
         value: number | string;
         disabled?: boolean;
         selected?: boolean;
     }[];
-
-    extraOptions: { value: string; selected?: boolean }[] = [
-        { value: 'Pas de retour' }
-    ];
 
     monthLabels = [
         'janvier',
@@ -93,26 +91,17 @@ export class DateSelectorCalendarComponent implements OnInit {
             this.currentDate.day = day;
             this.dayChoices[day - 1 + this.dayShift].selected = true;
         }
-        this.extraOptions = this.extraOptions.map(o => ({
-            ...o,
-            selected: false
-        }));
         this.selectedValue = this.currentDate;
         this.calendarService.newValue(this.id, this.selectedValue);
     }
-    selectExtraOption(event, optionIndex: number): void {
+    selectExtraOption(event, option: OptionModel): void {
         event['keepCalendarOpen'] = true;
 
         if (this.currentDate.day != null) {
             this.dayChoices[this.currentDate.day + 1].selected = false;
             this.currentDate.day = null;
         }
-        this.extraOptions = this.extraOptions.map(o => ({
-            ...o,
-            selected: false
-        }));
-        this.extraOptions[optionIndex].selected = true;
-        this.selectedValue = this.extraOptions[optionIndex].value;
+        this.selectedValue = option;
         this.calendarService.newValue(this.id, this.selectedValue);
     }
 

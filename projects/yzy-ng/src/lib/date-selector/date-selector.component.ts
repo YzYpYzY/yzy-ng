@@ -1,3 +1,4 @@
+import { OptionModel } from './../dropdown/models/OptionModel';
 import {
     Component,
     OnInit,
@@ -26,11 +27,12 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
 
     @Input() label: string;
     @Input() value: string;
+    @Input() extraOptions: OptionModel[];
     @Input() separator: string;
     @Input() changeAsDate: boolean;
 
     @Input() width: string;
-    @Output() valueChange = new EventEmitter<string | Date>();
+    @Output() valueChange = new EventEmitter<string | number | Date>();
 
     @HostBinding('class.is-readonly') isReadOnly = false;
 
@@ -41,7 +43,7 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
     isCollapsed = true;
     calendarId: number;
     stateSubscription: Subscription;
-    selectedExtraOption: string = null;
+    selectedExtraOption: OptionModel = null;
 
     constructor(
         private calendarService: DateSelectorService,
@@ -56,6 +58,12 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
                 ? this.label
                 : this.fieldModel && this.fieldModel.label
                 ? this.fieldModel.label
+                : null;
+        this.extraOptions =
+            this.extraOptions !== undefined
+                ? this.extraOptions
+                : this.fieldModel && this.fieldModel.options
+                ? this.fieldModel.options
                 : null;
         this.separator = this.separator !== undefined ? this.separator : '/';
         this.changeAsDate =
@@ -125,8 +133,8 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
                 this.stateSubscription = this.calendarService.calendarState$
                     .pipe(takeUntil(this.destroy$))
                     .subscribe(newState => {
-                        if (newState.date !== null) {
-                            this.changeValue(newState.date);
+                        if (newState.value !== null) {
+                            this.changeValue(newState.value);
                         }
                         this.isCollapsed = !newState.isOpen;
                         if (this.isCollapsed) {
@@ -140,6 +148,7 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
                 const domRect = displayBox.getBoundingClientRect();
                 this.calendarId = this.calendarService.displayCalendar(
                     this.date,
+                    this.extraOptions,
                     { x: domRect.left, y: domRect.top + domRect.height },
                     displayBox.offsetWidth
                 );
@@ -148,9 +157,9 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
     }
 
     changeValue(newValue): void {
-        if (typeof newValue === 'string') {
+        if (newValue.label !== undefined) {
             this.selectedExtraOption = newValue;
-            this.valueChange.emit(this.selectedExtraOption);
+            this.valueChange.emit(this.selectedExtraOption.value);
         } else {
             this.selectedExtraOption = null;
             this.date = this.refreshToDisplayDateValues(newValue);

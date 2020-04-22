@@ -1,6 +1,4 @@
 <h2>{{ formModel.title }}</h2>
-<yzy-field
-    *ngFor="let field of formModel.fields"
-    [fieldModel]="field"
-    [form]="form"
-></yzy-field>
+<yzy-field *ngFor="let field of formModel.fields" [fieldModel]="field" [form]="form"
+    [class.inline]="formModel.isInline">
+</yzy-field>

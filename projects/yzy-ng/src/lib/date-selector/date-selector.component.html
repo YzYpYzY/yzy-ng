@@ -1,4 +1,6 @@
-<label *ngIf="displayedLabel">{{ displayedLabel }}</label>
+<label *ngIf="displayedLabel && !fieldModel.isPlaceHolder">{{
+    displayedLabel
+}}</label>
 <div
     class="date-field"
     (click)="toggleCalendar()"
@@ -14,7 +16,7 @@
     </ng-container>
     <ng-template #extraOption>
         <span class="extra-option">
-            {{ selectedExtraOption }}
+            {{ selectedExtraOption.label }}
         </span>
     </ng-template>
     <span class="blank"></span>

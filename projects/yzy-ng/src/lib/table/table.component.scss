@@ -229,10 +229,7 @@ table::-webkit-scrollbar-thumb {
             }
         }
 
-        th {
-            position: sticky;
-            padding: 0.5rem 2rem;
-        }
+
 
         td,
         th {
@@ -242,6 +239,12 @@ table::-webkit-scrollbar-thumb {
             text-overflow: ellipsis;
             white-space: nowrap;
             border-right: 1px solid var(--table-border-color);
+        }
+
+        th {
+            position: sticky;
+            padding: 0.5rem 2rem;
+            white-space: normal;
         }
 
         td {

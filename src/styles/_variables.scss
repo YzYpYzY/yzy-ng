@@ -64,5 +64,5 @@ html {
     --tab-bg: #{transparentize($accent, 0.7)};
     --tab-selected-bg: #{transparentize($accent, 0.3)};
 
-    --radio-color: #{transparentize($accent, 0.7)};
+    --radio-color: rgb(212, 211, 211);
 }

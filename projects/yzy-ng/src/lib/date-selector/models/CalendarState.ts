@@ -1,7 +1,8 @@
+import { OptionModel } from './../../dropdown/models/OptionModel';
 import { DisplayDate } from './DisplayDate';
 
 export interface CalendarState {
     id: number;
-    date: DisplayDate;
+    value: DisplayDate | OptionModel;
     isOpen: boolean;
 }
