@@ -1,6 +1,6 @@
 {
   "name": "yzy-lab",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "scripts": {
     "adjust-version": "npm-run-all adjust-version:*",
     "adjust-version:lib": "rjp projects/yzy-ng/package.json version $VERSION",
