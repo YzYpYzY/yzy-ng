@@ -1,3 +1,4 @@
+import { FileSelectorModule } from './../file-selector/file-selector.module';
 import { RadioModule } from './../radio/radio.module';
 import { CheckboxModule } from './../checkbox/checkbox.module';
 import { NgModule } from '@angular/core';
@@ -17,7 +18,8 @@ import { DateSelectorModule } from '../date-selector/date-selector.module';
         DropdownModule,
         DateSelectorModule,
         CheckboxModule,
-        RadioModule
+        RadioModule,
+        FileSelectorModule
     ],
     exports: [FieldComponent, FieldErrorComponent]
 })

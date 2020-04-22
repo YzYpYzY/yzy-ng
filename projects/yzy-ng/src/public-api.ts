@@ -10,6 +10,7 @@ export * from './lib/checkbox/index';
 export * from './lib/dropdown/index';
 export * from './lib/date-selector/index';
 export * from './lib/field/index';
+export * from './lib/file-selector/index';
 export * from './lib/form/index';
 export * from './lib/layout/index';
 export * from './lib/models/index';

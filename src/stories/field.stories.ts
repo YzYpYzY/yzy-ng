@@ -1,3 +1,4 @@
+import { FileSelectorComponent } from './../../projects/yzy-ng/src/lib/file-selector/file-selector.component';
 import {
     FieldComponent,
     FieldTypes,
@@ -87,7 +88,8 @@ export const date = () => ({
         fieldModel: {
             name: 'demo',
             label: 'Retour',
-            type: FieldTypes.Date
+            type: FieldTypes.Date,
+            options: [{ label: 'Pas de retour', value: null }]
         },
         form: fb.group({
             demo: false
@@ -141,6 +143,19 @@ export const password = () => ({
         },
         form: fb.group({
             demo: 'password'
+        })
+    }
+});
+export const file = () => ({
+    component: FileSelectorComponent,
+    props: {
+        fieldModel: {
+            name: 'file',
+            label: 'File',
+            type: FieldTypes.File
+        },
+        form: fb.group({
+            file: 'null'
         })
     }
 });

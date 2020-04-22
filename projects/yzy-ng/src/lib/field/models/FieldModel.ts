@@ -11,4 +11,5 @@ export interface FieldModel {
     isReadOnly?: boolean;
     validators?: ValidatorFn[];
     isPlaceHolder?: boolean;
+    accept?: string;
 }

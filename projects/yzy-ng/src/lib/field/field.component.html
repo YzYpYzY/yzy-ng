@@ -17,6 +17,8 @@
         <ng-container *ngSwitchCase="FieldTypes.Checkbox">
             <yzy-checkbox [fieldModel]="fieldModel" [form]="form"></yzy-checkbox>
         </ng-container>
+        <ng-container *ngSwitchCase="FieldTypes.File">
+            <yzy-file-selector [fieldModel]="fieldModel" [form]="form"></yzy-file-selector>
         </ng-container>
         <ng-container *ngSwitchCase="FieldTypes.Radio">
             <yzy-radio [fieldModel]="fieldModel" [form]="form"></yzy-radio>

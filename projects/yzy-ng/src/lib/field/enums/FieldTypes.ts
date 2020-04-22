@@ -7,5 +7,6 @@ export enum FieldTypes {
     Number,
     Dropdown,
     Radio,
-    Date
+    Date,
+    File
 }

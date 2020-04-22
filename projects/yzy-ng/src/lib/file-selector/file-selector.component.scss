@@ -1,0 +1,91 @@
+:host {
+    color: var(--field-label);
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+input {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    position: absolute;
+}
+
+label {
+    display: flex;
+    flex-flow: row;
+    height: 100%;
+    margin: 1.5rem 0 0 0;
+    height: 3rem;
+}
+
+.path {
+    display: flex;
+    align-items: center;
+    background: var(--field-bg);
+    color: var(--field-color);
+    padding: 0 0.5rem;
+    min-width: 17rem;
+    border: 1px solid var(--field-border);
+    border-right: none;
+    font: inherit;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.file-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 3rem;
+    border: 1px solid var(--field-border);
+    border-left: none;
+    background: var(--field-bg);
+}
+.label {
+    position: absolute;
+    top: -0.25rem;
+    left: 0;
+    padding: 0;
+    color: var(--field-label);
+    font-size: 1rem;
+    font-weight: 400;
+    z-index: 2;
+    white-space: nowrap;
+    margin: 0;
+}
+
+:host-context(.inline) {
+    flex-flow: row;
+    align-items: center;
+    margin-bottom: 0;
+    height: 100%;
+
+    .label {
+        position: relative;
+        top: auto;
+        left: auto;
+        padding: 0 1rem;
+        font-weight: 600;
+    }
+
+    label {
+        margin: 0;
+        height: 100%;
+    }
+
+    .path {
+        margin: 0;
+        height: 100%;
+    }
+}
+
+:host-context(.stretch) {
+    height: 100%;
+
+    .path {
+        height: 100%;
+    }
+}
