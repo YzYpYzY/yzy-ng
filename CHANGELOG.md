@@ -1,3 +1,11 @@
+# [1.9.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.8.0...v1.9.0) (2020-04-22)
+
+
+### Features
+
+* add file field ([e1f9ef2](https://github.com/YzYpYzY/yzy-ng/commit/e1f9ef2b9e1e9b17161b000ff0035d4783e750ee))
+* **field:** manage placeholder and inline mode ([4c2255d](https://github.com/YzYpYzY/yzy-ng/commit/4c2255d47e57b16634a74f821886c44c0a70338c))
+
 # [1.8.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.7.2...v1.8.0) (2020-04-20)
 
 
