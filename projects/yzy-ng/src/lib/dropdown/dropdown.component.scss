@@ -28,6 +28,7 @@
             border: none;
             background: transparent;
             color: inherit;
+            font-size: inherit;
         }
 
         .option {
@@ -110,7 +111,7 @@ label {
     width: 22px;
     height: 22px;
     border: 2px solid transparent;
-    //border-radius: 100px;
+    color: inherit;
 }
 
 .gg-chevron-down::after {
@@ -120,8 +121,8 @@ label {
     position: absolute;
     width: 10px;
     height: 10px;
-    border-bottom: 2px solid;
-    border-right: 2px solid;
+    border-bottom: 2px solid currentColor;
+    border-right: 2px solid currentColor;
     transform: rotate(45deg);
     left: 4px;
     top: 2px;

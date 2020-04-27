@@ -1,44 +1,15 @@
 <ng-container *ngIf="inEdition; else readOnly">
     <div class="label">{{ column.name }}</div>
     <div class="value" [ngSwitch]="column.type" [style.width.px]="cellWidth">
-        <yzy-dropdown
-            *ngSwitchCase="ColumnTypes.Dropdown"
-            [options]="column.options"
-            [selectedValue]="value"
-            (valueChange)="valueChangeHandler($event)"
-            class="in-table"
-            [width]="'auto'"
-            #field
-        ></yzy-dropdown>
-        <yzy-date-selector
-            *ngSwitchCase="ColumnTypes.Date"
-            [value]="value"
-            (valueChange)="valueChangeHandler($event)"
-            class="in-table"
-            [width]="'auto'"
-            #field
-        ></yzy-date-selector>
-        <yzy-checkbox
-            *ngSwitchCase="ColumnTypes.Boolean"
-            [value]="value"
-            (valueChange)="valueChangeHandler($event)"
-            class="in-table in-edition"
-            #field
-        ></yzy-checkbox>
-        <input
-            *ngSwitchCase="ColumnTypes.Number"
-            type="number"
-            [(ngModel)]="value"
-            (ngModelChange)="valueChangeHandler($event)"
-            #field
-        />
-        <input
-            *ngSwitchDefault
-            type="text"
-            [(ngModel)]="value"
-            (ngModelChange)="valueChangeHandler($event)"
-            #field
-        />
+        <yzy-dropdown *ngSwitchCase="ColumnTypes.Dropdown" [options]="column.options" [selectedValue]="value"
+            (valueChange)="valueChangeHandler($event)" class="in-table" [width]="'auto'" #field></yzy-dropdown>
+        <yzy-date-selector *ngSwitchCase="ColumnTypes.Date" [value]="value" [extraOptions]="column.options"
+            (valueChange)="valueChangeHandler($event)" class="in-table" [width]="'auto'" #field></yzy-date-selector>
+        <yzy-checkbox *ngSwitchCase="ColumnTypes.Boolean" [value]="value" (valueChange)="valueChangeHandler($event)"
+            class="in-table in-edition" #field></yzy-checkbox>
+        <input *ngSwitchCase="ColumnTypes.Number" type="number" [(ngModel)]="value"
+            (ngModelChange)="valueChangeHandler($event)" #field />
+        <input *ngSwitchDefault type="text" [(ngModel)]="value" (ngModelChange)="valueChangeHandler($event)" #field />
     </div>
 </ng-container>
 <ng-template #readOnly>
@@ -57,12 +28,7 @@
         </ng-container>
         <ng-container *ngSwitchCase="ColumnTypes.Boolean">
             <div class="value">
-                <yzy-checkbox
-                    *ngSwitchCase="ColumnTypes.Boolean"
-                    [value]="value"
-                    [isReadOnly]="true"
-                    class="in-table"
-                >
+                <yzy-checkbox *ngSwitchCase="ColumnTypes.Boolean" [value]="value" [isReadOnly]="true" class="in-table">
                 </yzy-checkbox>
             </div>
         </ng-container>

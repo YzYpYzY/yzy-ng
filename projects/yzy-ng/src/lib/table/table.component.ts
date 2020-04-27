@@ -34,6 +34,7 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     @Input() key: string;
     @Input() lineActions: YzYAction[];
     @Input() isFrontDataTreatment: boolean;
+    @Input() emptyMessage: string;
     // tslint:disable-next-line: no-output-on-prefix
     @Output() onAdd = new EventEmitter<string>();
     // tslint:disable-next-line: no-output-on-prefix
@@ -55,12 +56,15 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     isFilterVisible = false;
     filter = '';
     columnStyle: string;
+    rowStyle: string;
     activeSort: { attribute: string; isDesc: boolean } = null;
     sortItems: any[];
     displayedItems: any[];
     sortSystem = {};
     computedStyles: any = {};
     cellsChangedValues: ElementsValueChanges = new ElementsValueChanges();
+    selectedItem: { index: number; page: number; item: any };
+    currentPage: number;
 
     constructor() {
         super();
@@ -73,6 +77,7 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
         this.itemByPage = this.itemByPage !== undefined ? this.itemByPage : 20;
         this.pageLinkNumber =
             this.pageLinkNumber !== undefined ? this.pageLinkNumber : 3;
+        this.items = this.items ? this.items : [];
         this.itemsCount =
             this.itemsCount !== undefined ? this.itemsCount : this.items.length;
         this.isPaginator =
@@ -82,11 +87,13 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
             this.isFrontDataTreatment !== undefined
                 ? this.isFrontDataTreatment
                 : true;
+        this.emptyMessage = this.emptyMessage
+            ? this.emptyMessage
+            : 'Aucune données';
+        this.currentPage = this.selectedPage ? this.selectedPage : 1;
         this.prepareSortSystems();
         this.prepareColumns();
-        if (this.items && this.items.length > 0) {
-            this.applySort();
-        }
+        this.applySort();
     }
     prepareSortSystems() {
         const sortSystem = {};
@@ -112,6 +119,22 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
         this.prepareColumns();
         this.applySort();
     }
+
+    setRowStyle() {
+        let rowStyle = '';
+        if (this.items.length === 0) {
+            rowStyle = 'auto 1fr';
+        } else {
+            rowStyle =
+                'auto repeat(' +
+                (this.items.length < this.itemByPage
+                    ? this.items.length
+                    : this.itemByPage) +
+                ', 1fr)';
+        }
+        this.rowStyle = rowStyle;
+    }
+
     prepareColumns() {
         this.visibleColumns = this.columns.filter(c => !c.hide);
         this.sortableColumns = this.isFrontDataTreatment
@@ -148,8 +171,9 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
         this.onAdd.emit('new');
     }
 
-    selectE(item) {
+    selectE(index, item) {
         this.onSelect.emit(item[this.key]);
+        this.selectedItem = { index, page: this.currentPage, item };
     }
 
     applySearch() {
@@ -189,26 +213,28 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     }
 
     applySort() {
-        if (this.isFrontDataTreatment && this.activeSort) {
-            const column = this.columns.find(
-                c => c.attribute === this.activeSort.attribute
-            );
-            if (column.type === undefined) {
-                column.type = ColumnTypes.String;
+        if (this.items && this.items.length !== undefined) {
+            if (this.isFrontDataTreatment && this.activeSort) {
+                const column = this.columns.find(
+                    c => c.attribute === this.activeSort.attribute
+                );
+                if (column.type === undefined) {
+                    column.type = ColumnTypes.String;
+                }
+                this.onSort.emit(this.activeSort);
+                this.sortItems = [...this.items].sort(
+                    this.sortSystem['' + column.type + this.activeSort.isDesc]
+                );
+            } else {
+                this.sortItems = this.items;
             }
-            this.onSort.emit(this.activeSort);
-            this.sortItems = [...this.items].sort(
-                this.sortSystem['' + column.type + this.activeSort.isDesc]
-            );
-        } else {
-            this.sortItems = this.items;
+            this.isSortsVisible = false;
+            this.applyPaging();
         }
-        this.isSortsVisible = false;
-        this.applyPaging();
     }
 
     selectPage(selectedPage: number) {
-        this.selectedPage = selectedPage;
+        this.currentPage = selectedPage;
         this.onPageChange.emit(selectedPage);
         this.applyPaging();
     }
@@ -224,6 +250,7 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
         }
         this.applyChanges();
         this.computeCellStyles();
+        this.setRowStyle();
     }
 
     applyChanges(): void {

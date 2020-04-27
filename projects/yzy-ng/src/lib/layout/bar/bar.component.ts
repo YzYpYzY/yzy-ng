@@ -24,7 +24,9 @@ export class BarComponent implements OnInit {
     constructor() {}
 
     ngOnInit(): void {
-        this.formModel.isInline = true;
+        if (this.formModel) {
+            this.formModel.isInline = true;
+        }
         if (this.tabs !== undefined) {
             if (this.selectedTabName) {
                 const selectedTab = this.tabs.find(
