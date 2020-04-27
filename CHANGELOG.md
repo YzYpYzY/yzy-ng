@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/YzYpYzY/yzy-ng/compare/v1.9.0...v1.9.1) (2020-04-22)
+
+
+### Bug Fixes
+
+* **table:** remove margin checkbox ([5369559](https://github.com/YzYpYzY/yzy-ng/commit/53695597014828fc26d68958f778d8950a9f4cf6))
+
 # [1.9.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.8.0...v1.9.0) (2020-04-22)
 
 
