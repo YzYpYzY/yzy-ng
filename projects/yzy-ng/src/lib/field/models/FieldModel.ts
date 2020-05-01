@@ -12,4 +12,5 @@ export interface FieldModel {
     validators?: ValidatorFn[];
     isPlaceHolder?: boolean;
     accept?: string;
+    isHide?: boolean;
 }
