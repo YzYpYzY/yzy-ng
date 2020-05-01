@@ -2,6 +2,12 @@
     color: var(--field-label);
     position: relative;
     margin-bottom: 0.5rem;
+    &.is-readonly{
+        .path, .file-button {
+            background: var(--field-readonly-bg);
+            color: var(--field-readonly-color);
+        }
+    }
 }
 
 input {

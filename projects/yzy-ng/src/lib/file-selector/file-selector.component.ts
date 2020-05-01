@@ -1,5 +1,5 @@
 import { FieldModel } from './../field/models/FieldModel';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostBinding } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { BaseComponent } from '../base/base.component';
@@ -16,8 +16,9 @@ export class FileSelectorComponent extends BaseComponent implements OnInit {
     @Input() name: string;
     @Input() accept: string;
     @Input() path: string;
-    @Input() isReadOnly: boolean;
     @Output() valueChange = new EventEmitter<File>();
+
+    @HostBinding('class.is-readonly') isReadOnly = false;
 
     control: FormControl;
     displayLabel: string;
@@ -31,25 +32,25 @@ export class FileSelectorComponent extends BaseComponent implements OnInit {
         this.displayLabel = this.label
             ? this.label
             : this.fieldModel && this.fieldModel.label
-            ? this.fieldModel.label
-            : null;
+                ? this.fieldModel.label
+                : null;
         this.name = this.name
             ? this.name
             : this.fieldModel && this.fieldModel.name
-            ? this.fieldModel.name
-            : 'default';
+                ? this.fieldModel.name
+                : 'default';
         this.accept = this.accept
             ? this.accept
             : this.fieldModel && this.fieldModel.accept
-            ? this.fieldModel.accept
-            : '*';
+                ? this.fieldModel.accept
+                : '*';
         this.displayValue = this.path
             ? this.path
             : this.fieldModel && this.fieldModel.value
-            ? this.fieldModel.value.toString()
-            : this.fieldModel.isPlaceHolder
-            ? this.fieldModel.label
-            : null;
+                ? this.fieldModel.value.toString()
+                : this.fieldModel.isPlaceHolder
+                    ? this.fieldModel.label
+                    : null;
         if (this.form === undefined) {
             this.form = new FormGroup({});
             this.form.addControl(this.name, new FormControl(null));
@@ -66,8 +67,8 @@ export class FileSelectorComponent extends BaseComponent implements OnInit {
                     this.displayValue = file
                         ? file.name
                         : this.fieldModel.isPlaceHolder
-                        ? this.fieldModel.label
-                        : null;
+                            ? this.fieldModel.label
+                            : null;
                     this.valueChange.emit(file);
                 });
         }
