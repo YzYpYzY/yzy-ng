@@ -1,3 +1,17 @@
+# [1.10.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.9.1...v1.10.0) (2020-05-01)
+
+
+### Bug Fixes
+
+* **file-selector:** add read-only color ([b6c811f](https://github.com/YzYpYzY/yzy-ng/commit/b6c811fe2c1f41b3e24ea8d45d04324a77ed5a12))
+* **table:** empty items ([1fd76ab](https://github.com/YzYpYzY/yzy-ng/commit/1fd76ab255e2d90a5cf271f2f27528c0b8698026))
+
+
+### Features
+
+* **form:** add posibility to hide field ([d1aa961](https://github.com/YzYpYzY/yzy-ng/commit/d1aa96102b5dfe39b9303a239224f0e168a4bae4))
+* **form:** add YzYFormGroup as formObject with getTypedValue method ([80257f9](https://github.com/YzYpYzY/yzy-ng/commit/80257f97206e227898952fa8ebd1b23d2241add7))
+
 ## [1.9.1](https://github.com/YzYpYzY/yzy-ng/compare/v1.9.0...v1.9.1) (2020-04-22)
 
 
