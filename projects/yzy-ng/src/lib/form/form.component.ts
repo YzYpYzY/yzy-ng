@@ -7,7 +7,8 @@ import {
     HostBinding
 } from '@angular/core';
 import { FormModel } from './models/FormModel';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { YzYFormGroup } from './YzYFormGroup';
 
 @Component({
     selector: 'yzy-form',
@@ -16,17 +17,18 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class FormComponent implements OnInit {
     @Input() formModel: FormModel;
-    @Output() formReady = new EventEmitter<FormGroup>();
+    @Output() formReady = new EventEmitter<YzYFormGroup>();
 
     @HostBinding('class.inline') isInline = false;
 
-    form: FormGroup;
+    form: YzYFormGroup;
 
-    constructor() {}
+    constructor() { }
 
     ngOnInit() {
         this.isInline = this.formModel.isInline ? true : false;
-        this.form = new FormGroup({});
+        this.form = new YzYFormGroup({});
+        this.form.model = this.formModel;
         this.formModel.fields.forEach(f => {
             const control = new FormControl(
                 '',
