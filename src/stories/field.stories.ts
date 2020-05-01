@@ -1,10 +1,12 @@
+import { FileSelectorComponent } from './../../projects/yzy-ng/src/lib/file-selector/file-selector.component';
 import {
     FieldComponent,
     FieldTypes,
     FieldModule,
     CheckboxComponent,
     RadioComponent,
-    DropdownComponent
+    DropdownComponent,
+    DateSelectorComponent
 } from 'yzy-ng';
 import {
     ReactiveFormsModule,
@@ -80,6 +82,20 @@ export const dropdown = () => ({
         })
     }
 });
+export const date = () => ({
+    component: DateSelectorComponent,
+    props: {
+        fieldModel: {
+            name: 'demo',
+            label: 'Retour',
+            type: FieldTypes.Date,
+            options: [{ label: 'Pas de retour', value: null }]
+        },
+        form: fb.group({
+            demo: false
+        })
+    }
+});
 export const radio = () => ({
     component: RadioComponent,
     props: {
@@ -127,6 +143,19 @@ export const password = () => ({
         },
         form: fb.group({
             demo: 'password'
+        })
+    }
+});
+export const file = () => ({
+    component: FileSelectorComponent,
+    props: {
+        fieldModel: {
+            name: 'file',
+            label: 'File',
+            type: FieldTypes.File
+        },
+        form: fb.group({
+            file: 'null'
         })
     }
 });

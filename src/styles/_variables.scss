@@ -45,6 +45,8 @@ html {
     --table-border-color: #b8b7b773;
     --table-bg: white;
     --table-header-row: #{transparentize($accent, 0.7)};
+    --table-selected-row-bg: #{transparentize($accent, 0.7)};
+    --table-selected-row-border: $accent;
     --paginator-color: inherit;
     --paginator-bg: transparent;
     --paginator-selected-color: inherit;
@@ -64,5 +66,5 @@ html {
     --tab-bg: #{transparentize($accent, 0.7)};
     --tab-selected-bg: #{transparentize($accent, 0.3)};
 
-    --radio-color: #{transparentize($accent, 0.7)};
+    --radio-color: rgb(212, 211, 211);
 }

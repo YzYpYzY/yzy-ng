@@ -16,10 +16,10 @@
         }
     }
 
-    &.is-valid {
-    }
+    &.is-valid {}
 
     &.is-readonly {
+
         input,
         textarea {
             border: 1px solid var(--field-border);
@@ -36,8 +36,9 @@ textarea {
     margin: 1.5rem 0 0.5rem 0;
     color: var(--field-color);
     background: var(--field-bg);
+    font: inherit;
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 400;
     z-index: 1;
     border: none;
     border: 1px solid var(--field-border);
@@ -62,9 +63,10 @@ label {
     white-space: nowrap;
 }
 
-:host-context(.inline-form) {
+:host.inline {
     flex-flow: row;
     align-items: center;
+
     label {
         position: relative;
         top: auto;
@@ -72,7 +74,21 @@ label {
         padding: 0 1rem;
         font-weight: 600;
     }
-    input {
+
+    input,
+    textarea {
         margin: 0;
+    }
+}
+
+:host-context(.stretch) {
+    margin: 0;
+    height: 100%;
+
+    input,
+    textarea {
+        height: 100%;
+        margin: 0;
+
     }
 }

@@ -1,6 +1,8 @@
 import { FieldModel } from '../../field/models/FieldModel';
 
-export class FormModel {
-    title: string;
+export interface FormModel {
+    title?: string;
     fields: FieldModel[];
+    isInline?: boolean;
+    isPlaceHolder?: boolean;
 }

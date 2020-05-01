@@ -31,7 +31,7 @@ export class CellComponent implements OnInit {
     @HostBinding('class.in-edition') inEdition = false;
     @HostBinding('class.value-changed') isValueChanged = false;
 
-    @ViewChildren('field') fields:QueryList<ElementRef>;
+    @ViewChildren('field') fields: QueryList<ElementRef>;
     form: FormGroup;
     fieldModel: FieldModel;
     displayValue: string | number;
@@ -39,19 +39,28 @@ export class CellComponent implements OnInit {
     initialValue: string | number;
 
     ColumnTypes = ColumnTypes;
-    constructor(private cdr: ChangeDetectorRef, private elRef: ElementRef, private renderer: Renderer2) {}
+    constructor(
+        private cdr: ChangeDetectorRef,
+        private elRef: ElementRef,
+        private renderer: Renderer2
+    ) {}
 
     @HostListener('click', ['$event']) onClick(event) {
         if (this.column.editable && !this.inEdition) {
             this.cellWidth = this.elRef.nativeElement.children[0].getBoundingClientRect().width;
             this.inEdition = true;
             this.cdr.detectChanges();
-            if(this.column.type === ColumnTypes.Dropdown){
-                setTimeout(()=> { (this.fields.first as any).toggle(event); });
-            } else if(this.column.type === ColumnTypes.Boolean){
+            if (this.column.type === ColumnTypes.Dropdown) {
+                setTimeout(() => {
+                    (this.fields.first as any).toggle(event);
+                });
+            } else if (this.column.type === ColumnTypes.Date) {
+                setTimeout(() => {
+                    (this.fields.first as any).toggleCalendar();
+                });
+            } else if (this.column.type === ColumnTypes.Boolean) {
                 (this.fields.first as any).toggleValue(event);
-            }
-            else {
+            } else {
                 this.fields.first.nativeElement.focus();
             }
         }
@@ -70,8 +79,8 @@ export class CellComponent implements OnInit {
         this.initialValue = this.value;
     }
 
-    valueChangeHandler(event){
-        if(this.column.type === ColumnTypes.Dropdown){
+    valueChangeHandler(event) {
+        if (this.column.type === ColumnTypes.Dropdown) {
             this.isValueChanged = this.initialValue !== event.value;
             this.valueChange.emit(event.value);
         } else {

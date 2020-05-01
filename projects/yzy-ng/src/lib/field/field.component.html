@@ -4,31 +4,30 @@
             <yzy-dropdown [fieldModel]="fieldModel" [form]="form">
             </yzy-dropdown>
         </ng-container>
+        <ng-container *ngSwitchCase="FieldTypes.Date">
+            <yzy-date-selector [fieldModel]="fieldModel" [form]="form">
+            </yzy-date-selector>
+        </ng-container>
         <ng-container *ngSwitchCase="FieldTypes.TextArea">
-            <label for="{{ fieldModel.name }}">{{ fieldModel.label }}</label>
-            <textarea
-                name="{{ fieldModel.name }}"
-                id="{{ fieldModel.name }}"
-                [formControlName]="fieldModel.name"
-            ></textarea>
+            <label *ngIf="!fieldModel.isPlaceHolder" for="{{ fieldModel.name }}">{{ fieldModel.label }}</label>
+            <textarea name="{{ fieldModel.name }}" id="{{ fieldModel.name }}" placeholder="{{
+                    fieldModel.isPlaceHolder ? fieldModel.label : ''
+                }}" [formControlName]="fieldModel.name"></textarea>
         </ng-container>
         <ng-container *ngSwitchCase="FieldTypes.Checkbox">
-            <yzy-checkbox
-                [fieldModel]="fieldModel"
-                [form]="form"
-            ></yzy-checkbox>
+            <yzy-checkbox [fieldModel]="fieldModel" [form]="form"></yzy-checkbox>
+        </ng-container>
+        <ng-container *ngSwitchCase="FieldTypes.File">
+            <yzy-file-selector [fieldModel]="fieldModel" [form]="form"></yzy-file-selector>
         </ng-container>
         <ng-container *ngSwitchCase="FieldTypes.Radio">
             <yzy-radio [fieldModel]="fieldModel" [form]="form"></yzy-radio>
         </ng-container>
         <ng-container *ngSwitchDefault>
-            <label for="{{ fieldModel.name }}">{{ fieldModel.label }}</label>
-            <input
-                type="{{ htmltype }}"
-                name="{{ fieldModel.name }}"
-                id="{{ fieldModel.name }}"
-                [formControlName]="fieldModel.name"
-            />
+            <label *ngIf="!fieldModel.isPlaceHolder" for="{{ fieldModel.name }}">{{ fieldModel.label }}</label>
+            <input type="{{ htmltype }}" name="{{ fieldModel.name }}" id="{{ fieldModel.name }}" placeholder="{{
+                    fieldModel.isPlaceHolder ? fieldModel.label : ''
+                }}" [formControlName]="fieldModel.name" />
         </ng-container>
     </ng-container>
     <yzy-field-error [errors]="errors"></yzy-field-error>

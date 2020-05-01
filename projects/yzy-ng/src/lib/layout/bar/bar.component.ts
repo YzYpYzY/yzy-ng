@@ -5,12 +5,11 @@ import { YzYTab } from '../models/YzYTab';
 import { YzYAction } from '../../models/YzYAction';
 
 @Component({
-  selector: 'yzy-bar',
-  templateUrl: './bar.component.html',
-  styleUrls: ['./bar.component.scss']
+    selector: 'yzy-bar',
+    templateUrl: './bar.component.html',
+    styleUrls: ['./bar.component.scss']
 })
 export class BarComponent implements OnInit {
-
     @Input() title: string;
     @Input() actions: YzYAction[];
     @Input() formModel: FormModel;
@@ -22,13 +21,18 @@ export class BarComponent implements OnInit {
 
     selectedTab: YzYTab;
 
-    constructor() { }
+    constructor() {}
 
     ngOnInit(): void {
-        if(this.tabs !== undefined){
-            if(this.selectedTabName) {
-                const selectedTab = this.tabs.find(t => t.name === this.selectedTabName);
-                this.selectedTab = selectedTab ? selectedTab :  this.tabs[0];
+        if (this.formModel) {
+            this.formModel.isInline = true;
+        }
+        if (this.tabs !== undefined) {
+            if (this.selectedTabName) {
+                const selectedTab = this.tabs.find(
+                    t => t.name === this.selectedTabName
+                );
+                this.selectedTab = selectedTab ? selectedTab : this.tabs[0];
             } else {
                 this.selectedTab = this.tabs[0];
             }
@@ -45,7 +49,7 @@ export class BarComponent implements OnInit {
     }
 
     triggerAction(action: YzYAction): void {
-        if(!action.disabled){
+        if (!action.disabled) {
             this.action.emit(action);
         }
     }

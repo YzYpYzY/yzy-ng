@@ -1,0 +1,45 @@
+<div class="year">
+    <i (click)="changeYear(-1)" class="gg-chevron-left"></i>
+    {{ currentDate.year }}
+    <i (click)="changeYear(1)" class="gg-chevron-right"></i>
+</div>
+<div class="month">
+    <i (click)="changeMonth(-1)" class="gg-chevron-left"></i>
+    {{ monthLabels[currentDate.month - 1] }}
+    <i (click)="changeMonth(1)" class="gg-chevron-right"></i>
+</div>
+<div class="day">
+    <div class="day-labels">
+        <div *ngFor="let dayLabel of dayLabels" class="day-label">
+            {{ dayLabel }}
+        </div>
+    </div>
+    <div class="day-choices">
+        <div
+            *ngFor="let day of dayChoices"
+            class="day-choice"
+            [class.selected]="day.selected"
+            [class.disabled]="day.disabled"
+            (click)="selectDay(day.value)"
+        >
+            {{ day.value }}
+        </div>
+    </div>
+</div>
+<div class="extra-options" *ngIf="extraOptions">
+    <div class="extra-label">Autres options</div>
+    <div
+        *ngFor="let option of extraOptions; let index = index"
+        class="extra-option"
+        [class.selected]="
+            selectedValue && option?.value === selectedValue['value']
+        "
+        (click)="selectExtraOption($event, option)"
+    >
+        {{ option.label }}
+    </div>
+</div>
+<div class="date-actions">
+    <div class="date-action" (click)="cancel($event)">Annuler</div>
+    <div class="date-action" (click)="valid($event)">Valider</div>
+</div>

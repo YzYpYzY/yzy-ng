@@ -1,0 +1,14 @@
+<div class="label" *ngIf="!fieldModel.isPlaceHolder">{{ displayLabel }}</div>
+<label for="name">
+    <div class="path">{{ displayValue }}</div>
+    <div class="file-button">
+        <i class="gg-file-add"></i>
+    </div>
+</label>
+<input
+    type="file"
+    id="name"
+    name="name"
+    accept="accept"
+    (change)="newValue($event)"
+/>

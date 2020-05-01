@@ -1,10 +1,7 @@
 <ng-container>
-    <label *ngIf="displayedLabel">{{ displayedLabel }}</label>
+    <label *ngIf="displayedLabel && !fieldModel.isPlaceHolder">{{ displayedLabel }}</label>
     <div #dropdown class="dropdown" (focus)="toggle($event)" (focusout)="focusOut()">
-        <div
-            class="option selectedValue"
-            (click)="toggle($event)"
-            >
+        <div class="option selectedValue" (click)="toggle($event)">
             <span>{{ displayedValue }} </span><i class="gg-chevron-down"></i>
         </div>
     </div>

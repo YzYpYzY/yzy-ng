@@ -8,7 +8,8 @@
         "price": "50€",
         "stock": "250",
         "isHealthy": false,
-        "provider": "Coca-Cola"
+        "provider": "Coca-Cola",
+        "date": "07/05/1993"
     },
     {
         "id": 1,
@@ -19,7 +20,8 @@
         "price": "50€",
         "stock": "250",
         "isHealthy": false,
-        "provider": "Coca-Cola"
+        "provider": "Coca-Cola",
+        "date": "07/05/1993"
     },
     {
         "id": 2,
@@ -30,7 +32,8 @@
         "price": "50€",
         "stock": "500",
         "isHealthy": true,
-        "provider": "Chaufontaine"
+        "provider": "Chaufontaine",
+        "date": "07/05/1993"
     },
     {
         "id": 3,
@@ -41,7 +44,8 @@
         "price": "5€",
         "stock": "100",
         "isHealthy": true,
-        "provider": "Spa"
+        "provider": "Spa",
+        "date": "07/05/1993"
     },
     {
         "id": 4,
@@ -52,7 +56,8 @@
         "price": "50€",
         "stock": "50",
         "isHealthy": false,
-        "provider": "Chateau neuf du pape"
+        "provider": "Chateau neuf du pape",
+        "date": "07/05/1993"
     },
     {
         "id": 5,
@@ -63,7 +68,8 @@
         "price": "5€",
         "stock": "50",
         "isHealthy": false,
-        "provider": "Bourgogne"
+        "provider": "Bourgogne",
+        "date": "07/05/1993"
     },
     {
         "id": 6,
@@ -74,7 +80,8 @@
         "price": "50€",
         "stock": "250",
         "isHealthy": false,
-        "provider": "Coca-Cola"
+        "provider": "Coca-Cola",
+        "date": "07/05/1993"
     },
     {
         "id": 7,
@@ -85,7 +92,8 @@
         "price": "50€",
         "stock": "250",
         "isHealthy": false,
-        "provider": "Coca-Cola"
+        "provider": "Coca-Cola",
+        "date": "07/05/1993"
     },
     {
         "id": 8,
@@ -96,7 +104,8 @@
         "price": "50€",
         "stock": "500",
         "isHealthy": true,
-        "provider": "Chaufontaine"
+        "provider": "Chaufontaine",
+        "date": "07/05/1993"
     },
     {
         "id": 9,
@@ -107,7 +116,8 @@
         "price": "5€",
         "stock": "100",
         "isHealthy": true,
-        "provider": "Spa"
+        "provider": "Spa",
+        "date": "07/05/1993"
     },
     {
         "id": 10,
@@ -118,7 +128,8 @@
         "price": "50€",
         "stock": "50",
         "isHealthy": false,
-        "provider": "Chateau neuf du pape"
+        "provider": "Chateau neuf du pape",
+        "date": "07/05/1993"
     },
     {
         "id": 11,
@@ -129,7 +140,8 @@
         "price": "5€",
         "stock": "50",
         "isHealthy": false,
-        "provider": "Bourgogne"
+        "provider": "Bourgogne",
+        "date": "07/05/1993"
     },
     {
         "id": 12,
@@ -140,7 +152,8 @@
         "price": "50€",
         "stock": "250",
         "isHealthy": false,
-        "provider": "Coca-Cola"
+        "provider": "Coca-Cola",
+        "date": "07/05/1993"
     },
     {
         "id": 13,
@@ -151,7 +164,8 @@
         "price": "50€",
         "stock": "250",
         "isHealthy": false,
-        "provider": "Coca-Cola"
+        "provider": "Coca-Cola",
+        "date": "07/05/1993"
     },
     {
         "id": 14,
@@ -162,7 +176,8 @@
         "price": "50€",
         "stock": "500",
         "isHealthy": true,
-        "provider": "Chaufontaine"
+        "provider": "Chaufontaine",
+        "date": "07/05/1993"
     },
     {
         "id": 15,
@@ -173,7 +188,8 @@
         "price": "5€",
         "stock": "100",
         "isHealthy": true,
-        "provider": "Spa"
+        "provider": "Spa",
+        "date": "07/05/1993"
     },
     {
         "id": 16,
@@ -184,7 +200,8 @@
         "price": "50€",
         "stock": "50",
         "isHealthy": false,
-        "provider": "Chateau neuf du pape"
+        "provider": "Chateau neuf du pape",
+        "date": "07/05/1993"
     },
     {
         "id": 17,
@@ -195,7 +212,8 @@
         "price": "5€",
         "stock": "50",
         "isHealthy": false,
-        "provider": "Bourgogne"
+        "provider": "Bourgogne",
+        "date": "07/05/1993"
     },
     {
         "id": 18,
@@ -206,7 +224,8 @@
         "price": "50€",
         "stock": "250",
         "isHealthy": false,
-        "provider": "Coca-Cola"
+        "provider": "Coca-Cola",
+        "date": "07/05/1993"
     },
     {
         "id": 19,
@@ -217,7 +236,8 @@
         "price": "50€",
         "stock": "250",
         "isHealthy": false,
-        "provider": "Coca-Cola"
+        "provider": "Coca-Cola",
+        "date": "07/05/1993"
     },
     {
         "id": 20,
@@ -228,7 +248,8 @@
         "price": "50€",
         "stock": "500",
         "isHealthy": true,
-        "provider": "Chaufontaine"
+        "provider": "Chaufontaine",
+        "date": "07/05/1993"
     },
     {
         "id": 21,
@@ -239,7 +260,8 @@
         "price": "5€",
         "stock": "100",
         "isHealthy": true,
-        "provider": "Spa"
+        "provider": "Spa",
+        "date": "07/05/1993"
     },
     {
         "id": 22,
@@ -250,7 +272,8 @@
         "price": "50€",
         "stock": "50",
         "isHealthy": false,
-        "provider": "Chateau neuf du pape"
+        "provider": "Chateau neuf du pape",
+        "date": "07/05/1993"
     },
     {
         "id": 23,
@@ -261,7 +284,8 @@
         "price": "5€",
         "stock": "50",
         "isHealthy": false,
-        "provider": "Bourgogne"
+        "provider": "Bourgogne",
+        "date": "07/05/1993"
     },
     {
         "id": 24,
@@ -272,7 +296,8 @@
         "price": "50€",
         "stock": "250",
         "isHealthy": false,
-        "provider": "Coca-Cola"
+        "provider": "Coca-Cola",
+        "date": "07/05/1993"
     },
     {
         "id": 25,
@@ -283,7 +308,8 @@
         "price": "50€",
         "stock": "250",
         "isHealthy": false,
-        "provider": "Coca-Cola"
+        "provider": "Coca-Cola",
+        "date": "07/05/1993"
     },
     {
         "id": 26,
@@ -294,7 +320,8 @@
         "price": "50€",
         "stock": "500",
         "isHealthy": true,
-        "provider": "Chaufontaine"
+        "provider": "Chaufontaine",
+        "date": "07/05/1993"
     },
     {
         "id": 27,
@@ -305,7 +332,8 @@
         "price": "5€",
         "stock": "100",
         "isHealthy": true,
-        "provider": "Spa"
+        "provider": "Spa",
+        "date": "07/05/1993"
     },
     {
         "id": 28,
@@ -316,7 +344,8 @@
         "price": "50€",
         "stock": "50",
         "isHealthy": false,
-        "provider": "Chateau neuf du pape"
+        "provider": "Chateau neuf du pape",
+        "date": "07/05/1993"
     },
     {
         "id": 29,
@@ -327,7 +356,8 @@
         "price": "5€",
         "stock": "50",
         "isHealthy": false,
-        "provider": "Bourgogne"
+        "provider": "Bourgogne",
+        "date": "07/05/1993"
     },
     {
         "id": 30,
@@ -338,7 +368,8 @@
         "price": "50€",
         "stock": "250",
         "isHealthy": false,
-        "provider": "Coca-Cola"
+        "provider": "Coca-Cola",
+        "date": "07/05/1993"
     },
     {
         "id": 31,
@@ -349,7 +380,8 @@
         "price": "50€",
         "stock": "250",
         "isHealthy": false,
-        "provider": "Coca-Cola"
+        "provider": "Coca-Cola",
+        "date": "07/05/1993"
     },
     {
         "id": 32,
@@ -360,7 +392,8 @@
         "price": "50€",
         "stock": "500",
         "isHealthy": true,
-        "provider": "Chaufontaine"
+        "provider": "Chaufontaine",
+        "date": "07/05/1993"
     },
     {
         "id": 33,
@@ -371,7 +404,8 @@
         "price": "5€",
         "stock": "100",
         "isHealthy": true,
-        "provider": "Spa"
+        "provider": "Spa",
+        "date": "07/05/1993"
     },
     {
         "id": 34,
@@ -382,7 +416,8 @@
         "price": "50€",
         "stock": "50",
         "isHealthy": false,
-        "provider": "Chateau neuf du pape"
+        "provider": "Chateau neuf du pape",
+        "date": "07/05/1993"
     },
     {
         "id": 35,
@@ -393,7 +428,8 @@
         "price": "5€",
         "stock": "50",
         "isHealthy": false,
-        "provider": "Bourgogne"
+        "provider": "Bourgogne",
+        "date": "07/05/1993"
     },
     {
         "id": 36,
@@ -404,7 +440,8 @@
         "price": "50€",
         "stock": "250",
         "isHealthy": false,
-        "provider": "Coca-Cola"
+        "provider": "Coca-Cola",
+        "date": "07/05/1993"
     },
     {
         "id": 37,
@@ -415,7 +452,8 @@
         "price": "50€",
         "stock": "250",
         "isHealthy": false,
-        "provider": "Coca-Cola"
+        "provider": "Coca-Cola",
+        "date": "07/05/1993"
     },
     {
         "id": 38,
@@ -426,7 +464,8 @@
         "price": "50€",
         "stock": "500",
         "isHealthy": true,
-        "provider": "Chaufontaine"
+        "provider": "Chaufontaine",
+        "date": "07/05/1993"
     },
     {
         "id": 39,
@@ -437,7 +476,8 @@
         "price": "5€",
         "stock": "100",
         "isHealthy": true,
-        "provider": "Spa"
+        "provider": "Spa",
+        "date": "07/05/1993"
     },
     {
         "id": 40,
@@ -448,7 +488,8 @@
         "price": "50€",
         "stock": "50",
         "isHealthy": false,
-        "provider": "Chateau neuf du pape"
+        "provider": "Chateau neuf du pape",
+        "date": "07/05/1993"
     },
     {
         "id": 41,
@@ -459,7 +500,8 @@
         "price": "5€",
         "stock": "50",
         "isHealthy": false,
-        "provider": "Bourgogne"
+        "provider": "Bourgogne",
+        "date": "07/05/1993"
     },
     {
         "id": 42,
@@ -470,7 +512,8 @@
         "price": "50€",
         "stock": "250",
         "isHealthy": false,
-        "provider": "Coca-Cola"
+        "provider": "Coca-Cola",
+        "date": "07/05/1993"
     },
     {
         "id": 43,
@@ -481,7 +524,8 @@
         "price": "50€",
         "stock": "250",
         "isHealthy": false,
-        "provider": "Coca-Cola"
+        "provider": "Coca-Cola",
+        "date": "07/05/1993"
     },
     {
         "id": 44,
@@ -492,7 +536,8 @@
         "price": "50€",
         "stock": "500",
         "isHealthy": true,
-        "provider": "Chaufontaine"
+        "provider": "Chaufontaine",
+        "date": "07/05/1993"
     },
     {
         "id": 45,
@@ -503,7 +548,8 @@
         "price": "5€",
         "stock": "100",
         "isHealthy": true,
-        "provider": "Spa"
+        "provider": "Spa",
+        "date": "07/05/1993"
     },
     {
         "id": 46,
@@ -514,7 +560,8 @@
         "price": "50€",
         "stock": "50",
         "isHealthy": false,
-        "provider": "Chateau neuf du pape"
+        "provider": "Chateau neuf du pape",
+        "date": "07/05/1993"
     },
     {
         "id": 47,

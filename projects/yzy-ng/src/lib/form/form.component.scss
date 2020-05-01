@@ -1,7 +1,17 @@
-:host.inline-form{
+:host.inline {
     display: flex;
-    flex-flow: row;
-    yzy-field{
-        margin: 0 .5rem;
+    flex-flow: row wrap;
+
+    yzy-field {
+        margin: 0.5rem;
+    }
+}
+
+:host-context(.stretch) {
+    align-items: stretch;
+    height: 100%;
+    padding: 0;
+    yzy-field {
+        margin: 0;
     }
 }

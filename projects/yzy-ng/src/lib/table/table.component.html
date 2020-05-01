@@ -1,17 +1,42 @@
-<table [ngStyle]="{ 'grid-template-columns': columnStyle }">
+<table
+    [ngStyle]="{
+        'grid-template-columns': columnStyle,
+        'grid-template-rows': rowStyle
+    }"
+>
     <tr>
         <ng-container *ngFor="let column of visibleColumns">
-            <th (click)="toggleSort(column.attribute)" [class.sortable]="column.isSortable">
+            <th
+                (click)="toggleSort(column.attribute)"
+                [class.sortable]="column.isSortable"
+            >
                 {{ column.name }}
                 <ng-container *ngIf="column.isSortable">
-                    <div *ngIf="!this.activeSort || this.activeSort.attribute !== column.attribute; else sortActive" class="sort-icon discret">
+                    <div
+                        *ngIf="
+                            !this.activeSort ||
+                                this.activeSort.attribute !== column.attribute;
+                            else sortActive
+                        "
+                        class="sort-icon discret"
+                    >
                         <i class="gg-arrow-up"></i>
                         <i class="gg-arrow-down"></i>
                     </div>
                     <ng-template #sortActive>
                         <div class="sort-icon">
-                            <i class="gg-arrow-up" *ngIf="!activeSort || activeSort.isDesc === true"></i>
-                            <i class="gg-arrow-down" *ngIf="!activeSort || activeSort.isDesc === false"></i>
+                            <i
+                                class="gg-arrow-up"
+                                *ngIf="
+                                    !activeSort || activeSort.isDesc === true
+                                "
+                            ></i>
+                            <i
+                                class="gg-arrow-down"
+                                *ngIf="
+                                    !activeSort || activeSort.isDesc === false
+                                "
+                            ></i>
                         </div>
                     </ng-template>
                 </ng-container>
@@ -19,7 +44,15 @@
         </ng-container>
         <th *ngIf="lineActions">Actions</th>
     </tr>
-    <tr *ngFor="let item of displayedItems" (click)="selectE(item)">
+    <tr
+        *ngFor="let item of displayedItems; let index"
+        (click)="selectE(index, item)"
+        [ngClass]="{
+            selected:
+                currentPage === selectedItem?.page &&
+                selectedItem?.index === index
+        }"
+    >
         <td *ngFor="let column of visibleColumns; trackBy: trackByFn">
             <yzy-cell
                 [value]="item[column.attribute]"
@@ -29,10 +62,21 @@
             ></yzy-cell>
         </td>
         <td *ngIf="lineActions" class="actions-cell">
-            <div *ngFor="let action of lineActions" (click)="handleAction(action, item)" [class]="action.type | actionTypeToClass" [ngClass]="{ 'action-disabled': action.disabled }">
+            <div
+                *ngFor="let action of lineActions"
+                (click)="handleAction(action, item)"
+                [class]="action.type | actionTypeToClass"
+                [ngClass]="{ 'action-disabled': action.disabled }"
+            >
                 <i [class]="action.class"></i>
             </div>
         </td>
+    </tr>
+    <tr
+        *ngIf="(!items || items.length === 0) && emptyMessage"
+        class="emptyLine"
+    >
+        <td colspan="100%">{{ emptyMessage }}</td>
     </tr>
 </table>
 
@@ -46,8 +90,18 @@
         (changePage)="selectPage($event)"
     ></yzy-paginator>
     <div class="base-actions" *ngIf="footerOptions">
-        <div class="table-icon" (click)="addE()" *ngIf="footerOptions.addButton"><i class="gg-add"></i></div>
-        <div class="table-icon" (click)="toggleSortChoice()" *ngIf="footerOptions.sortPanel">
+        <div
+            class="table-icon"
+            (click)="addE()"
+            *ngIf="footerOptions.addButton"
+        >
+            <i class="gg-add"></i>
+        </div>
+        <div
+            class="table-icon"
+            (click)="toggleSortChoice()"
+            *ngIf="footerOptions.sortPanel"
+        >
             <i
                 [ngClass]="{
                     'gg-close-o': isSortsVisible,
@@ -55,7 +109,11 @@
                 }"
             ></i>
         </div>
-        <div class="table-icon" (click)="toggleFilter()" *ngIf="footerOptions.searchPanel">
+        <div
+            class="table-icon"
+            (click)="toggleFilter()"
+            *ngIf="footerOptions.searchPanel"
+        >
             <i
                 [ngClass]="{
                     'gg-close-o': isFilterVisible,
@@ -66,7 +124,11 @@
     </div>
 </div>
 <ng-container *ngIf="footerOptions">
-    <div class="sorts" [ngClass]="{ visible: isSortsVisible }" *ngIf="footerOptions.sortPanel">
+    <div
+        class="sorts"
+        [ngClass]="{ visible: isSortsVisible }"
+        *ngIf="footerOptions.sortPanel"
+    >
         <div class="title">Sorts</div>
         <div *ngFor="let col of sortableColumns" class="sort">
             <i class="gg-arrow-up" (click)="setSort(col.attribute, false)"></i>
@@ -74,7 +136,11 @@
             <i class="gg-arrow-down" (click)="setSort(col.attribute, true)"></i>
         </div>
     </div>
-    <div class="filter" [ngClass]="{ visible: isFilterVisible }" *ngIf="footerOptions.searchPanel">
+    <div
+        class="filter"
+        [ngClass]="{ visible: isFilterVisible }"
+        *ngIf="footerOptions.searchPanel"
+    >
         <input type="text" [(ngModel)]="filter" (change)="applySearch()" />
         <div class="search">
             <i (click)="applySearch()" class="gg-search"></i>
