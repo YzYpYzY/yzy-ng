@@ -1,5 +1,13 @@
 import { FormGroup } from '@angular/forms';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    Input,
+    Output,
+    EventEmitter,
+    SimpleChanges,
+    OnChanges
+} from '@angular/core';
 import { FormModel } from '../../form/models/FormModel';
 import { YzYTab } from '../models/YzYTab';
 import { YzYAction } from '../../models/YzYAction';
@@ -9,7 +17,7 @@ import { YzYAction } from '../../models/YzYAction';
     templateUrl: './bar.component.html',
     styleUrls: ['./bar.component.scss']
 })
-export class BarComponent implements OnInit {
+export class BarComponent implements OnInit, OnChanges {
     @Input() title: string;
     @Input() actions: YzYAction[];
     @Input() formModel: FormModel;
@@ -20,6 +28,7 @@ export class BarComponent implements OnInit {
     @Output() action = new EventEmitter<YzYAction>();
 
     selectedTab: YzYTab;
+    displayActions: YzYAction[];
 
     constructor() {}
 
@@ -36,6 +45,14 @@ export class BarComponent implements OnInit {
             } else {
                 this.selectedTab = this.tabs[0];
             }
+        }
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes.actions !== undefined) {
+            this.displayActions = changes.actions.currentValue.filter(
+                a => !a.hide
+            );
         }
     }
 

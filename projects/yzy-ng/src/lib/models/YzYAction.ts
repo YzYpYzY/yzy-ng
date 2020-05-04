@@ -6,4 +6,5 @@ export interface YzYAction {
     class?: string;
     disabled?: boolean;
     label?: string;
+    hide?: boolean;
 }

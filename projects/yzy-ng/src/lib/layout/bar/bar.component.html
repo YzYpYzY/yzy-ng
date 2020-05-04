@@ -1,17 +1,29 @@
 <ng-container *ngIf="tabs">
-    <div class="tab" *ngFor="let tab of tabs" (click)="onTabChange(tab)"
-        [ngClass]="{ selected: tab.name == selectedTab.name }">
+    <div
+        class="tab"
+        *ngFor="let tab of tabs"
+        (click)="onTabChange(tab)"
+        [ngClass]="{ selected: tab.name == selectedTab.name }"
+    >
         {{ tab.label }}
     </div>
 </ng-container>
 <div class="title" *ngIf="title">{{ title }}</div>
-<yzy-form [formModel]="formModel" (formReady)="handleFormReady($event)" *ngIf="formModel"></yzy-form>
-<div class="actions" *ngIf="actions">
-    <div *ngFor="let action of actions" (click)="triggerAction(action)" [class]="action.type | actionTypeToClass"
+<yzy-form
+    [formModel]="formModel"
+    (formReady)="handleFormReady($event)"
+    *ngIf="formModel"
+></yzy-form>
+<div class="actions" *ngIf="displayActions">
+    <div
+        *ngFor="let action of displayActions"
+        (click)="triggerAction(action)"
+        [class]="action.type | actionTypeToClass"
         [ngClass]="{
             'action-disabled': action.disabled,
             'action-labeled': action.label !== undefined
-        }">
+        }"
+    >
         <i *ngIf="action.class" [class]="action.class"></i>
         <div class="action-label" *ngIf="action.label !== undefined">
             {{ action.label }}
