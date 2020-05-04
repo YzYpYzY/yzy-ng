@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.10.0...v1.11.0) (2020-05-04)
+
+
+### Features
+
+* **action:** add hide possibility ([d5450fb](https://github.com/YzYpYzY/yzy-ng/commit/d5450fbadaede99d40b2fc02fc0f3812c66f5c7a))
+
 # [1.10.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.9.1...v1.10.0) (2020-05-01)
 
 
