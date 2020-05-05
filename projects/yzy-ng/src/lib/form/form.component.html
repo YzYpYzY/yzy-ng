@@ -1,5 +1,10 @@
-<h2>{{ formModel.title }}</h2>
+<h2 *ngIf="formModel.title">{{ formModel.title }}</h2>
 <ng-container *ngFor="let field of formModel.fields">
-    <yzy-field *ngIf="!field.isHide" [fieldModel]="field" [form]="form" [class.inline]="formModel.isInline">
+    <yzy-field
+        *ngIf="!field.isHide"
+        [fieldModel]="field"
+        [form]="form"
+        [class.inline]="formModel.isInline"
+    >
     </yzy-field>
 </ng-container>
