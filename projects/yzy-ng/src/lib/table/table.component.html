@@ -48,9 +48,7 @@
         *ngFor="let item of displayedItems; let index"
         (click)="selectE(index, item)"
         [ngClass]="{
-            selected:
-                currentPage === selectedItem?.page &&
-                selectedItem?.index === index
+            selected: item[key] === selectedItemIdIntern
         }"
     >
         <td *ngFor="let column of visibleColumns; trackBy: trackByFn">
