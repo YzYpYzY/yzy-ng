@@ -1,3 +1,5 @@
+import { AnswerType } from './../../projects/yzy-ng/src/lib/layout/models/AnswerType';
+import { QuestionComponent } from './../../projects/yzy-ng/src/lib/layout/question/question.component';
 import { moduleMetadata } from '@storybook/angular';
 import {
     LayoutModule,
@@ -153,5 +155,29 @@ export const filterBarStretched = () => ({
     props: {
         title: 'Liste des membres',
         formModel: stretchForm
+    }
+});
+
+export const question = () => ({
+    component: QuestionComponent,
+    template: `
+    <div class="demo-desktop">
+    <yzy-question [question]="question" [answers]="answers"></yzy-question>
+    <br/>
+    <yzy-question [question]="questionBis" [answers]="answersBis"></yzy-question>
+    </div>
+    `,
+    props: {
+        question: 'What is your favorite drink ?',
+        answers: [
+            { label: 'Water', value: 1, type: AnswerType.Valid },
+            { label: 'Beer', value: 2, type: AnswerType.Warning },
+            { label: 'Coffee', value: 3, type: AnswerType.Default }
+        ],
+        questionBis: 'Are you sure you want to delete this item ?',
+        answersBis: [
+            { label: 'Cancel', value: false, type: AnswerType.Default },
+            { label: 'Confirm', value: true, type: AnswerType.Danger }
+        ]
     }
 });
