@@ -4,7 +4,9 @@ import {
     Input,
     Output,
     EventEmitter,
-    HostBinding
+    HostBinding,
+    SimpleChanges,
+    OnChanges
 } from '@angular/core';
 import { FormModel } from './models/FormModel';
 import { FormControl } from '@angular/forms';
@@ -15,7 +17,7 @@ import { YzYFormGroup } from './YzYFormGroup';
     templateUrl: './form.component.html',
     styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnChanges {
     @Input() formModel: FormModel;
     @Output() formReady = new EventEmitter<YzYFormGroup>();
 
@@ -23,10 +25,13 @@ export class FormComponent implements OnInit {
 
     form: YzYFormGroup;
 
-    constructor() { }
+    constructor() {}
 
     ngOnInit() {
         this.isInline = this.formModel.isInline ? true : false;
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
         this.form = new YzYFormGroup({});
         this.form.model = this.formModel;
         this.formModel.fields.forEach(f => {

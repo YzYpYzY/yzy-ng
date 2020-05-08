@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BarComponent } from './bar/bar.component';
 import { YzYFormsModule } from '../form/form.module';
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
-    declarations: [BarComponent],
+    declarations: [BarComponent, QuestionComponent],
     imports: [CommonModule, PipeModule, YzYFormsModule],
-    exports: [BarComponent]
+    exports: [BarComponent, QuestionComponent]
 })
 export class LayoutModule {}

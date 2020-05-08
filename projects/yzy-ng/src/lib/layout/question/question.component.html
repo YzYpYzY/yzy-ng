@@ -1,0 +1,12 @@
+<div class="question">
+    {{ question }}
+</div>
+<div class="answers">
+    <div
+        *ngFor="let answer of answers"
+        [class]="typeToClass(answer.type)"
+        (click)="selectAnswer(answer)"
+    >
+        {{ answer.label }}
+    </div>
+</div>

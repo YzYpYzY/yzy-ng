@@ -26,6 +26,8 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     @Input() columns: Column[];
     @Input() items: any[];
     @Input() itemsCount: number;
+    @Input() selectedItemId: number | string;
+    @Input() selectionMode: string;
     @Input() selectedPage: number;
     @Input() itemByPage: number;
     @Input() pageLinkNumber: number;
@@ -63,7 +65,7 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     sortSystem = {};
     computedStyles: any = {};
     cellsChangedValues: ElementsValueChanges = new ElementsValueChanges();
-    selectedItem: { index: number; page: number; item: any };
+    selectedItemIdIntern: number | string;
     currentPage: number;
 
     constructor() {
@@ -118,6 +120,10 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         this.prepareColumns();
         this.applySort();
+
+        if (changes.selectedItemId) {
+            this.selectedItemIdIntern = this.selectedItemId;
+        }
     }
 
     setRowStyle() {
@@ -173,7 +179,9 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
 
     selectE(index, item) {
         this.onSelect.emit(item[this.key]);
-        this.selectedItem = { index, page: this.currentPage, item };
+        if (this.selectionMode === 'simple') {
+            this.selectedItemIdIntern = item[this.key];
+        }
     }
 
     applySearch() {

@@ -1,4 +1,13 @@
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    Input,
+    HostBinding,
+    Inject,
+    PipeTransform,
+    Optional,
+    InjectionToken
+} from '@angular/core';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { FieldTypes } from './enums/FieldTypes';
 import { FieldModel } from './models/FieldModel';
@@ -24,24 +33,20 @@ export class FieldComponent implements OnInit {
     htmltype: 'text' | 'password' | 'email' | 'number' = 'text';
     errors: string[] = [];
 
-    constructor() {}
+    constructor(
+        @Inject('YzYTranslateService')
+        private translateService?: any
+    ) {}
 
     ngOnInit() {
         this.control = this.form.get(this.fieldModel.name);
         this.control.setValidators(this.fieldModel.validators);
         this.isReadOnly = !this.control.enabled;
+
         this.control.valueChanges
             .pipe(debounce(() => timer(this.debounceTime)))
             .subscribe(change => {
-                if (this.control.errors) {
-                    this.errors = Object.keys(this.control.errors)
-                        .filter(k => this.control.errors[k])
-                        .map(e => 'field.error.' + e);
-                    this.hasError = true;
-                } else {
-                    this.errors = [];
-                    this.hasError = false;
-                }
+                this.treatErrors();
                 this.isValid = this.control.valid;
             });
         switch (this.fieldModel.type) {
@@ -57,6 +62,22 @@ export class FieldComponent implements OnInit {
             case FieldTypes.Password:
                 this.htmltype = 'password';
                 break;
+        }
+    }
+    treatErrors() {
+        if (this.control.errors) {
+            const errors = Object.keys(this.control.errors)
+                .filter(k => this.control.errors[k])
+                .map(e => 'field.error.' + e);
+            if (this.translateService) {
+                this.errors = errors.map(e => this.translateService.instant(e));
+            } else {
+                this.errors = errors;
+            }
+            this.hasError = true;
+        } else {
+            this.errors = [];
+            this.hasError = false;
         }
     }
 }

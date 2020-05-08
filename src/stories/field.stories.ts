@@ -1,4 +1,3 @@
-import { FileSelectorComponent } from './../../projects/yzy-ng/src/lib/file-selector/file-selector.component';
 import {
     FieldComponent,
     FieldTypes,
@@ -6,7 +5,8 @@ import {
     CheckboxComponent,
     RadioComponent,
     DropdownComponent,
-    DateSelectorComponent
+    DateSelectorComponent,
+    FileSelectorComponent
 } from 'yzy-ng';
 import {
     ReactiveFormsModule,
@@ -14,15 +14,29 @@ import {
     Validators,
     FormsModule
 } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { moduleMetadata } from '@storybook/angular';
 import { action } from '@storybook/addon-actions';
 const fb = new FormBuilder();
+import { CommonModule } from '@angular/common';
+import { MokeTranslateService } from '../moks/moke.translate.service';
 
 export default {
     title: 'Field',
     decorators: [
         moduleMetadata({
-            imports: [ReactiveFormsModule, FieldModule, FormsModule]
+            imports: [
+                CommonModule,
+                HttpClientModule,
+                ReactiveFormsModule,
+                FieldModule,
+                FormsModule
+            ],
+            providers: [
+            {
+                provide: 'YzYTranslateService',
+                useClass: MokeTranslateService
+            }
         })
     ]
 };

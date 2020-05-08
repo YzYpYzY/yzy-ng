@@ -1,0 +1,34 @@
+:host {
+    display: flex;
+    flex-flow: column;
+    border: 1px solid var(--border-color);
+}
+
+.question {
+    padding: 3rem 2rem;
+}
+
+.answers {
+    display: flex;
+    flex-flow: row;
+    justify-content: stretch;
+}
+
+.answer {
+    padding: 1rem;
+    background: var(--default-bg);
+    flex-grow: 1;
+    text-align: center;
+    cursor: pointer;
+}
+
+.answer-valid {
+    background: var(--success-bg);
+}
+
+.answer-warning {
+    background: var(--warning-bg);
+}
+.answer-danger {
+    background: var(--error-bg);
+}
