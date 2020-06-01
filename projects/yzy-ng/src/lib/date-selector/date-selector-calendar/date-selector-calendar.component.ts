@@ -17,9 +17,11 @@ import { DayChoice } from '../models/DayChoice';
 })
 export class DateSelectorCalendarComponent implements OnInit {
     @Input() date: DisplayDate;
+    @Input() selectedOption: OptionModel;
     @Input() extraOptions: OptionModel[];
     @Input() calendarService: any;
     @Input() id: number;
+    @Input() isReset: boolean;
     @Input() @HostBinding('style.left.px') x: number;
     @Input() @HostBinding('style.top.px') y: number;
     @Input() @HostBinding('style.min-width.px') minWidth: number;
@@ -61,14 +63,19 @@ export class DateSelectorCalendarComponent implements OnInit {
 
     ngOnInit(): void {
         this.currentDate = { ...this.date };
+        this.selectedValue = this.selectedOption
+            ? this.selectedOption
+            : this.currentDate;
+        this.isReset = this.isReset ? this.isReset : true;
         this.setDayCount();
+        this.calendarService.newValue(this.id, this.selectedValue);
     }
 
     changeYear(move: number): void {
         const year = this.currentDate.year + move;
         this.currentDate = { ...this.currentDate, year };
-        this.selectedValue = this.currentDate;
         this.setDayCount();
+        this.selectedValue = this.currentDate;
         this.calendarService.newValue(this.id, this.currentDate);
     }
     changeMonth(move: number): void {
@@ -79,8 +86,8 @@ export class DateSelectorCalendarComponent implements OnInit {
         } else {
             this.currentDate.month += move;
         }
-        this.selectedValue = this.currentDate;
         this.setDayCount();
+        this.selectedValue = this.currentDate;
         this.calendarService.newValue(this.id, this.selectedValue);
     }
     selectDay(day: number) {
@@ -107,12 +114,16 @@ export class DateSelectorCalendarComponent implements OnInit {
 
     valid(event) {
         event['keepCalendarOpen'] = true;
-        this.calendarService.close(this.id, this.selectedValue);
+        this.calendarService.close(this.id, this.selectedValue, true);
     }
 
     cancel(event) {
         event['keepCalendarOpen'] = true;
         this.calendarService.close(this.id, this.date);
+    }
+
+    reset(): void {
+        this.calendarService.newValue(this.id, null);
     }
 
     private collapse(): void {
@@ -150,7 +161,16 @@ export class DateSelectorCalendarComponent implements OnInit {
         for (let i = 1; i <= monthDays; i++) {
             dayChoices.push({ value: i });
         }
-        dayChoices[this.currentDate.day - 1 + this.dayShift].selected = true;
+        if (
+            dayChoices[this.currentDate.day - 1 + this.dayShift] === undefined
+        ) {
+            this.currentDate.day = 1;
+        }
+        if (this.selectedOption == null) {
+            dayChoices[
+                this.currentDate.day - 1 + this.dayShift
+            ].selected = true;
+        }
         this.dayChoices = dayChoices;
     }
 

@@ -82,6 +82,11 @@
 :host-context(.inline) {
     padding: 0;
 }
+:host-context(.hasError) {
+    .date-field {
+        border-color: var(--invalid-color);
+    }
+}
 
 :host-context(.stretch) {
     height: 100%;
@@ -90,4 +95,9 @@
         height: 100%;
         align-items: center;
     }
+}
+
+.emptyValue {
+    color: transparent;
+    user-select: none;
 }

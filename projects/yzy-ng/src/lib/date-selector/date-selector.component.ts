@@ -29,7 +29,8 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
     @Input() value: string;
     @Input() extraOptions: OptionModel[];
     @Input() separator: string;
-    @Input() changeAsDate: boolean;
+    @Input() format: 'date' | 'eu' | 'us' | 'iso';
+    @Input() displayFormat: 'eu' | 'us' | 'iso';
 
     @Input() width: string;
     @Output() valueChange = new EventEmitter<string | number | Date>();
@@ -44,6 +45,8 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
     calendarId: number;
     stateSubscription: Subscription;
     selectedExtraOption: OptionModel = null;
+    isEmpty = true;
+    isFirstSelection = true;
 
     constructor(
         private calendarService: DateSelectorService,
@@ -65,9 +68,28 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
                 : this.fieldModel && this.fieldModel.options
                 ? this.fieldModel.options
                 : null;
-        this.separator = this.separator !== undefined ? this.separator : '/';
-        this.changeAsDate =
-            this.changeAsDate !== undefined ? this.changeAsDate : false;
+        this.format = this.format
+            ? this.format
+            : this.fieldModel &&
+              this.fieldModel.dateOptions &&
+              this.fieldModel.dateOptions.format
+            ? this.fieldModel.dateOptions.format
+            : 'iso';
+        this.displayFormat = this.displayFormat
+            ? this.displayFormat
+            : this.fieldModel &&
+              this.fieldModel.dateOptions &&
+              this.fieldModel.dateOptions.displayFormat
+            ? this.fieldModel.dateOptions.displayFormat
+            : 'iso';
+        this.separator =
+            this.separator !== undefined
+                ? this.separator
+                : this.fieldModel &&
+                  this.fieldModel.dateOptions &&
+                  this.fieldModel.dateOptions.separator
+                ? this.fieldModel.dateOptions.separator
+                : '/';
         const controlName =
             this.fieldModel && this.fieldModel.name
                 ? this.fieldModel.name
@@ -78,30 +100,69 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
         }
         this.control = this.form.get(controlName);
         this.isReadOnly = !this.control.enabled;
+
         this.initialValue = this.value
             ? this.value
             : this.control.value
             ? this.control.value
+            : this.fieldModel && this.fieldModel.value
+            ? this.fieldModel.value
             : null;
+
+        if (!this.validDateFormat(this.initialValue)) {
+            this.selectedExtraOption = this.extraOptions.find(
+                o => o.value === this.initialValue
+            );
+            this.initialValue = null;
+        }
+        this.isEmpty =
+            this.initialValue == null && this.selectedExtraOption == null;
         this.setDateValues(this.initialValue);
     }
 
-    setDateValues(value: string): void {
+    setDateValues(value: string | Date): void {
         let newDate;
-        if (value == null) {
-            const now = new Date();
+        if (value == null || this.format === 'date') {
+            let dateValue: Date;
+            if (!value) {
+                dateValue = new Date();
+            } else {
+                if (typeof value === 'string') {
+                    dateValue = new Date(value);
+                } else {
+                    dateValue = value;
+                }
+            }
             newDate = {
-                day: now.getUTCDate(),
-                month: now.getMonth() + 1,
-                year: now.getFullYear()
+                day: dateValue.getUTCDate(),
+                month: dateValue.getMonth() + 1,
+                year: dateValue.getFullYear()
             };
         } else {
-            const parts = value.split(this.separator);
-            newDate = {
-                day: parseInt(parts[0], 10),
-                month: parseInt(parts[1], 10),
-                year: parseInt(parts[2], 10)
-            };
+            const parts = (value as string).split(this.separator);
+            switch (this.format) {
+                case 'iso':
+                    newDate = {
+                        day: parseInt(parts[2], 10),
+                        month: parseInt(parts[1], 10),
+                        year: parseInt(parts[0], 10)
+                    };
+                    break;
+                case 'eu':
+                    newDate = {
+                        day: parseInt(parts[0], 10),
+                        month: parseInt(parts[1], 10),
+                        year: parseInt(parts[2], 10)
+                    };
+                    break;
+                case 'us':
+                    newDate = {
+                        day: parseInt(parts[1], 10),
+                        month: parseInt(parts[0], 10),
+                        year: parseInt(parts[2], 10)
+                    };
+                    break;
+            }
         }
         this.date = this.refreshToDisplayDateValues(newDate);
     }
@@ -133,13 +194,28 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
                 this.stateSubscription = this.calendarService.calendarState$
                     .pipe(takeUntil(this.destroy$))
                     .subscribe(newState => {
-                        if (newState.value !== null) {
-                            this.changeValue(newState.value);
-                        }
+                        console.log(newState);
+
+                        this.changeValue(newState.value);
                         this.isCollapsed = !newState.isOpen;
                         if (this.isCollapsed) {
                             this.stateSubscription.unsubscribe();
                             this.stateSubscription = null;
+                            if (!newState.isValidate && this.isFirstSelection) {
+                                if (
+                                    this.initialValue == null &&
+                                    this.selectedExtraOption == null
+                                ) {
+                                    this.isEmpty = true;
+                                    this.control.setValue(null);
+                                } else {
+                                    this.control.setValue(
+                                        this.selectedExtraOption.value
+                                    );
+                                }
+                            } else {
+                                this.isFirstSelection = false;
+                            }
                         }
                     });
                 const displayBox = this.elementRef.nativeElement.children[
@@ -148,6 +224,7 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
                 const domRect = displayBox.getBoundingClientRect();
                 this.calendarId = this.calendarService.displayCalendar(
                     this.date,
+                    this.selectedExtraOption,
                     this.extraOptions,
                     { x: domRect.left, y: domRect.top + domRect.height },
                     displayBox.offsetWidth
@@ -157,28 +234,72 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
     }
 
     changeValue(newValue): void {
-        if (newValue.label !== undefined) {
+        if (newValue && newValue.label !== undefined) {
             this.selectedExtraOption = newValue;
             this.valueChange.emit(this.selectedExtraOption.value);
         } else {
             this.selectedExtraOption = null;
-            this.date = this.refreshToDisplayDateValues(newValue);
-            if (this.changeAsDate) {
-                const date = new Date(
-                    this.date.year,
-                    this.date.month,
-                    this.date.day
-                );
-                this.valueChange.emit(date);
+            let result;
+
+            if (newValue != null) {
+                result = null;
+                this.date = null;
             } else {
-                this.valueChange.emit(
-                    this.date.day +
-                        this.separator +
-                        this.date.monthToDisplay +
-                        this.separator +
-                        this.date.yearToDisplay
+                this.date = this.refreshToDisplayDateValues(newValue);
+                switch (this.format) {
+                    case 'date':
+                        result = new Date(
+                            Date.UTC(
+                                this.date.year,
+                                this.date.month - 1,
+                                this.date.day
+                            )
+                        );
+                        break;
+                    case 'us':
+                        result =
+                            this.date.monthToDisplay +
+                            this.separator +
+                            this.date.dayToDisplay +
+                            this.separator +
+                            this.date.yearToDisplay;
+                        break;
+                    case 'iso':
+                        result =
+                            this.date.yearToDisplay +
+                            this.separator +
+                            this.date.monthToDisplay +
+                            this.separator +
+                            this.date.dayToDisplay;
+                        break;
+                    case 'eu':
+                        result =
+                            this.date.dayToDisplay +
+                            this.separator +
+                            this.date.monthToDisplay +
+                            this.separator +
+                            this.date.yearToDisplay;
+                        break;
+                }
+            }
+
+            this.control.setValue(result);
+            this.valueChange.emit(result);
+        }
+        this.isEmpty = false;
+    }
+
+    private validDateFormat(value): boolean {
+        if (value) {
+            const parts = value.split(this.separator);
+            if (parts.length === 3) {
+                return (
+                    !isNaN(parseInt(parts[0], 10)) &&
+                    !isNaN(parseInt(parts[1], 10)) &&
+                    !isNaN(parseInt(parts[2], 10))
                 );
             }
         }
+        return false;
     }
 }

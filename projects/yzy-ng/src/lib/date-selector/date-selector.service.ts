@@ -28,6 +28,7 @@ export class DateSelectorService {
 
     displayCalendar(
         date: DisplayDate,
+        selectedOption: OptionModel,
         extraOptions: OptionModel[],
         bottomLeftPosition: { x: number; y: number },
         width: number
@@ -37,6 +38,7 @@ export class DateSelectorService {
             this.createCalendarComponent(
                 id,
                 date,
+                selectedOption,
                 extraOptions,
                 bottomLeftPosition,
                 width
@@ -54,14 +56,19 @@ export class DateSelectorService {
         this.calendarState$.next({ id, value, isOpen: true });
     }
 
-    close(id: number, value: DisplayDate | OptionModel = null): void {
-        this.calendarState$.next({ id, value, isOpen: false });
+    close(
+        id: number,
+        value: DisplayDate | OptionModel = null,
+        isValidate = false
+    ): void {
+        this.calendarState$.next({ id, value, isOpen: false, isValidate });
         this.destroyCalendarsComponent(id);
     }
 
     private createCalendarComponent(
         id: number,
         date: DisplayDate,
+        selectedOption: OptionModel,
         extraOptions: OptionModel[],
         bottomLeftPosition: { x: number; y: number },
         width: number
@@ -71,6 +78,7 @@ export class DateSelectorService {
             .create(this.injector);
         calendarsRef.instance.id = id;
         calendarsRef.instance.date = date;
+        calendarsRef.instance.selectedOption = selectedOption;
         calendarsRef.instance.extraOptions = extraOptions;
         calendarsRef.instance.calendarService = this;
         calendarsRef.instance.x = bottomLeftPosition.x - 1;

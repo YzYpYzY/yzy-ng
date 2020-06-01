@@ -8,11 +8,34 @@
     (focusout)="focusOut()"
 >
     <ng-container *ngIf="selectedExtraOption == null; else extraOption">
-        <span>{{ date.dayToDisplay }}</span>
-        <span class="separator">{{ separator }}</span>
-        <span>{{ date.monthToDisplay }}</span>
-        <span class="separator">{{ separator }}</span>
-        <span>{{ date.yearToDisplay }}</span>
+        <div class="emptyValue" *ngIf="isEmpty || date == null; else value">
+            No value
+        </div>
+        <ng-template #value>
+            <div [ngSwitch]="displayFormat">
+                <div *ngSwitchCase="'iso'">
+                    <span>{{ date.yearToDisplay }}</span>
+                    <span class="separator">{{ separator }}</span>
+                    <span>{{ date.monthToDisplay }}</span>
+                    <span class="separator">{{ separator }}</span>
+                    <span>{{ date.dayToDisplay }}</span>
+                </div>
+                <div *ngSwitchCase="'eu'">
+                    <span>{{ date.dayToDisplay }}</span>
+                    <span class="separator">{{ separator }}</span>
+                    <span>{{ date.monthToDisplay }}</span>
+                    <span class="separator">{{ separator }}</span>
+                    <span>{{ date.yearToDisplay }}</span>
+                </div>
+                <div *ngSwitchCase="'us'">
+                    <span>{{ date.monthToDisplay }}</span>
+                    <span class="separator">{{ separator }}</span>
+                    <span>{{ date.dayToDisplay }}</span>
+                    <span class="separator">{{ separator }}</span>
+                    <span>{{ date.yearToDisplay }}</span>
+                </div>
+            </div>
+        </ng-template>
     </ng-container>
     <ng-template #extraOption>
         <span class="extra-option">

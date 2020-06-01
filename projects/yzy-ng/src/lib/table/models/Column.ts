@@ -1,5 +1,6 @@
 import { ColumnTypes } from './ColumnTypes';
 import { OptionModel } from '../../dropdown/models/OptionModel';
+import { DateOptions } from '../../date-selector/models/DateOptions';
 
 export interface Column {
     name: string;
@@ -10,5 +11,6 @@ export interface Column {
     type?: ColumnTypes;
     editable?: boolean;
     options?: OptionModel[];
-    customStyles?: (value) => { [key:string] : string };
+    dateOptions?: DateOptions;
+    customStyles?: (value) => { [key: string]: string };
 }

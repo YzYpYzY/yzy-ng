@@ -5,4 +5,5 @@ export interface CalendarState {
     id: number;
     value: DisplayDate | OptionModel;
     isOpen: boolean;
+    isValidate?: boolean;
 }

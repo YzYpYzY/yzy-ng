@@ -26,7 +26,7 @@
         </div>
     </div>
 </div>
-<div class="extra-options" *ngIf="extraOptions">
+<div class="extra-options" *ngIf="extraOptions || isReset">
     <div class="extra-label">Autres options</div>
     <div
         *ngFor="let option of extraOptions; let index = index"
@@ -37,6 +37,9 @@
         (click)="selectExtraOption($event, option)"
     >
         {{ option.label }}
+    </div>
+    <div class="extra-option " *ngIf="isReset" (click)="reset()">
+        <i class="gg-close "></i>
     </div>
 </div>
 <div class="date-actions">
