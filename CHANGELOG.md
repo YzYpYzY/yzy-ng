@@ -1,3 +1,17 @@
+# [1.13.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.12.0...v1.13.0) (2020-06-01)
+
+
+### Bug Fixes
+
+* date selector ([88df55d](https://github.com/YzYpYzY/yzy-ng/commit/88df55d99dd9086da9bebefa0010bf7ac5db6ae1))
+* date selector bugs ([93b9491](https://github.com/YzYpYzY/yzy-ng/commit/93b949182f9cd31e9ee2f5e58850a58eb8438dca))
+* visual  consistency ([24dc771](https://github.com/YzYpYzY/yzy-ng/commit/24dc77139298598694187ee760db7d19c3bb1a07))
+
+
+### Features
+
+* form validation and display errors ([6b7e7d8](https://github.com/YzYpYzY/yzy-ng/commit/6b7e7d8cbb09761eee4bf3831a301c109d418ccb))
+
 # [1.12.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.11.0...v1.12.0) (2020-05-08)
 
 
