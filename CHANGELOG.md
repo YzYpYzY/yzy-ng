@@ -1,3 +1,17 @@
+# [1.12.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.11.0...v1.12.0) (2020-05-08)
+
+
+### Bug Fixes
+
+* **form:** reload on input change and no title ([15b08df](https://github.com/YzYpYzY/yzy-ng/commit/15b08dfc3c4b40c1cbee5ac18926dcc2417886a8))
+
+
+### Features
+
+* **field:** add error translation ([18892e7](https://github.com/YzYpYzY/yzy-ng/commit/18892e71db472e8a15d4e810dc5f47642a442089))
+* **table:** selection mode and initialSelection ([947adc7](https://github.com/YzYpYzY/yzy-ng/commit/947adc76403fb8d2d4ea6df79137587c8e0aa490))
+* add question layout ([89e0985](https://github.com/YzYpYzY/yzy-ng/commit/89e09859e0c0362e44d80e1978c7f08f452a5c55))
+
 # [1.11.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.10.0...v1.11.0) (2020-05-04)
 
 
