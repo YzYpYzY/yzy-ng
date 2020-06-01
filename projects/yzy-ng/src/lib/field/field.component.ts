@@ -11,18 +11,20 @@ import {
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { FieldTypes } from './enums/FieldTypes';
 import { FieldModel } from './models/FieldModel';
-import { debounce } from 'rxjs/operators';
+import { debounce, takeUntil } from 'rxjs/operators';
 import { timer } from 'rxjs';
+import { YzYFormGroup } from '../form/YzYFormGroup';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
     selector: 'yzy-field',
     templateUrl: './field.component.html',
     styleUrls: ['./field.component.scss']
 })
-export class FieldComponent implements OnInit {
+export class FieldComponent extends BaseComponent implements OnInit {
     FieldTypes = FieldTypes;
     @Input() fieldModel: FieldModel;
-    @Input() form: FormGroup;
+    @Input() form: YzYFormGroup;
     @Input() debounceTime = 2000;
 
     @HostBinding('class.hasError') hasError = false;
@@ -34,9 +36,12 @@ export class FieldComponent implements OnInit {
     errors: string[] = [];
 
     constructor(
+        @Optional()
         @Inject('YzYTranslateService')
         private translateService?: any
-    ) {}
+    ) {
+        super();
+    }
 
     ngOnInit() {
         this.control = this.form.get(this.fieldModel.name);
@@ -44,10 +49,21 @@ export class FieldComponent implements OnInit {
         this.isReadOnly = !this.control.enabled;
 
         this.control.valueChanges
-            .pipe(debounce(() => timer(this.debounceTime)))
+            .pipe(
+                takeUntil(this.destroy$),
+                debounce(() => timer(this.debounceTime))
+            )
             .subscribe(change => {
                 this.treatErrors();
                 this.isValid = this.control.valid;
+            });
+        this.form.displayError$
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(value => {
+                if (value) {
+                    this.treatErrors();
+                    this.isValid = this.control.valid;
+                }
             });
         switch (this.fieldModel.type) {
             case FieldTypes.Text:

@@ -28,6 +28,7 @@ html {
     --logo-bubble: #{$accent};
 
     --form-link: grey;
+    --form-bg: white;
     --field-border: rgb(212, 211, 211);
     --field-color: black;
     --field-readonly-color: black;
@@ -68,4 +69,5 @@ html {
 
     --radio-color: rgb(212, 211, 211);
     --border-color: rgb(214, 214, 214);
+    --question-bg: white;
 }

@@ -33,9 +33,10 @@ label {
         }
     }
 
-    .label {
+    .radio-label {
         padding-left: 1rem;
         line-height: 1.25rem;
+        color: var(--field-color);
     }
 }
 

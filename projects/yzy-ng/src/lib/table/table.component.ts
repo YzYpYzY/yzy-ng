@@ -136,7 +136,7 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
                 (this.items.length < this.itemByPage
                     ? this.items.length
                     : this.itemByPage) +
-                ', 1fr)';
+                ', auto) 1fr';
         }
         this.rowStyle = rowStyle;
     }
