@@ -1,3 +1,13 @@
+import {
+    TranslateModule,
+    TranslatePipe,
+    TranslateService,
+    TranslateStore,
+    TranslateLoader,
+    TranslateCompiler,
+    TranslateParser,
+    MissingTranslationHandler
+} from '@ngx-translate/core';
 import { AnswerType } from './../../projects/yzy-ng/src/lib/layout/models/AnswerType';
 import { QuestionComponent } from './../../projects/yzy-ng/src/lib/layout/question/question.component';
 import { moduleMetadata } from '@storybook/angular';
@@ -9,6 +19,7 @@ import {
     BarComponent
 } from 'yzy-ng';
 import { action } from '@storybook/addon-actions';
+import { HttpClientModule } from '@angular/common/http';
 
 export default {
     title: 'Layout',

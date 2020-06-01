@@ -33,10 +33,11 @@ export default {
                 FormsModule
             ],
             providers: [
-            {
-                provide: 'YzYTranslateService',
-                useClass: MokeTranslateService
-            }
+                {
+                    provide: 'YzYTranslateService',
+                    useClass: MokeTranslateService
+                }
+            ]
         })
     ]
 };
