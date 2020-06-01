@@ -277,7 +277,7 @@ export const complete = () => ({
         items,
         isPaginator: true,
         lineActions: actions,
-        onAdd: action('onAdd'),
+        action: action('action'),
         onSelect: action('onSelect'),
         onSort: action('onSort'),
         onFilter: action('onFilter')
@@ -289,25 +289,25 @@ actionsForCrud.splice(2, 1);
 const crudLineActions = [
     { name: 'delete', class: 'gg-trash', type: YzYActionTypes.Error }
 ];
-export const CRUDWithDelayedSave = () => ({
-    template: `
-    <div class="s-desktop">
-        <yzy-bar [title]="title" [actions]="actionsForCrud" (action)="action($event)"></yzy-bar>
-        <yzy-bar [formModel]="formModel" style="background: #e4e0e073"></yzy-bar>
-        <yzy-table [columns]="completesColumn" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
-    </div>
-    `,
-    props: {
-        title: 'Complete table with delayed save',
-        actionsForCrud,
-        formModel,
-        completesColumn,
-        items,
-        isPaginator: true,
-        lineActions: crudLineActions,
-        onAdd: action('onAdd'),
-        onSelect: action('onSelect'),
-        onSort: action('onSort'),
-        onFilter: action('onFilter')
-    }
-});
+// export const CRUDWithDelayedSave = () => ({
+//     template: `
+//     <div class="s-desktop">
+//         <yzy-bar [title]="title" [actions]="actionsForCrud" (action)="action($event)"></yzy-bar>
+//         <yzy-bar [formModel]="formModel" style="background: #e4e0e073"></yzy-bar>
+//         <yzy-table [columns]="completesColumn" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
+//     </div>
+//     `,
+//     props: {
+//         title: 'Complete table with delayed save',
+//         actionsForCrud,
+//         formModel,
+//         completesColumn,
+//         items,
+//         isPaginator: true,
+//         lineActions: crudLineActions,
+//         onAdd: action('onAdd'),
+//         onSelect: action('onSelect'),
+//         onSort: action('onSort'),
+//         onFilter: action('onFilter')
+//     }
+// });

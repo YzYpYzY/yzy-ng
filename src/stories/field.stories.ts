@@ -1,3 +1,4 @@
+import { YzYFormGroup } from './../../projects/yzy-ng/src/lib/form/YzYFormGroup';
 import {
     FieldComponent,
     FieldTypes,
@@ -12,7 +13,8 @@ import {
     ReactiveFormsModule,
     FormBuilder,
     Validators,
-    FormsModule
+    FormsModule,
+    AbstractControl
 } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { moduleMetadata } from '@storybook/angular';
@@ -20,6 +22,7 @@ import { action } from '@storybook/addon-actions';
 const fb = new FormBuilder();
 import { CommonModule } from '@angular/common';
 import { MokeTranslateService } from '../moks/moke.translate.service';
+import { tap } from 'rxjs/operators';
 
 export default {
     title: 'Field',
@@ -104,13 +107,18 @@ export const date = () => ({
             name: 'demo',
             label: 'Retour',
             type: FieldTypes.Date,
-            options: [{ label: 'Pas de retour', value: null }]
+            options: [{ label: 'Pas de retour', value: 'Pas de retour' }],
+            dateOptions: {
+                displayFormat: 'eu',
+                format: 'eu'
+            }
         },
         form: fb.group({
             demo: false
         })
     }
 });
+
 export const radio = () => ({
     component: RadioComponent,
     props: {

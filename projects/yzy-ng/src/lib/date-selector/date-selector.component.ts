@@ -6,22 +6,26 @@ import {
     EventEmitter,
     Output,
     HostBinding,
-    ElementRef
+    ElementRef,
+    AfterViewInit,
+    ChangeDetectorRef
 } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { FieldModel } from '../field/models/FieldModel';
 import { DisplayDate } from './models/DisplayDate';
 import { DateSelectorService } from './date-selector.service';
 import { Subscription } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, take } from 'rxjs/operators';
 import { BaseComponent } from '../base/base.component';
+import { CalendarState } from './models/CalendarState';
 
 @Component({
     selector: 'yzy-date-selector',
     templateUrl: './date-selector.component.html',
     styleUrls: ['./date-selector.component.scss']
 })
-export class DateSelectorComponent extends BaseComponent implements OnInit {
+export class DateSelectorComponent extends BaseComponent
+    implements OnInit, AfterViewInit {
     @Input() fieldModel: FieldModel;
     @Input() form: FormGroup;
 
@@ -50,7 +54,8 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
 
     constructor(
         private calendarService: DateSelectorService,
-        private elementRef: ElementRef
+        private elementRef: ElementRef,
+        private cdr: ChangeDetectorRef
     ) {
         super();
     }
@@ -120,6 +125,8 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
         this.setDateValues(this.initialValue);
     }
 
+    ngAfterViewInit(): void {}
+
     setDateValues(value: string | Date): void {
         let newDate;
         if (value == null || this.format === 'date') {
@@ -164,6 +171,7 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
                     break;
             }
         }
+
         this.date = this.refreshToDisplayDateValues(newDate);
     }
 
@@ -193,10 +201,8 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
             if (this.isCollapsed) {
                 this.stateSubscription = this.calendarService.calendarState$
                     .pipe(takeUntil(this.destroy$))
-                    .subscribe(newState => {
-                        console.log(newState);
-
-                        this.changeValue(newState.value);
+                    .subscribe((newState: CalendarState) => {
+                        this.changeValue(newState);
                         this.isCollapsed = !newState.isOpen;
                         if (this.isCollapsed) {
                             this.stateSubscription.unsubscribe();
@@ -217,6 +223,7 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
                                 this.isFirstSelection = false;
                             }
                         }
+                        this.cdr.detectChanges();
                     });
                 const displayBox = this.elementRef.nativeElement.children[
                     this.elementRef.nativeElement.children.length - 1
@@ -233,19 +240,25 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
         }
     }
 
-    changeValue(newValue): void {
-        if (newValue && newValue.label !== undefined) {
-            this.selectedExtraOption = newValue;
+    changeValue(newState: CalendarState): void {
+        let result;
+        if (!newState || !newState.value) {
+            result = null;
+            this.date = null;
+            this.isEmpty = true;
+        } else if ((newState.value as OptionModel).label !== undefined) {
+            this.selectedExtraOption = newState.value as OptionModel;
             this.valueChange.emit(this.selectedExtraOption.value);
+            this.isEmpty = false;
         } else {
             this.selectedExtraOption = null;
-            let result;
-
-            if (newValue != null) {
-                result = null;
-                this.date = null;
+            if (newState == null || newState.value == null) {
             } else {
-                this.date = this.refreshToDisplayDateValues(newValue);
+                this.date = this.refreshToDisplayDateValues(
+                    newState.value as DisplayDate
+                );
+                this.isEmpty = false;
+
                 switch (this.format) {
                     case 'date':
                         result = new Date(
@@ -282,11 +295,9 @@ export class DateSelectorComponent extends BaseComponent implements OnInit {
                         break;
                 }
             }
-
             this.control.setValue(result);
             this.valueChange.emit(result);
         }
-        this.isEmpty = false;
     }
 
     private validDateFormat(value): boolean {

@@ -8,7 +8,7 @@
     (focusout)="focusOut()"
 >
     <ng-container *ngIf="selectedExtraOption == null; else extraOption">
-        <div class="emptyValue" *ngIf="isEmpty || date == null; else value">
+        <div class="emptyValue" *ngIf="isEmpty; else value">
             No value
         </div>
         <ng-template #value>
