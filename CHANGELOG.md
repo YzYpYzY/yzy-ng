@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/YzYpYzY/yzy-ng/compare/v1.13.0...v1.13.1) (2020-06-30)
+
+
+### Bug Fixes
+
+* date-selector clear function ([8c40f8a](https://github.com/YzYpYzY/yzy-ng/commit/8c40f8aaf753a07d733020406105b5393ce334db))
+
 # [1.13.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.12.0...v1.13.0) (2020-06-01)
 
 
