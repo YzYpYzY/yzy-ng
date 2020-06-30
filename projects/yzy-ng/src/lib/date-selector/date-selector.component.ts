@@ -115,9 +115,11 @@ export class DateSelectorComponent extends BaseComponent
             : null;
 
         if (!this.validDateFormat(this.initialValue)) {
-            this.selectedExtraOption = this.extraOptions.find(
-                o => o.value === this.initialValue
-            );
+            if(this.extraOptions){
+                this.selectedExtraOption = this.extraOptions.find(
+                    o => o.value === this.initialValue
+                );
+            }
             this.initialValue = null;
         }
         this.isEmpty =
@@ -207,7 +209,7 @@ export class DateSelectorComponent extends BaseComponent
                         if (this.isCollapsed) {
                             this.stateSubscription.unsubscribe();
                             this.stateSubscription = null;
-                            if (!newState.isValidate && this.isFirstSelection) {
+                            if (!newState.isValidate) {
                                 if (
                                     this.initialValue == null &&
                                     this.selectedExtraOption == null
@@ -219,8 +221,6 @@ export class DateSelectorComponent extends BaseComponent
                                         this.selectedExtraOption.value
                                     );
                                 }
-                            } else {
-                                this.isFirstSelection = false;
                             }
                         }
                         this.cdr.detectChanges();
@@ -244,11 +244,10 @@ export class DateSelectorComponent extends BaseComponent
         let result;
         if (!newState || !newState.value) {
             result = null;
-            this.date = null;
             this.isEmpty = true;
         } else if ((newState.value as OptionModel).label !== undefined) {
             this.selectedExtraOption = newState.value as OptionModel;
-            this.valueChange.emit(this.selectedExtraOption.value);
+            result = this.selectedExtraOption.value;
             this.isEmpty = false;
         } else {
             this.selectedExtraOption = null;
@@ -295,9 +294,11 @@ export class DateSelectorComponent extends BaseComponent
                         break;
                 }
             }
-            this.control.setValue(result);
-            this.valueChange.emit(result);
+
+            
         }
+        this.control.setValue(result);
+        this.valueChange.emit(result);
     }
 
     private validDateFormat(value): boolean {

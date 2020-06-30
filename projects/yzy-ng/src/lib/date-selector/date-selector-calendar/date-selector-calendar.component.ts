@@ -123,6 +123,7 @@ export class DateSelectorCalendarComponent implements OnInit {
     }
 
     reset(): void {
+        this.selectedValue = null;
         this.calendarService.newValue(this.id, null);
     }
 

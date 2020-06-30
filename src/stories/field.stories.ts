@@ -14,7 +14,8 @@ import {
     FormBuilder,
     Validators,
     FormsModule,
-    AbstractControl
+    AbstractControl,
+    FormControl
 } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { moduleMetadata } from '@storybook/angular';
@@ -63,8 +64,8 @@ export const textArea = () => ({
             label: 'Comment',
             type: FieldTypes.TextArea
         },
-        form: fb.group({
-            demo: 'Awesome comment !'
+        form: new YzYFormGroup({
+            demo: new FormControl('Awesome comment !')
         })
     }
 });
@@ -76,8 +77,8 @@ export const checkbox = () => ({
             label: 'Stay connected',
             type: FieldTypes.Checkbox
         },
-        form: fb.group({
-            demo: false
+        form: new YzYFormGroup({
+            demo: new FormControl(false)
         })
     }
 });
@@ -95,8 +96,8 @@ export const dropdown = () => ({
             type: FieldTypes.Dropdown,
             options
         },
-        form: fb.group({
-            demo: false
+        form: new YzYFormGroup({
+            demo: new FormControl(false)
         })
     }
 });
@@ -113,8 +114,8 @@ export const date = () => ({
                 format: 'eu'
             }
         },
-        form: fb.group({
-            demo: false
+        form: new YzYFormGroup({
+            demo: new FormControl(false)
         })
     }
 });
@@ -128,8 +129,8 @@ export const radio = () => ({
             type: FieldTypes.Radio,
             options
         },
-        form: fb.group({
-            demo: false
+        form: new YzYFormGroup({
+            demo: new FormControl(false)
         })
     }
 });
@@ -137,8 +138,8 @@ export const number = () => ({
     component: FieldComponent,
     props: {
         fieldModel: { name: 'demo', label: 'Count', type: FieldTypes.Number },
-        form: fb.group({
-            demo: '42'
+        form: new YzYFormGroup({
+            demo: new FormControl(42)
         })
     }
 });
@@ -151,8 +152,8 @@ export const email = () => ({
             type: FieldTypes.Email,
             validators: [Validators.email]
         },
-        form: fb.group({
-            demo: 'john@doe.com'
+        form: new YzYFormGroup({
+            demo: new FormControl('john@doe.com')
         })
     }
 });
@@ -164,8 +165,8 @@ export const password = () => ({
             label: 'Password',
             type: FieldTypes.Password
         },
-        form: fb.group({
-            demo: 'password'
+        form: new YzYFormGroup({
+            demo: new FormControl('password')
         })
     }
 });
@@ -177,8 +178,8 @@ export const file = () => ({
             label: 'File',
             type: FieldTypes.File
         },
-        form: fb.group({
-            file: 'null'
+        form: new YzYFormGroup({
+            file: new FormControl(null)
         })
     }
 });
@@ -191,8 +192,8 @@ export const required = () => ({
             type: FieldTypes.Text,
             validators: [Validators.required]
         },
-        form: fb.group({
-            demo: ''
+        form: new YzYFormGroup({
+            demo: new FormControl('')
         })
     }
 });

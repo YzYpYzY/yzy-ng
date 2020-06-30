@@ -7,10 +7,10 @@ import {
     AsyncValidatorFn
 } from '@angular/forms';
 import { FieldTypes } from '../field/enums/FieldTypes';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 export class YzYFormGroup extends FormGroup {
     model: FormModel;
-    displayError$ = new Subject<boolean>();
+    displayError$ = new BehaviorSubject<boolean>(false);
     constructor(
         controls: {
             [key: string]: AbstractControl;
@@ -18,7 +18,7 @@ export class YzYFormGroup extends FormGroup {
         validatorOrOpts?: ValidatorFn | ValidatorFn[] | AbstractControlOptions,
         asyncValidator?: AsyncValidatorFn | AsyncValidatorFn[]
     ) {
-        super(controls, validatorOrOpts, asyncValidator);
+        super(controls, validatorOrOpts, asyncValidator);        
     }
     getTypedValue(model: FormModel = this.model): any {
         const res: any = {};
