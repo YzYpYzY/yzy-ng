@@ -51,7 +51,7 @@
             selected: item[key] === selectedItemIdIntern
         }"
     >
-        <td *ngFor="let column of visibleColumns; trackBy: trackByFn">
+        <td *ngFor="let column of visibleColumns">
             <yzy-cell
                 [value]="item[column.attribute]"
                 [column]="column"

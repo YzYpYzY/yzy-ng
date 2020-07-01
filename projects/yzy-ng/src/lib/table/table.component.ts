@@ -10,7 +10,8 @@ import {
     SimpleChanges,
     Output,
     EventEmitter,
-    HostBinding
+    HostBinding,
+    ChangeDetectorRef
 } from '@angular/core';
 import { YzYSort } from './models/YzYSort';
 import { TableValueChangeEvent } from './models/TableValueChangeEvent';
@@ -68,7 +69,7 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     selectedItemIdIntern: number | string;
     currentPage: number;
 
-    constructor() {
+    constructor(private cdr: ChangeDetectorRef) {
         super();
     }
 
@@ -324,5 +325,8 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
     clearChanges(): void {
         this.cellsChangedValues = new ElementsValueChanges();
         this.applySort();
+        this.displayedItems = this.displayedItems.map(i => {
+            return { ...i };
+        });
     }
 }
