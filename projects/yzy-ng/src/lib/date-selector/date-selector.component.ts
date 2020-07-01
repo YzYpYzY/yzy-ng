@@ -61,18 +61,16 @@ export class DateSelectorComponent extends BaseComponent
     }
 
     ngOnInit(): void {
-        this.displayedLabel =
-            this.label !== undefined
-                ? this.label
-                : this.fieldModel && this.fieldModel.label
-                ? this.fieldModel.label
-                : null;
-        this.extraOptions =
-            this.extraOptions !== undefined
-                ? this.extraOptions
-                : this.fieldModel && this.fieldModel.options
-                ? this.fieldModel.options
-                : null;
+        this.displayedLabel = this.label
+            ? this.label
+            : this.fieldModel && this.fieldModel.label
+            ? this.fieldModel.label
+            : null;
+        this.extraOptions = this.extraOptions
+            ? this.extraOptions
+            : this.fieldModel && this.fieldModel.options
+            ? this.fieldModel.options
+            : null;
         this.format = this.format
             ? this.format
             : this.fieldModel &&
@@ -87,14 +85,13 @@ export class DateSelectorComponent extends BaseComponent
               this.fieldModel.dateOptions.displayFormat
             ? this.fieldModel.dateOptions.displayFormat
             : 'iso';
-        this.separator =
-            this.separator !== undefined
-                ? this.separator
-                : this.fieldModel &&
-                  this.fieldModel.dateOptions &&
-                  this.fieldModel.dateOptions.separator
-                ? this.fieldModel.dateOptions.separator
-                : '/';
+        this.separator = this.separator
+            ? this.separator
+            : this.fieldModel &&
+              this.fieldModel.dateOptions &&
+              this.fieldModel.dateOptions.separator
+            ? this.fieldModel.dateOptions.separator
+            : '/';
         const controlName =
             this.fieldModel && this.fieldModel.name
                 ? this.fieldModel.name
@@ -115,7 +112,7 @@ export class DateSelectorComponent extends BaseComponent
             : null;
 
         if (!this.validDateFormat(this.initialValue)) {
-            if(this.extraOptions){
+            if (this.extraOptions) {
                 this.selectedExtraOption = this.extraOptions.find(
                     o => o.value === this.initialValue
                 );
@@ -241,10 +238,13 @@ export class DateSelectorComponent extends BaseComponent
     }
 
     changeValue(newState: CalendarState): void {
+        console.log(newState);
+
         let result;
         if (!newState || !newState.value) {
             result = null;
             this.isEmpty = true;
+            this.selectedExtraOption = null;
         } else if ((newState.value as OptionModel).label !== undefined) {
             this.selectedExtraOption = newState.value as OptionModel;
             result = this.selectedExtraOption.value;
@@ -294,8 +294,6 @@ export class DateSelectorComponent extends BaseComponent
                         break;
                 }
             }
-
-            
         }
         this.control.setValue(result);
         this.valueChange.emit(result);
