@@ -1,3 +1,10 @@
+## [1.13.2](https://github.com/YzYpYzY/yzy-ng/compare/v1.13.1...v1.13.2) (2020-07-01)
+
+
+### Bug Fixes
+
+* **date-selector:** extra option clearing ([fb32c63](https://github.com/YzYpYzY/yzy-ng/commit/fb32c633f1734c7e3e716611c178fe51ede3f070))
+
 ## [1.13.1](https://github.com/YzYpYzY/yzy-ng/compare/v1.13.0...v1.13.1) (2020-06-30)
 
 
