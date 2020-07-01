@@ -1,3 +1,10 @@
+## [1.13.3](https://github.com/YzYpYzY/yzy-ng/compare/v1.13.2...v1.13.3) (2020-07-01)
+
+
+### Bug Fixes
+
+* **table:** clear changes ([d426400](https://github.com/YzYpYzY/yzy-ng/commit/d426400bf67297bc2a38789b3811f1fb909bff8d))
+
 ## [1.13.2](https://github.com/YzYpYzY/yzy-ng/compare/v1.13.1...v1.13.2) (2020-07-01)
 
 
