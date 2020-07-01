@@ -45,8 +45,8 @@ export default {
         })
     ]
 };
-const baseForm = fb.group({
-    demo: 'Doe'
+const baseForm = new YzYFormGroup({
+    demo: new FormControl('Doe')
 });
 baseForm.statusChanges.subscribe(value => action('statusChanges'));
 export const text = () => ({

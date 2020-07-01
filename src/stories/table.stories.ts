@@ -35,7 +35,13 @@ const columns: Column[] = [
     { name: 'Stock', attribute: 'stock', type: ColumnTypes.Number },
     { name: 'Healthy', attribute: 'isHealthy', type: ColumnTypes.Boolean },
     { name: 'Provider', attribute: 'provider' },
-    { name: 'Last stock', attribute: 'date', type: ColumnTypes.Date }
+    {
+        name: 'Last stock',
+        attribute: 'date',
+        options: [{ label: 'Pas de retour', value: 'Pas de retour' }],
+        dateOptions: { format: 'eu', displayFormat: 'eu' },
+        type: ColumnTypes.Date
+    }
 ];
 const sortableColumns = columns.map(c => ({ ...c }));
 sortableColumns[0].isSortable = true;
