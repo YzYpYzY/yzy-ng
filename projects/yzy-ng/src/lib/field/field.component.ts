@@ -8,6 +8,7 @@ import {
     Optional,
     InjectionToken
 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { FieldTypes } from './enums/FieldTypes';
 import { FieldModel } from './models/FieldModel';
@@ -31,6 +32,12 @@ export class FieldComponent extends BaseComponent implements OnInit {
     @HostBinding('class.is-valid') isValid = false;
     @HostBinding('class.is-readonly') isReadOnly = false;
 
+    @HostBinding('style.grid-column-start') columnStart: number | string =
+        'auto';
+    @HostBinding('style.grid-column-end') columnEnd: number | string = 'auto';
+    @HostBinding('style.grid-row-start') rowStart: number | string = 'auto';
+    @HostBinding('style.grid-row-end') rowEnd: number | string = 'auto';
+
     control: AbstractControl;
     htmltype: 'text' | 'password' | 'email' | 'number' = 'text';
     errors: string[] = [];
@@ -47,7 +54,20 @@ export class FieldComponent extends BaseComponent implements OnInit {
         this.control = this.form.get(this.fieldModel.name);
         this.control.setValidators(this.fieldModel.validators);
         this.isReadOnly = !this.control.enabled;
-
+        if (this.fieldModel && this.fieldModel.column !== undefined) {
+            const parts = this.fieldModel.column.toString().split('/');
+            this.columnStart = parts[0];
+            if (parts[1] !== undefined) {
+                this.columnEnd = parts[1];
+            }
+        }
+        if (this.fieldModel && this.fieldModel.row !== undefined) {
+            const parts = this.fieldModel.row.toString().split('/');
+            this.rowStart = parts[0];
+            if (parts[1] !== undefined) {
+                this.rowEnd = parts[1];
+            }
+        }
         this.control.valueChanges
             .pipe(
                 takeUntil(this.destroy$),
