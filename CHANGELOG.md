@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.13.3...v1.14.0) (2020-07-04)
+
+
+### Features
+
+* **form:** multi column form ([8c99fc0](https://github.com/YzYpYzY/yzy-ng/commit/8c99fc0e967c629a74942086fff454bd728fdec1))
+
 ## [1.13.3](https://github.com/YzYpYzY/yzy-ng/compare/v1.13.2...v1.13.3) (2020-07-01)
 
 
