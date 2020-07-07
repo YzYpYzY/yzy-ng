@@ -92,7 +92,7 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
                 : true;
         this.emptyMessage = this.emptyMessage
             ? this.emptyMessage
-            : 'Aucune données';
+            : 'Aucune donnée';
         this.currentPage = this.selectedPage ? this.selectedPage : 1;
         this.prepareSortSystems();
         this.prepareColumns();
@@ -178,10 +178,12 @@ export class TableComponent extends BaseComponent implements OnInit, OnChanges {
         this.onAdd.emit('new');
     }
 
-    selectE(index, item) {
-        this.onSelect.emit(item[this.key]);
-        if (this.selectionMode === 'simple') {
-            this.selectedItemIdIntern = item[this.key];
+    selectE(event, index, item) {
+        if(!event.path[0].classList.contains('action') && !event.path[1].classList.contains('action')){
+            this.onSelect.emit(item[this.key]);
+            if (this.selectionMode === 'simple') {
+                this.selectedItemIdIntern = item[this.key];
+            }
         }
     }
 

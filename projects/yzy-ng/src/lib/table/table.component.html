@@ -46,7 +46,7 @@
     </tr>
     <tr
         *ngFor="let item of displayedItems; let index"
-        (click)="selectE(index, item)"
+        (click)="selectE($event, index, item)"
         [ngClass]="{
             selected: item[key] === selectedItemIdIntern
         }"

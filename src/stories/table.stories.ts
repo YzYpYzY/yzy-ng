@@ -137,7 +137,7 @@ export const withLineActions = () => ({
     component: TableComponent,
     template: `
     <div class="s-desktop">
-    <yzy-table [columns]="columns" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)"></yzy-table>
+    <yzy-table [columns]="columns" [items]="items" [isPaginator]="isPaginator" [lineActions]="lineActions" (onAdd)="onAdd($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)" (onFilter)="onFilter($event)" (onAction)="onAction($event)"></yzy-table>
     </div>
     `,
     props: {
@@ -146,6 +146,7 @@ export const withLineActions = () => ({
         isPaginator: true,
         lineActions: actions,
         onAdd: action('onAdd'),
+        onAction: action('OnAction'),
         onSelect: action('onSelect'),
         onSort: action('onSort'),
         onFilter: action('onFilter')
