@@ -1,3 +1,10 @@
+## [1.14.1](https://github.com/YzYpYzY/yzy-ng/compare/v1.14.0...v1.14.1) (2020-07-07)
+
+
+### Bug Fixes
+
+* **table:** lineActions trigger ([6d0e146](https://github.com/YzYpYzY/yzy-ng/commit/6d0e14629f958d196c9f19a1dccaee7cc95418d6))
+
 # [1.14.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.13.3...v1.14.0) (2020-07-04)
 
 
