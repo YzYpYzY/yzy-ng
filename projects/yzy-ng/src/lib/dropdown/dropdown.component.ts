@@ -9,7 +9,9 @@ import {
     HostBinding,
     Output,
     EventEmitter,
-    ChangeDetectorRef
+    ChangeDetectorRef,
+    OnChanges,
+    SimpleChanges
 } from '@angular/core';
 import { OptionModel } from './models/OptionModel';
 import { FormGroup, AbstractControl, FormControl } from '@angular/forms';
@@ -22,7 +24,8 @@ import { Subscription } from 'rxjs';
     templateUrl: './dropdown.component.html',
     styleUrls: ['./dropdown.component.scss']
 })
-export class DropdownComponent extends BaseComponent implements OnInit {
+export class DropdownComponent extends BaseComponent
+    implements OnInit, OnChanges {
     @Input() fieldModel: FieldModel;
     @Input() form: FormGroup;
 
@@ -52,6 +55,11 @@ export class DropdownComponent extends BaseComponent implements OnInit {
         private dropdownService: DropdownService
     ) {
         super();
+    }
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes.options) {
+            this.displayedOptions = changes.options.currentValue;
+        }
     }
 
     ngOnInit(): void {
