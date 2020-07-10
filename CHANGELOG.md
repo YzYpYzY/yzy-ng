@@ -1,3 +1,10 @@
+## [1.14.2](https://github.com/YzYpYzY/yzy-ng/compare/v1.14.1...v1.14.2) (2020-07-10)
+
+
+### Bug Fixes
+
+* **dropdown:** change options reflections and isPlaceHolder option ([9cbd464](https://github.com/YzYpYzY/yzy-ng/commit/9cbd46420b03d933a01097a0ad5ecb4bbfba9547))
+
 ## [1.14.1](https://github.com/YzYpYzY/yzy-ng/compare/v1.14.0...v1.14.1) (2020-07-07)
 
 
