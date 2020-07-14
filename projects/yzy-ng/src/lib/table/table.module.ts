@@ -19,6 +19,6 @@ import { DateSelectorModule } from '../date-selector/date-selector.module';
         PipeModule,
         CheckboxModule
     ],
-    exports: [TableComponent]
+    exports: [TableComponent, PaginatorComponent]
 })
 export class TableModule {}

@@ -1,9 +1,17 @@
-import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges, OnChanges } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    Output,
+    EventEmitter,
+    Input,
+    SimpleChanges,
+    OnChanges
+} from '@angular/core';
 
 @Component({
     selector: 'yzy-paginator',
     templateUrl: './paginator.component.html',
-    styleUrls: ['./paginator.component.css']
+    styleUrls: ['./paginator.component.scss']
 })
 export class PaginatorComponent implements OnInit, OnChanges {
     @Input() count: number;
@@ -18,6 +26,7 @@ export class PaginatorComponent implements OnInit, OnChanges {
     constructor() {}
 
     ngOnInit(): void {
+        this.pageLinkNumber = this.pageLinkNumber ? this.pageLinkNumber : 3;
         this.currentPage = this.selectedPage ? this.selectedPage : 1;
         this.lastPage = Math.trunc(this.count / this.itemByPage) + 1;
         this.setPagesDisplayed();
@@ -55,13 +64,13 @@ export class PaginatorComponent implements OnInit, OnChanges {
             for (let i = 1; i <= this.lastPage; i++) {
                 pagesDisplayed.push(i);
             }
-        } else if (this.currentPage <= (this.pageLinkNumber-1) / 2 + 1) {
+        } else if (this.currentPage <= (this.pageLinkNumber - 1) / 2 + 1) {
             for (let i = 1; i < this.pageLinkNumber + 1; i++) {
                 pagesDisplayed.push(i);
             }
         } else if (
             this.currentPage >=
-            this.lastPage - ((this.pageLinkNumber-1) / 2 + 1)
+            this.lastPage - ((this.pageLinkNumber - 1) / 2 + 1)
         ) {
             for (
                 let i = this.lastPage + 1 - this.pageLinkNumber;
@@ -72,13 +81,14 @@ export class PaginatorComponent implements OnInit, OnChanges {
             }
         } else {
             for (
-                let i = this.currentPage - (this.pageLinkNumber-1) / 2;
-                i < this.currentPage + (this.pageLinkNumber-1) / 2 + 1;
+                let i = this.currentPage - (this.pageLinkNumber - 1) / 2;
+                i < this.currentPage + (this.pageLinkNumber - 1) / 2 + 1;
                 i++
             ) {
                 pagesDisplayed.push(i);
             }
         }
+
         this.pagesDisplayed = [...pagesDisplayed];
     }
 }
