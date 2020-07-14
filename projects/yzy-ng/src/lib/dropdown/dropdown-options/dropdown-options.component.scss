@@ -1,10 +1,11 @@
-:host{
+:host {
     position: absolute;
     z-index: 1000;
     border: 1px solid var(--field-border);
     border-top-color: transparent;
     background: var(--field-bg);
-    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 25rem;
 }
 .option {
     display: flex;
@@ -16,7 +17,7 @@
     border-top: 1px solid var(--field-border);
     min-height: calc(1.5rem + 1em);
     line-height: 1em;
-
+    user-select: none;
     &:hover {
         background: var(--accent-color);
         color: var(--field-bg);

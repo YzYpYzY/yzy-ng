@@ -4,6 +4,7 @@
     flex-grow: 1;
     color: var(--paginator-color);
     background: var(--paginator-bg);
+    user-select: none;
 }
 
 .currentPage {
