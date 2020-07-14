@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.14.2...v1.15.0) (2020-07-14)
+
+
+### Features
+
+* **paginator:** export paginator for use outside table ([de86482](https://github.com/YzYpYzY/yzy-ng/commit/de864826c0700d51d22831c00dea820a0b8181a2))
+
 ## [1.14.2](https://github.com/YzYpYzY/yzy-ng/compare/v1.14.1...v1.14.2) (2020-07-10)
 
 
