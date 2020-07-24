@@ -82,9 +82,17 @@ export class DropdownComponent extends BaseComponent
                 controlName,
                 new FormControl(this.initialOption.value)
             );
+            this.control = this.form.get(controlName);
+        } else {
+            this.control = this.form.get(controlName);
+            this.selectedValue = this.control.value;
         }
-        this.control = this.form.get(controlName);
         this.isReadOnly = !this.control.enabled;
+        this.control.statusChanges
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(status => {
+                this.isReadOnly = !this.control.enabled;
+            });
         if (this.width !== undefined) {
             this.displayedWidth = this.width;
             this.setDisplayValue();
@@ -153,11 +161,13 @@ export class DropdownComponent extends BaseComponent
 
     setDisplayValue() {
         const selectedItem = this.displayedOptions.find(
-            i => i.value === this.control.value
+            i => i.value === this.control.value?.toString()
         );
         this.displayedValue = selectedItem
             ? selectedItem.label
-            : this.fieldModel.isPlaceHolder
+            : this.fieldModel
+            ? this.fieldModel.isPlaceHolder
+            : this.displayedLabel
             ? this.displayedLabel
             : '';
 
