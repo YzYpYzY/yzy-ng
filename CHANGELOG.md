@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/YzYpYzY/yzy-ng/compare/v1.15.0...v1.15.1) (2020-07-14)
+
+
+### Bug Fixes
+
+* **dropdown:** scroll ([099227c](https://github.com/YzYpYzY/yzy-ng/commit/099227cb23372dc80a7cff6884210755177ffaa7))
+
 # [1.15.0](https://github.com/YzYpYzY/yzy-ng/compare/v1.14.2...v1.15.0) (2020-07-14)
 
 
