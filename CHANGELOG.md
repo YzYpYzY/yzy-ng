@@ -1,3 +1,10 @@
+## [1.15.2](https://github.com/YzYpYzY/yzy-ng/compare/v1.15.1...v1.15.2) (2020-07-27)
+
+
+### Bug Fixes
+
+* **dropdown:** change input reflection ([633f150](https://github.com/YzYpYzY/yzy-ng/commit/633f1509505eb2e30d53cc23be09b8893b08a7f1))
+
 ## [1.15.1](https://github.com/YzYpYzY/yzy-ng/compare/v1.15.0...v1.15.1) (2020-07-14)
 
 
