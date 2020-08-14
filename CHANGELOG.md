@@ -1,3 +1,10 @@
+## [1.15.4](https://github.com/YzYpYzY/yzy-ng/compare/v1.15.3...v1.15.4) (2020-08-14)
+
+
+### Bug Fixes
+
+* some typings bugs ([0f13a2a](https://github.com/YzYpYzY/yzy-ng/commit/0f13a2ae18566a197ec4ba0652e15d6bfab25b5f))
+
 ## [1.15.3](https://github.com/YzYpYzY/yzy-ng/compare/v1.15.2...v1.15.3) (2020-08-14)
 
 

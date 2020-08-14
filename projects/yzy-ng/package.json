@@ -1,6 +1,6 @@
 {
   "name": "yzy-ng",
-  "version": "1.15.3",
+  "version": "1.15.4",
   "description": "Components library",
   "main": "src/public-api.ts",
   "scripts": {
