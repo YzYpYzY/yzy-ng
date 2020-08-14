@@ -9,7 +9,7 @@ import {
     OnChanges
 } from '@angular/core';
 import { FormModel } from './models/FormModel';
-import { FormControl } from '@angular/forms';
+import { FormControl, ValidatorFn } from '@angular/forms';
 import { YzYFormGroup } from './YzYFormGroup';
 
 @Component({
@@ -37,7 +37,7 @@ export class FormComponent implements OnInit, OnChanges {
         this.formModel.fields.forEach(f => {
             const control = new FormControl(
                 '',
-                f.validators !== undefined ? f.validators : []
+                f.validators !== undefined ? f.validators as ValidatorFn[] : []
             );
             if (f.isReadOnly) {
                 control.disable();

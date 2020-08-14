@@ -10,7 +10,7 @@ export interface FieldModel {
     value?: string | number;
     options?: OptionModel[];
     isReadOnly?: boolean;
-    validators?: ((control: AbstractControl) => ValidationErrors)[] | null;
+    validators?: unknown[] | null;
     isPlaceHolder?: boolean;
     accept?: string;
     isHide?: boolean;

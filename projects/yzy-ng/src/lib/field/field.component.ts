@@ -9,7 +9,7 @@ import {
     InjectionToken
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FormGroup, AbstractControl } from '@angular/forms';
+import { FormGroup, AbstractControl, ValidatorFn } from '@angular/forms';
 import { FieldTypes } from './enums/FieldTypes';
 import { FieldModel } from './models/FieldModel';
 import { debounce, takeUntil } from 'rxjs/operators';
@@ -52,7 +52,7 @@ export class FieldComponent extends BaseComponent implements OnInit {
 
     ngOnInit() {
         this.control = this.form.get(this.fieldModel.name);
-        this.control.setValidators(this.fieldModel.validators);
+        this.control.setValidators(this.fieldModel.validators as ValidatorFn[]);
         this.isReadOnly = !this.control.enabled;
         if (this.fieldModel && this.fieldModel.column !== undefined) {
             const parts = this.fieldModel.column.toString().split('/');

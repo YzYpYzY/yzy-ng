@@ -99,6 +99,7 @@ export class DateSelectorCalendarComponent implements OnInit {
             this.dayChoices[day - 1 + this.dayShift].selected = true;
         }
         this.selectedValue = this.currentDate;
+        this.selectedOption = null;
         this.calendarService.newValue(this.id, this.selectedValue);
     }
     selectExtraOption(event, option: OptionModel): void {
@@ -109,6 +110,7 @@ export class DateSelectorCalendarComponent implements OnInit {
             this.currentDate.day = null;
         }
         this.selectedValue = option;
+        this.selectedOption = option;
         this.calendarService.newValue(this.id, this.selectedValue);
     }
 
