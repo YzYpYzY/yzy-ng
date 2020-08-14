@@ -1,3 +1,10 @@
+## [1.15.3](https://github.com/YzYpYzY/yzy-ng/compare/v1.15.2...v1.15.3) (2020-08-14)
+
+
+### Bug Fixes
+
+* **paginator:** max pagination ([e19c26f](https://github.com/YzYpYzY/yzy-ng/commit/e19c26f2fb4efeeb769fdc4dc6f8dbfe1e1e3e55))
+
 ## [1.15.2](https://github.com/YzYpYzY/yzy-ng/compare/v1.15.1...v1.15.2) (2020-07-27)
 
 
