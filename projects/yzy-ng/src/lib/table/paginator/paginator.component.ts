@@ -28,13 +28,18 @@ export class PaginatorComponent implements OnInit, OnChanges {
     ngOnInit(): void {
         this.pageLinkNumber = this.pageLinkNumber ? this.pageLinkNumber : 3;
         this.currentPage = this.selectedPage ? this.selectedPage : 1;
-        this.lastPage = Math.trunc(this.count / this.itemByPage) + 1;
+        this.calculateLastPage();
         this.setPagesDisplayed();
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        this.lastPage = Math.trunc(this.count / this.itemByPage) + 1;
+        this.calculateLastPage();
         this.setPagesDisplayed();
+    }
+
+    calculateLastPage(){
+        const lastPage = Math.trunc(this.count / this.itemByPage);
+        this.lastPage = this.count % this.itemByPage == 0 ? lastPage : lastPage + 1;
     }
 
     changePageE(pageMove): void {
