@@ -15,6 +15,6 @@ export interface FieldModel {
     accept?: string;
     isHide?: boolean;
     dateOptions?: DateOptions;
-    column?: number;
+    column?: number | string;
     row?: number;
 }
