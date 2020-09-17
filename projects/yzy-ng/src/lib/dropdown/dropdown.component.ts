@@ -161,7 +161,7 @@ export class DropdownComponent extends BaseComponent
 
     setDisplayValue() {
         const selectedItem = this.displayedOptions.find(
-            i => i.value === this.control.value?.toString()
+            i => i.value?.toString() === this.control.value?.toString()
         );
         this.displayedValue = selectedItem
             ? selectedItem.label

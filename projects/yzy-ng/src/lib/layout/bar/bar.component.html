@@ -1,4 +1,4 @@
-<ng-container *ngIf="tabs">
+<div class="tabs" *ngIf="tabs">
     <div
         class="tab"
         *ngFor="let tab of tabs"
@@ -7,7 +7,7 @@
     >
         {{ tab.label }}
     </div>
-</ng-container>
+</div>
 <div class="title" *ngIf="title">{{ title }}</div>
 <yzy-form
     [formModel]="formModel"
