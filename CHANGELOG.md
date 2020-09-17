@@ -1,3 +1,10 @@
+## [1.15.5](https://github.com/YzYpYzY/yzy-ng/compare/v1.15.4...v1.15.5) (2020-08-22)
+
+
+### Bug Fixes
+
+* **field:** column type ([727fb99](https://github.com/YzYpYzY/yzy-ng/commit/727fb99203316e7752f8d882c07d2a644f0522ae))
+
 ## [1.15.4](https://github.com/YzYpYzY/yzy-ng/compare/v1.15.3...v1.15.4) (2020-08-14)
 
 
