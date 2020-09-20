@@ -1,3 +1,10 @@
+## [1.15.7](https://github.com/YzYpYzY/yzy-ng/compare/v1.15.6...v1.15.7) (2020-09-20)
+
+
+### Bug Fixes
+
+* **field:** instant status change to class ([72e118f](https://github.com/YzYpYzY/yzy-ng/commit/72e118f0509831810754da5bb3e9dfeca900ba10))
+
 ## [1.15.6](https://github.com/YzYpYzY/yzy-ng/compare/v1.15.5...v1.15.6) (2020-09-17)
 
 
