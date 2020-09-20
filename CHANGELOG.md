@@ -1,3 +1,10 @@
+## [1.15.6](https://github.com/YzYpYzY/yzy-ng/compare/v1.15.5...v1.15.6) (2020-09-17)
+
+
+### Bug Fixes
+
+* some small fixes ([382cadf](https://github.com/YzYpYzY/yzy-ng/commit/382cadf331d90a6e81ad8dd194f84e6d7213d19b))
+
 ## [1.15.5](https://github.com/YzYpYzY/yzy-ng/compare/v1.15.4...v1.15.5) (2020-08-22)
 
 
