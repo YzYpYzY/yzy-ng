@@ -77,6 +77,11 @@ export class FieldComponent extends BaseComponent implements OnInit {
                 this.treatErrors();
                 this.isValid = this.control.valid;
             });
+        this.control.statusChanges
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(status => {
+                this.isReadOnly = !this.control.enabled;
+            });
         this.form.displayError$
             .pipe(takeUntil(this.destroy$))
             .subscribe(value => {
